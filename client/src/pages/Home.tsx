@@ -9,7 +9,8 @@
  */
 
 import { useEffect, useRef, useState } from "react";
-import { CheckCircle2, ChevronDown, Download, Users, ArrowRight, Shield, Brain, HeartHandshake, Sparkles, Building2, Phone, UserX, Banknote, UserCog, Building, AlertTriangle } from "lucide-react";
+import { CheckCircle2, ChevronDown, Download, Users, ArrowRight, Shield, Brain, HeartHandshake, Sparkles, Building2, Phone, UserX, Banknote, UserCog, Building, AlertTriangle, Menu, X } from "lucide-react";
+import { Link } from "wouter";
 
 // Intersection Observer hook for scroll animations
 function useInView(threshold = 0.15) {
@@ -80,20 +81,20 @@ function Header() {
           <a href="#vision" className="text-sm text-[#666] hover:text-[#FD6C26] transition-colors font-medium">ビジョン</a>
         </nav>
         <div className="flex items-center gap-3">
-          <a
-            href="#cta"
+          <Link
+            href="/contact?type=document"
             className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-[#FD6C26] text-white text-sm font-bold rounded-full hover:bg-[#e55e1a] transition-colors shadow-md shadow-[#FD6C26]/20"
           >
             <Download className="w-4 h-4" />
             資料ダウンロード
-          </a>
-          <a
-            href="#cta"
+          </Link>
+          <Link
+            href="/contact?type=consultation"
             className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 border-2 border-[#FD6C26] text-[#FD6C26] text-sm font-bold rounded-full hover:bg-[#FFF4EE] transition-colors"
           >
             <Phone className="w-4 h-4" />
             相談会に申し込む
-          </a>
+          </Link>
         </div>
       </div>
     </header>
@@ -145,20 +146,20 @@ function HeroSection() {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <a
-                  href="#cta"
+                <Link
+                  href="/contact?type=document"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#FD6C26] text-white text-base font-bold rounded-full hover:bg-[#e55e1a] transition-all shadow-lg shadow-[#FD6C26]/30 hover:shadow-xl hover:shadow-[#FD6C26]/40 hover:-translate-y-0.5"
                 >
                   <Download className="w-5 h-5" />
                   詳しい仕組みがわかる！サービス紹介資料ダウンロード（無料）
-                </a>
-                <a
-                  href="#cta"
+                </Link>
+                <Link
+                  href="/contact?type=consultation"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-[#FD6C26] text-[#FD6C26] text-base font-bold rounded-full hover:bg-[#FFF4EE] transition-all hover:-translate-y-0.5"
                 >
                   <Phone className="w-5 h-5" />
                   オンライン個別相談会に申し込む
-                </a>
+                </Link>
               </div>
             </div>
           </AnimatedSection>
@@ -844,20 +845,20 @@ function CTASection() {
         <AnimatedSection delay={0.3}>
           <div className="bg-gradient-to-br from-[#FD6C26] to-[#E55A10] rounded-2xl p-8 lg:p-12 shadow-xl shadow-[#FD6C26]/20">
             <div className="flex flex-col lg:flex-row gap-6 items-center justify-center">
-              <a
-                href="#"
+              <Link
+                href="/contact?type=document"
                 className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-white text-[#FD6C26] text-lg font-bold rounded-full hover:bg-[#FFF4EE] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 w-full lg:w-auto"
               >
                 <Download className="w-5 h-5" />
                 3分でわかる！サービス紹介資料ダウンロード（無料）
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                href="/contact?type=consultation"
                 className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-transparent border-2 border-white text-white text-lg font-bold rounded-full hover:bg-white/10 transition-all hover:-translate-y-0.5 w-full lg:w-auto"
               >
                 <Phone className="w-5 h-5" />
                 専門コンサルタントによる オンライン個別相談会（無料）
-              </a>
+              </Link>
             </div>
           </div>
         </AnimatedSection>
@@ -884,20 +885,20 @@ function FloatingCTA() {
       }`}
     >
       <div className="max-w-[1440px] mx-auto px-4 py-3 flex items-center justify-center gap-3 flex-wrap">
-        <a
-          href="#cta"
+        <Link
+          href="/contact?type=document"
           className="inline-flex items-center gap-2 px-6 py-3 bg-[#FD6C26] text-white text-sm font-bold rounded-full hover:bg-[#e55e1a] transition-colors shadow-md shadow-[#FD6C26]/20"
         >
           <Download className="w-4 h-4" />
           詳しい仕組みがわかる！資料ダウンロード（無料）
-        </a>
-        <a
-          href="#cta"
+        </Link>
+        <Link
+          href="/contact?type=consultation"
           className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#FD6C26] text-[#FD6C26] text-sm font-bold rounded-full hover:bg-[#FFF4EE] transition-colors"
         >
           <Phone className="w-4 h-4" />
           オンライン個別相談会に申し込む
-        </a>
+        </Link>
       </div>
     </div>
   );
@@ -936,13 +937,24 @@ function Footer() {
             <div>
               <h4 className="text-sm font-bold mb-3 text-white/80">お問い合わせ</h4>
               <ul className="space-y-2">
-                <li><a href="#cta" className="text-sm text-white/50 hover:text-white/80 transition-colors">資料ダウンロード</a></li>
-                <li><a href="#cta" className="text-sm text-white/50 hover:text-white/80 transition-colors">オンライン相談会</a></li>
+                <li><Link href="/contact?type=document" className="text-sm text-white/50 hover:text-white/80 transition-colors">資料ダウンロード</Link></li>
+                <li><Link href="/contact?type=consultation" className="text-sm text-white/50 hover:text-white/80 transition-colors">オンライン相談会</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-sm font-bold mb-3 text-white/80">ポリシー</h4>
+              <ul className="space-y-2">
+                <li><Link href="/privacy" className="text-sm text-white/50 hover:text-white/80 transition-colors">プライバシーポリシー</Link></li>
+                <li><Link href="/security" className="text-sm text-white/50 hover:text-white/80 transition-colors">情報セキュリティ方針</Link></li>
               </ul>
             </div>
           </div>
         </div>
-        <div className="mt-10 pt-6 border-t border-white/10 text-center">
+        <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-6 text-xs">
+            <Link href="/privacy" className="text-white/40 hover:text-white/60 transition-colors">プライバシーポリシー</Link>
+            <Link href="/security" className="text-white/40 hover:text-white/60 transition-colors">情報セキュリティ方針</Link>
+          </div>
           <p className="text-xs text-white/40">&copy; 2025 エシカルコミュニティLLP. All rights reserved.</p>
         </div>
       </div>
