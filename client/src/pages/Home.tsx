@@ -319,7 +319,7 @@ function ProblemSection() {
           <div className="max-w-[900px] mx-auto mb-12">
             <div className="bg-white rounded-3xl p-4 lg:p-6 shadow-2xl shadow-black/10">
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663384608434/YwT9YaGpotKVs9ejRKfzEn/problem-infographic-Kq5RC2QfNqxNQ2Fyyv2vJt.webp"
+                src="https://private-us-east-1.manuscdn.com/user_upload_by_module/session_file/310519663384608434/DTiIZjWMvnpDdhuU.png?Expires=1804063117&Signature=aganu1DEhKPN5IQXHjWA3hHR9eojUBo-hYyFJwiiEJrKz~IY2NjOnbvY2R2Y3UlSZaSsI0m8H3pVPEvUtvG~Jr-iHCQvHAwUYW5j8-AbSr5tfJN0QadSc66LRqrhkVxegw8I9T0pCjlaqbT64HIbkAImyUvVJ4-NxwWezXfDVU4BqOmPYz3PSGebuctwpny5~JYvYok0fzOybEQwJG3SAczAvY53P8UgOlWQqCR8LB2Y0p6Vh5F~VzdFmnBhiPZpHnKCp3ggbBJehhS4Q8-dxRl7J6gtelIDkgiyK217cnlxSERv1fspsGKxr8Nb7TpiL4QM7L1TA7Wn0WRXzGMpAA__&Key-Pair-Id=K2HSFNDJXOU9YS"
                 alt="障害者雇用の4つの課題 - 早期離職・採用コスト増大・管理体制不足・インフラ整備の壁"
                 className="w-full h-auto rounded-2xl"
               />
@@ -445,7 +445,7 @@ function SolutionSection() {
           <AnimatedSection delay={0.2}>
             <div className="rounded-2xl overflow-hidden shadow-xl bg-white">
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663384608434/YwT9YaGpotKVs9ejRKfzEn/infographic-llp-scheme-Pf6G3TEQ2uadCHSKwy6Z4c.webp"
+                src="https://private-us-east-1.manuscdn.com/user_upload_by_module/session_file/310519663384608434/UFVxjauWCHSmikXc.png?Expires=1804063117&Signature=J6Qc4aVeZ1btqoXIrJkM7SaCSLtEaQJTTVeotUnpDeClxOwrTodkL0qNoarhOANsCRXj75uPH5CZ18rg2DS~HNKbWapZTCcQwaghWVmTJI~1AcqMH-aMl~pupUji5IIOc6vIFhfpTTVsKVxTjycM~ysg06Tj8rlaVn3ilDE7Vt5EBxu2HO23IacXTOZjOMfmj5pcrQvR-eV24O30PRsxoP6I8IrYKKhxVbD9Y2kM8d-rG17kSVx9ZvPsYwwxRfOFPWmGiYZWyPyEnKphh~e6ftRvKNlw7~2xZmCsn-JWxRWGHnQSUtx5mZq303OkorqWH1hR9ddqD2LeR7VXM2ojFw__&Key-Pair-Id=K2HSFNDJXOU9YS"
                 alt="LLP（有限責任事業組合）の仕組み - 企業が共同出資し、共同雇用で雇用率算定が可能"
                 className="w-full h-auto"
               />
@@ -641,7 +641,7 @@ function VisionSection() {
       <div
         className="absolute inset-0 bg-cover bg-center transition-transform duration-[2s] ease-out"
         style={{
-          backgroundImage: `url(https://d2xsxph8kpxj0f.cloudfront.net/310519663384608434/YwT9YaGpotKVs9ejRKfzEn/vision-future-TTqXF5X2ujnQtiwG8E3sm4.webp)`,
+          backgroundImage: `url(https://private-us-east-1.manuscdn.com/user_upload_by_module/session_file/310519663384608434/zxhkZXtjhVtAKdHi.png?Expires=1804063117&Signature=X4O9C7Dor~gYI2YVPGAPQvqy47gXBMq9ljC2Qr~lLEFhudidVG4pMX0KqNFQo9EE4iXQqBQhFxzn-vMJw3sNiNPzp5hNgm7llwIFK3gHhvBq8sa256DLXNr5pmQsTJelTHzmxVJoOW20M1CxmCUECl~ZTCWwPovRUSNI7ajh3AovbESA84CIo9JJv~D4UVyqHuelBVu8kD~OAf56AeeSW~dD8IO6UZRfnsZKzBfanR2Ypo0Lp4qs5VAyQM7UYVLZvfFHo4iIfAWUArYn9ZcExQNqvDtKiBiaddVJW2ZwdwaM8jMDAoTtOrNCqdoAJIRJuPQdLfSpx~~I5n1WxyRLZA__&Key-Pair-Id=K2HSFNDJXOU9YS)`,
           transform: sectionInView ? "scale(1.05)" : "scale(1)",
         }}
       />
