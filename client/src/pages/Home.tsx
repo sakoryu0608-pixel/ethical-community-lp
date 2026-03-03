@@ -194,89 +194,8 @@ function HeroSection() {
 }
 
 // ============================================================
-// SECTION 2: PROBLEM / PAIN POINTS (Redesigned with visual impact)
+// SECTION 2: PROBLEM / PAIN POINTS (Orange theme with infographic)
 // ============================================================
-function ProblemCard({ icon, label, text, index }: { icon: React.ReactNode; label: string; text: string; index: number }) {
-  const { ref, isInView } = useInView(0.2);
-  const [hovered, setHovered] = useState(false);
-
-  return (
-    <div
-      ref={ref}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className="relative group cursor-default"
-      style={{
-        opacity: isInView ? 1 : 0,
-        transform: isInView
-          ? hovered ? "translateY(-6px) scale(1.02)" : "translateY(0) scale(1)"
-          : "translateY(40px) scale(0.95)",
-        transition: `opacity 0.6s cubic-bezier(0.22,1,0.36,1) ${index * 0.15}s, transform 0.4s cubic-bezier(0.22,1,0.36,1)`,
-      }}
-    >
-      {/* Glow effect on hover */}
-      <div
-        className="absolute -inset-1 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"
-        style={{ background: "radial-gradient(circle, rgba(253,108,38,0.15) 0%, transparent 70%)" }}
-      />
-
-      <div className="relative bg-white rounded-2xl p-6 lg:p-7 shadow-sm border border-[#F0EDED] group-hover:shadow-xl group-hover:border-[#FD6C26]/30 transition-all duration-400 overflow-hidden">
-        {/* Animated corner accent */}
-        <div
-          className="absolute top-0 right-0 w-24 h-24 transition-all duration-500"
-          style={{
-            background: hovered
-              ? "linear-gradient(135deg, transparent 50%, rgba(253,108,38,0.08) 50%)"
-              : "linear-gradient(135deg, transparent 50%, rgba(253,108,38,0.03) 50%)",
-          }}
-        />
-
-        {/* Number badge */}
-        <div className="absolute top-4 right-5 text-5xl font-black text-[#FD6C26]/[0.06] group-hover:text-[#FD6C26]/[0.12] transition-colors duration-500 select-none">
-          {String(index + 1).padStart(2, "0")}
-        </div>
-
-        <div className="flex items-start gap-5">
-          {/* Icon container with pulse animation */}
-          <div className="relative flex-shrink-0">
-            <div
-              className="w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-400"
-              style={{
-                background: hovered
-                  ? "linear-gradient(135deg, #FD6C26, #FF8F5C)"
-                  : "linear-gradient(135deg, #FFF4EE, #FFE8DA)",
-              }}
-            >
-              <div
-                className="transition-colors duration-400"
-                style={{ color: hovered ? "#fff" : "#FD6C26" }}
-              >
-                {icon}
-              </div>
-            </div>
-            {/* Pulse ring on hover */}
-            <div
-              className="absolute inset-0 rounded-xl border-2 border-[#FD6C26]/30 transition-all duration-700"
-              style={{
-                opacity: hovered ? 1 : 0,
-                transform: hovered ? "scale(1.3)" : "scale(1)",
-              }}
-            />
-          </div>
-
-          <div className="flex-1 min-w-0">
-            <p className="text-xs font-bold text-[#FD6C26] tracking-wider mb-1.5 uppercase">{label}</p>
-            <p className="text-[15px] lg:text-base text-[#444] leading-[1.8] font-medium">{text}</p>
-          </div>
-        </div>
-
-        {/* Bottom progress bar animation */}
-        <div className="absolute bottom-0 left-0 h-[3px] bg-gradient-to-r from-[#FD6C26] to-[#FF8F5C] transition-all duration-700 ease-out" style={{ width: hovered ? "100%" : "0%" }} />
-      </div>
-    </div>
-  );
-}
-
 function AnimatedCounter({ target, suffix = "", isInView }: { target: number; suffix?: string; isInView: boolean }) {
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -295,6 +214,38 @@ function AnimatedCounter({ target, suffix = "", isInView }: { target: number; su
   return <>{count}{suffix}</>;
 }
 
+function ProblemDetailCard({ icon, num, label, text, index }: { icon: React.ReactNode; num: string; label: string; text: string; index: number }) {
+  const { ref, isInView } = useInView(0.2);
+  return (
+    <div
+      ref={ref}
+      className="group"
+      style={{
+        opacity: isInView ? 1 : 0,
+        transform: isInView ? "translateY(0)" : "translateY(30px)",
+        transition: `opacity 0.5s ease-out ${index * 0.12}s, transform 0.5s ease-out ${index * 0.12}s`,
+      }}
+    >
+      <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-5 lg:p-6 shadow-lg shadow-black/5 border border-white/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+        <div className="flex items-start gap-4">
+          <div className="flex-shrink-0">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#FD6C26] to-[#FF8F5C] flex items-center justify-center text-white shadow-md shadow-[#FD6C26]/20">
+              {icon}
+            </div>
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 mb-1.5">
+              <span className="text-xs font-black text-[#FD6C26]/40">{num}</span>
+              <span className="text-sm font-bold text-[#333]">{label}</span>
+            </div>
+            <p className="text-[14px] lg:text-[15px] text-[#555] leading-[1.8]">{text}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ProblemSection() {
   const { ref: statsRef, isInView: statsInView } = useInView(0.3);
   const { ref: ctaRef, isInView: ctaInView } = useInView(0.3);
@@ -302,77 +253,90 @@ function ProblemSection() {
   const problems = [
     {
       icon: <UserX className="w-6 h-6" />,
+      num: "01",
       label: "早期離職",
       text: "せっかく採用しても、現場の理解やサポートが追いつかず早期離職してしまう。",
     },
     {
       icon: <Banknote className="w-6 h-6" />,
-      label: "採用コスト",
+      num: "02",
+      label: "採用コスト増大",
       text: "求人広告や人材紹介会社を使っても、自社に合う人材に出会えず採用経費ばかりが嵩む。",
     },
     {
       icon: <UserCog className="w-6 h-6" />,
-      label: "管理体制",
+      num: "03",
+      label: "管理体制不足",
       text: "現場に専任の障害者管理者を配置する余力（コスト・人員）がない。",
     },
     {
       icon: <Building className="w-6 h-6" />,
-      label: "インフラ整備",
+      num: "04",
+      label: "インフラ整備の壁",
       text: "オフィス環境の整備や通勤の配慮など、受け入れのインフラ（諸経費）がハードルになっている。",
     },
   ];
 
   return (
     <section id="problem" className="relative py-24 lg:py-32 overflow-hidden">
-      {/* Dark gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460]" />
+      {/* Warm orange gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#FD6C26] via-[#FF7E3F] to-[#FF9A5C]" />
 
-      {/* Animated floating orbs */}
+      {/* Decorative pattern overlay */}
+      <div className="absolute inset-0 opacity-[0.06]" style={{
+        backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.4) 1px, transparent 0)`,
+        backgroundSize: "32px 32px",
+      }} />
+
+      {/* Floating soft circles for depth */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[10%] left-[5%] w-72 h-72 rounded-full bg-[#FD6C26]/[0.04] blur-3xl animate-[float_8s_ease-in-out_infinite]" />
-        <div className="absolute bottom-[15%] right-[8%] w-96 h-96 rounded-full bg-[#FD6C26]/[0.03] blur-3xl animate-[float_12s_ease-in-out_infinite_reverse]" />
-        <div className="absolute top-[50%] left-[50%] w-48 h-48 rounded-full bg-[#FF8F5C]/[0.03] blur-3xl animate-[float_10s_ease-in-out_2s_infinite]" />
+        <div className="absolute top-[5%] right-[10%] w-64 h-64 rounded-full bg-white/[0.06] blur-3xl animate-[float_10s_ease-in-out_infinite]" />
+        <div className="absolute bottom-[10%] left-[5%] w-80 h-80 rounded-full bg-white/[0.04] blur-3xl animate-[float_14s_ease-in-out_infinite_reverse]" />
       </div>
 
-      {/* Grid pattern overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
-        }}
-      />
-
       <div className="relative z-10 max-w-[1200px] mx-auto px-6 lg:px-10">
-        {/* Header with animated alert icon */}
+        {/* Header */}
         <AnimatedSection>
           <div className="text-center mb-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FD6C26]/10 border border-[#FD6C26]/20 mb-6">
-              <AlertTriangle className="w-4 h-4 text-[#FD6C26] animate-pulse" />
-              <span className="text-sm font-bold text-[#FD6C26] tracking-wider">PROBLEM</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 border border-white/25 mb-6 backdrop-blur-sm">
+              <AlertTriangle className="w-4 h-4 text-white animate-pulse" />
+              <span className="text-sm font-bold text-white tracking-wider">PROBLEM</span>
             </div>
           </div>
-          <h2 className="text-center text-2xl sm:text-3xl lg:text-[2.25rem] font-black text-white leading-snug mb-4">
+          <h2 className="text-center text-2xl sm:text-3xl lg:text-[2.25rem] font-black text-white leading-snug mb-4 drop-shadow-sm">
             障害者雇用に前向きに取り組む企業ほど、
             <br className="hidden sm:block" />
-            こんな<span className="text-[#FD6C26]">「壁」</span>にぶつかっていませんか？
+            こんな<span className="bg-white/20 px-2 py-0.5 rounded-lg">「壁」</span>にぶつかっていませんか？
           </h2>
-          <p className="text-center text-white/50 text-sm mb-14 max-w-[600px] mx-auto">
+          <p className="text-center text-white/70 text-sm mb-10 max-w-[600px] mx-auto">
             多くの企業が直面する4つの構造的な課題
           </p>
         </AnimatedSection>
 
-        {/* Problem cards in 2x2 grid */}
-        <div className="grid sm:grid-cols-2 gap-5 lg:gap-6 max-w-[960px] mx-auto mb-16">
+        {/* Infographic image */}
+        <AnimatedSection>
+          <div className="max-w-[900px] mx-auto mb-12">
+            <div className="bg-white rounded-3xl p-4 lg:p-6 shadow-2xl shadow-black/10">
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663384608434/YwT9YaGpotKVs9ejRKfzEn/problem-infographic-Kq5RC2QfNqxNQ2Fyyv2vJt.webp"
+                alt="障害者雇用の4つの課題 - 早期離職・採用コスト増大・管理体制不足・インフラ整備の壁"
+                className="w-full h-auto rounded-2xl"
+              />
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Problem detail cards */}
+        <div className="grid sm:grid-cols-2 gap-4 lg:gap-5 max-w-[960px] mx-auto mb-14">
           {problems.map((p, i) => (
-            <ProblemCard key={i} icon={p.icon} label={p.label} text={p.text} index={i} />
+            <ProblemDetailCard key={i} icon={p.icon} num={p.num} label={p.label} text={p.text} index={i} />
           ))}
         </div>
 
         {/* Animated stats bar */}
         <div ref={statsRef} className="max-w-[960px] mx-auto mb-14">
           <div
-            className="grid grid-cols-3 gap-4 lg:gap-6"
+            className="grid grid-cols-3 gap-3 lg:gap-5"
             style={{
               opacity: statsInView ? 1 : 0,
               transform: statsInView ? "translateY(0)" : "translateY(30px)",
@@ -386,23 +350,21 @@ function ProblemSection() {
             ].map((stat, i) => (
               <div
                 key={i}
-                className="relative text-center py-6 lg:py-8 px-4 rounded-2xl overflow-hidden"
-                style={{ background: "rgba(255,255,255,0.04)", backdropFilter: "blur(8px)" }}
+                className="relative text-center py-5 lg:py-7 px-3 rounded-2xl bg-white/15 backdrop-blur-sm border border-white/20"
               >
-                <div className="absolute inset-0 border border-white/[0.08] rounded-2xl" />
-                <p className="text-3xl lg:text-4xl font-black text-[#FD6C26] mb-1">
+                <p className="text-2xl sm:text-3xl lg:text-4xl font-black text-white mb-1 drop-shadow-sm">
                   {typeof stat.value === "number" && Number.isInteger(stat.value)
                     ? <AnimatedCounter target={stat.value} suffix={stat.suffix} isInView={statsInView} />
                     : <>{stat.value}{stat.suffix}</>}
                 </p>
-                <p className="text-sm font-bold text-white/80">{stat.label}</p>
-                <p className="text-xs text-white/40 mt-0.5">{stat.sub}</p>
+                <p className="text-xs sm:text-sm font-bold text-white/90">{stat.label}</p>
+                <p className="text-[10px] sm:text-xs text-white/60 mt-0.5">{stat.sub}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Bottom CTA message with animated border */}
+        {/* Bottom CTA message */}
         <div
           ref={ctaRef}
           className="relative max-w-[800px] mx-auto"
@@ -412,14 +374,11 @@ function ProblemSection() {
             transition: "opacity 0.7s ease-out 0.5s, transform 0.7s ease-out 0.5s",
           }}
         >
-          {/* Animated gradient border */}
-          <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-[#FD6C26]/40 via-[#FF8F5C]/20 to-[#FD6C26]/40 animate-[shimmer_3s_ease-in-out_infinite]" />
-
-          <div className="relative bg-[#1a1a2e]/90 backdrop-blur-sm rounded-2xl p-8 lg:p-10 text-center">
-            <p className="text-base lg:text-lg text-white/80 leading-relaxed">
+          <div className="bg-white rounded-2xl p-8 lg:p-10 text-center shadow-xl shadow-black/10">
+            <p className="text-base lg:text-lg text-[#555] leading-relaxed">
               法定雇用率は達成したい。でも「とりあえずの採用」や「ただの作業」ではなく、
               <br className="hidden lg:block" />
-              将来的に<strong className="text-white">自社の戦力として活躍してほしい。</strong>
+              将来的に<strong className="text-[#333]">自社の戦力として活躍してほしい。</strong>
             </p>
             <div className="mt-5 flex items-center justify-center gap-3">
               <div className="w-10 h-[2px] bg-gradient-to-r from-transparent to-[#FD6C26]" />
@@ -432,7 +391,7 @@ function ProblemSection() {
             {/* Animated down arrow */}
             <div className="mt-6 flex justify-center">
               <a href="#solution" className="group">
-                <div className="w-10 h-10 rounded-full border border-[#FD6C26]/40 flex items-center justify-center group-hover:bg-[#FD6C26]/10 transition-colors duration-300 animate-bounce">
+                <div className="w-10 h-10 rounded-full border-2 border-[#FD6C26]/40 flex items-center justify-center group-hover:bg-[#FD6C26]/10 transition-colors duration-300 animate-bounce">
                   <ChevronDown className="w-5 h-5 text-[#FD6C26]" />
                 </div>
               </a>
