@@ -628,62 +628,174 @@ function StrengthsSection() {
 // SECTION 6: VISION / CEO MESSAGE
 // ============================================================
 function VisionSection() {
+  const { ref: sectionRef, isInView: sectionInView } = useInView(0.1);
+  const { ref: photoRef, isInView: photoInView } = useInView(0.2);
+  const { ref: nameRef, isInView: nameInView } = useInView(0.3);
+  const { ref: quoteRef, isInView: quoteInView } = useInView(0.2);
+  const { ref: lineRef, isInView: lineInView } = useInView(0.3);
+
   return (
-    <section id="vision" className="relative py-20 lg:py-28 overflow-hidden bg-[#FFF9F5]">
-      {/* Subtle decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#FD6C26]/20 to-transparent" />
-      <div className="absolute top-[10%] right-[5%] w-40 h-40 rounded-full bg-[#FD6C26]/[0.03] blur-3xl" />
-      <div className="absolute bottom-[15%] left-[3%] w-56 h-56 rounded-full bg-[#FD6C26]/[0.04] blur-3xl" />
+    <section id="vision" ref={sectionRef} className="relative py-24 lg:py-36 overflow-hidden">
+      {/* Background image with semi-transparent overlay */}
+      <div
+        className="absolute inset-0 bg-cover bg-center transition-transform duration-[2s] ease-out"
+        style={{
+          backgroundImage: `url(https://d2xsxph8kpxj0f.cloudfront.net/310519663384608434/YwT9YaGpotKVs9ejRKfzEn/vision-future-TTqXF5X2ujnQtiwG8E3sm4.webp)`,
+          transform: sectionInView ? "scale(1.05)" : "scale(1)",
+        }}
+      />
+      {/* Semi-transparent white overlay for readability */}
+      <div className="absolute inset-0 bg-white/85" />
+      {/* Subtle orange gradient accent */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#FD6C26]/[0.04] via-transparent to-[#FD6C26]/[0.06]" />
+
+      {/* Decorative geometric elements */}
+      <div className="absolute top-12 right-12 w-24 h-24 border-2 border-[#FD6C26]/10 rounded-lg rotate-12 hidden lg:block" />
+      <div className="absolute bottom-16 left-16 w-16 h-16 border-2 border-[#FD6C26]/8 rounded-full hidden lg:block" />
+      <div className="absolute top-1/3 left-8 w-1 h-20 bg-gradient-to-b from-[#FD6C26]/15 to-transparent hidden lg:block" />
 
       <div className="max-w-[1100px] mx-auto px-6 lg:px-10 relative z-10">
-        <AnimatedSection>
-          <div className="text-center mb-12">
-            <p className="text-sm font-bold text-[#FD6C26] tracking-wider mb-3">VISION</p>
-            <h2 className="text-2xl sm:text-3xl lg:text-[2rem] font-black text-[#333] leading-snug">
-              障害者雇用を、「法的義務」から
-              <br className="hidden sm:block" />
-              <span className="text-[#FD6C26]">「企業の成長エンジン」</span>へ。
-            </h2>
+        {/* Section label */}
+        <div
+          className="text-center mb-10"
+          style={{
+            opacity: sectionInView ? 1 : 0,
+            transform: sectionInView ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 0.7s ease-out, transform 0.7s ease-out",
+          }}
+        >
+          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#FD6C26]/8 border border-[#FD6C26]/15 mb-5">
+            <Sparkles className="w-4 h-4 text-[#FD6C26]" />
+            <span className="text-sm font-bold text-[#FD6C26] tracking-[0.15em]">VISION</span>
           </div>
-        </AnimatedSection>
+          <h2
+            className="text-2xl sm:text-3xl lg:text-[2.25rem] font-black text-[#333] leading-snug"
+            style={{
+              opacity: sectionInView ? 1 : 0,
+              transform: sectionInView ? "translateY(0)" : "translateY(25px)",
+              transition: "opacity 0.8s ease-out 0.15s, transform 0.8s ease-out 0.15s",
+            }}
+          >
+            障害者雇用を、「法的義務」から
+            <br className="hidden sm:block" />
+            <span className="text-[#FD6C26]">「企業の成長エンジン」</span>へ。
+          </h2>
+        </div>
 
-        <AnimatedSection delay={0.15}>
-          <div className="max-w-[900px] mx-auto">
-            <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
-              {/* CEO Photo */}
-              <div className="flex-shrink-0">
-                <div className="relative">
-                  {/* Orange accent ring */}
-                  <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-[#FD6C26]/20 to-[#FF8F5C]/10 blur-sm" />
-                  <div className="relative w-48 h-48 lg:w-56 lg:h-56 rounded-full overflow-hidden border-4 border-white shadow-xl shadow-[#FD6C26]/10">
-                    <img
-                      src="https://private-us-east-1.manuscdn.com/user_upload_by_module/session_file/310519663384608434/mGdRqzCpWUaaftfz.jpg?Expires=1804041501&Signature=s-X9oNjm1cG0UvXRGijtPXhhqwgIGugyQ0I-5gCdQA3CCJa3GCP1e8ezetv1GAO1-HOaxhbnggC43aS3IV6bt8R~JAC9a1Qsv3713mgzPtIKWvzvBDezlIGnY6hmOLeFa3HYSIMVSTBh0A0wTuWpSvkPulp3iC5sNf37WJCkNpnv-DFyJpPjvDuUvLyWMB6k0DcPFwBxiCVpQ7FG2JNLgAeellU5nsGkI69S5GgvqBmEgIdscrHAONrhvymy53ph8Q0P~5~3bjxXek36aDNb2iry-tILF~mmYlD52kz~tINbSm4AiBNktnUx9ghNbubkB4-o9JPUj56ripvTJApn8w__&Key-Pair-Id=K2HSFNDJXOU9YS"
-                      alt="代表"
-                      className="w-full h-full object-cover object-top"
-                    />
-                  </div>
-                  {/* Name label */}
-                  <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-white rounded-full px-5 py-1.5 shadow-md border border-[#F0EDED]">
-                    <p className="text-xs font-bold text-[#FD6C26] tracking-wider whitespace-nowrap">代表メッセージ</p>
-                  </div>
+        {/* Main content: Photo + Message */}
+        <div className="max-w-[960px] mx-auto">
+          <div className="flex flex-col lg:flex-row items-center lg:items-start gap-10 lg:gap-14">
+
+            {/* CEO Photo - Square frame */}
+            <div
+              ref={photoRef}
+              className="flex-shrink-0"
+              style={{
+                opacity: photoInView ? 1 : 0,
+                transform: photoInView ? "translateX(0) scale(1)" : "translateX(-40px) scale(0.95)",
+                transition: "opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1)",
+              }}
+            >
+              <div className="relative group">
+                {/* Decorative offset frame */}
+                <div className="absolute -top-3 -left-3 w-full h-full border-2 border-[#FD6C26]/20 rounded-xl transition-all duration-700 group-hover:-top-4 group-hover:-left-4" />
+                <div className="absolute -bottom-3 -right-3 w-full h-full bg-gradient-to-br from-[#FD6C26]/10 to-[#FF8F5C]/5 rounded-xl transition-all duration-700 group-hover:-bottom-4 group-hover:-right-4" />
+
+                {/* Photo container - Square */}
+                <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-xl overflow-hidden shadow-2xl shadow-[#FD6C26]/10">
+                  <img
+                    src="https://private-us-east-1.manuscdn.com/user_upload_by_module/session_file/310519663384608434/mGdRqzCpWUaaftfz.jpg?Expires=1804041501&Signature=s-X9oNjm1cG0UvXRGijtPXhhqwgIGugyQ0I-5gCdQA3CCJa3GCP1e8ezetv1GAO1-HOaxhbnggC43aS3IV6bt8R~JAC9a1Qsv3713mgzPtIKWvzvBDezlIGnY6hmOLeFa3HYSIMVSTBh0A0wTuWpSvkPulp3iC5sNf37WJCkNpnv-DFyJpPjvDuUvLyWMB6k0DcPFwBxiCVpQ7FG2JNLgAeellU5nsGkI69S5GgvqBmEgIdscrHAONrhvymy53ph8Q0P~5~3bjxXek36aDNb2iry-tILF~mmYlD52kz~tINbSm4AiBNktnUx9ghNbubkB4-o9JPUj56ripvTJApn8w__&Key-Pair-Id=K2HSFNDJXOU9YS"
+                    alt="代表 石原 奈津子"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  />
+                  {/* Subtle gradient overlay at bottom for name readability */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/30 to-transparent" />
                 </div>
               </div>
 
-              {/* Message content */}
-              <div className="flex-1 text-center lg:text-left">
-                <div className="bg-white rounded-2xl p-7 lg:p-9 shadow-sm border border-[#F0EDED] relative">
-                  {/* Quote mark */}
-                  <div className="absolute -top-4 left-7 lg:left-9 text-5xl font-serif text-[#FD6C26]/20 leading-none select-none">&ldquo;</div>
-                  <p className="text-[15px] lg:text-base text-[#444] leading-[2] font-medium pt-2">
-                    障害を持つ方々の可能性は、環境と正しい理解、そしてテクノロジー（AI）があれば大きく広がります。私たちは「プロとしての専門性」を持って個性を徹底分析し、彼らが御社にとって欠かせない<strong className="text-[#333]">「戦力」</strong>となる未来を創ります。このエシカル（倫理的）なコミュニティに賛同いただける企業様との出会いを心待ちにしています。
-                  </p>
-                  {/* Closing quote */}
-                  <div className="text-right text-5xl font-serif text-[#FD6C26]/20 leading-none select-none -mt-2">&rdquo;</div>
+              {/* Name and title below photo */}
+              <div
+                ref={nameRef}
+                className="mt-6 text-center"
+                style={{
+                  opacity: nameInView ? 1 : 0,
+                  transform: nameInView ? "translateY(0)" : "translateY(15px)",
+                  transition: "opacity 0.7s ease-out 0.3s, transform 0.7s ease-out 0.3s",
+                }}
+              >
+                <p className="text-xs font-bold text-[#FD6C26] tracking-[0.2em] mb-1">代表</p>
+                <p className="text-xl lg:text-2xl font-black text-[#333] tracking-wide">石原 奈津子</p>
+                <div className="mt-2 w-10 h-[2px] bg-[#FD6C26] mx-auto" />
+              </div>
+            </div>
+
+            {/* Message content */}
+            <div className="flex-1 lg:pt-4">
+              {/* Quote block */}
+              <div
+                ref={quoteRef}
+                className="relative"
+                style={{
+                  opacity: quoteInView ? 1 : 0,
+                  transform: quoteInView ? "translateX(0)" : "translateX(40px)",
+                  transition: "opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s, transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s",
+                }}
+              >
+                {/* Large decorative quote mark */}
+                <div className="absolute -top-8 -left-2 lg:-left-6 text-[5rem] lg:text-[7rem] font-serif text-[#FD6C26]/10 leading-none select-none pointer-events-none">
+                  &ldquo;
                 </div>
+
+                <div className="relative bg-white/70 backdrop-blur-sm rounded-2xl p-7 lg:p-9 shadow-lg shadow-black/[0.04] border border-[#F0EDED]/80">
+                  {/* Orange left accent bar */}
+                  <div className="absolute top-7 left-0 w-1 h-16 bg-gradient-to-b from-[#FD6C26] to-[#FF8F5C] rounded-r-full" />
+
+                  <p className="text-[15px] lg:text-base text-[#444] leading-[2.1] font-medium pl-4">
+                    障害を持つ方々の可能性は、環境と正しい理解、そしてテクノロジー（AI）があれば大きく広がります。
+                  </p>
+                  <p
+                    className="text-[15px] lg:text-base text-[#444] leading-[2.1] font-medium pl-4 mt-4"
+                    style={{
+                      opacity: quoteInView ? 1 : 0,
+                      transform: quoteInView ? "translateY(0)" : "translateY(15px)",
+                      transition: "opacity 0.7s ease-out 0.5s, transform 0.7s ease-out 0.5s",
+                    }}
+                  >
+                    私たちは<strong className="text-[#333]">「プロとしての専門性」</strong>を持って個性を徹底分析し、彼らが御社にとって欠かせない<strong className="text-[#FD6C26]">「戦力」</strong>となる未来を創ります。
+                  </p>
+                  <p
+                    className="text-[15px] lg:text-base text-[#444] leading-[2.1] font-medium pl-4 mt-4"
+                    style={{
+                      opacity: quoteInView ? 1 : 0,
+                      transform: quoteInView ? "translateY(0)" : "translateY(15px)",
+                      transition: "opacity 0.7s ease-out 0.8s, transform 0.7s ease-out 0.8s",
+                    }}
+                  >
+                    このエシカル（倫理的）なコミュニティに賛同いただける企業様との出会いを心待ちにしています。
+                  </p>
+
+                  {/* Closing quote */}
+                  <div className="text-right text-[4rem] font-serif text-[#FD6C26]/10 leading-none select-none -mt-4 -mr-1">&rdquo;</div>
+                </div>
+              </div>
+
+              {/* Signature line */}
+              <div
+                ref={lineRef}
+                className="mt-6 flex items-center gap-4 justify-center lg:justify-end"
+                style={{
+                  opacity: lineInView ? 1 : 0,
+                  transform: lineInView ? "translateY(0)" : "translateY(15px)",
+                  transition: "opacity 0.7s ease-out 0.5s, transform 0.7s ease-out 0.5s",
+                }}
+              >
+                <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#FD6C26]/40" />
+                <p className="text-sm text-[#888] font-medium">エシカルコミュニティLLP</p>
+                <p className="text-sm font-bold text-[#333]">代表　石原 奈津子</p>
               </div>
             </div>
           </div>
-        </AnimatedSection>
+        </div>
       </div>
     </section>
   );
