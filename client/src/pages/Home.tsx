@@ -629,32 +629,59 @@ function StrengthsSection() {
 // ============================================================
 function VisionSection() {
   return (
-    <section id="vision" className="relative py-20 lg:py-28 overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: `url(https://d2xsxph8kpxj0f.cloudfront.net/310519663384608434/YwT9YaGpotKVs9ejRKfzEn/vision-future-TTqXF5X2ujnQtiwG8E3sm4.webp)`,
-        }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#FD6C26]/90 to-[#FD6C26]/75" />
+    <section id="vision" className="relative py-20 lg:py-28 overflow-hidden bg-[#FFF9F5]">
+      {/* Subtle decorative elements */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#FD6C26]/20 to-transparent" />
+      <div className="absolute top-[10%] right-[5%] w-40 h-40 rounded-full bg-[#FD6C26]/[0.03] blur-3xl" />
+      <div className="absolute bottom-[15%] left-[3%] w-56 h-56 rounded-full bg-[#FD6C26]/[0.04] blur-3xl" />
 
       <div className="max-w-[1100px] mx-auto px-6 lg:px-10 relative z-10">
         <AnimatedSection>
-          <div className="text-center mb-10">
-            <p className="text-sm font-bold text-white/80 tracking-wider mb-3">VISION</p>
-            <h2 className="text-2xl sm:text-3xl lg:text-[2rem] font-black text-white leading-snug">
+          <div className="text-center mb-12">
+            <p className="text-sm font-bold text-[#FD6C26] tracking-wider mb-3">VISION</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-[2rem] font-black text-[#333] leading-snug">
               障害者雇用を、「法的義務」から
               <br className="hidden sm:block" />
-              「企業の成長エンジン」へ。
+              <span className="text-[#FD6C26]">「企業の成長エンジン」</span>へ。
             </h2>
           </div>
         </AnimatedSection>
 
-        <AnimatedSection delay={0.2}>
-          <div className="max-w-[800px] mx-auto bg-white/10 backdrop-blur-sm rounded-2xl p-8 lg:p-10 border border-white/20">
-            <p className="text-white text-[15px] lg:text-base leading-[2] font-medium">
-              障害を持つ方々の可能性は、環境と正しい理解、そしてテクノロジー（AI）があれば大きく広がります。私たちは「プロとしての専門性」を持って個性を徹底分析し、彼らが御社にとって欠かせない「戦力」となる未来を創ります。このエシカル（倫理的）なコミュニティに賛同いただける企業様との出会いを心待ちにしています。
-            </p>
+        <AnimatedSection delay={0.15}>
+          <div className="max-w-[900px] mx-auto">
+            <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+              {/* CEO Photo */}
+              <div className="flex-shrink-0">
+                <div className="relative">
+                  {/* Orange accent ring */}
+                  <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-[#FD6C26]/20 to-[#FF8F5C]/10 blur-sm" />
+                  <div className="relative w-48 h-48 lg:w-56 lg:h-56 rounded-full overflow-hidden border-4 border-white shadow-xl shadow-[#FD6C26]/10">
+                    <img
+                      src="https://private-us-east-1.manuscdn.com/user_upload_by_module/session_file/310519663384608434/mGdRqzCpWUaaftfz.jpg?Expires=1804041501&Signature=s-X9oNjm1cG0UvXRGijtPXhhqwgIGugyQ0I-5gCdQA3CCJa3GCP1e8ezetv1GAO1-HOaxhbnggC43aS3IV6bt8R~JAC9a1Qsv3713mgzPtIKWvzvBDezlIGnY6hmOLeFa3HYSIMVSTBh0A0wTuWpSvkPulp3iC5sNf37WJCkNpnv-DFyJpPjvDuUvLyWMB6k0DcPFwBxiCVpQ7FG2JNLgAeellU5nsGkI69S5GgvqBmEgIdscrHAONrhvymy53ph8Q0P~5~3bjxXek36aDNb2iry-tILF~mmYlD52kz~tINbSm4AiBNktnUx9ghNbubkB4-o9JPUj56ripvTJApn8w__&Key-Pair-Id=K2HSFNDJXOU9YS"
+                      alt="代表"
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                  {/* Name label */}
+                  <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-white rounded-full px-5 py-1.5 shadow-md border border-[#F0EDED]">
+                    <p className="text-xs font-bold text-[#FD6C26] tracking-wider whitespace-nowrap">代表メッセージ</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Message content */}
+              <div className="flex-1 text-center lg:text-left">
+                <div className="bg-white rounded-2xl p-7 lg:p-9 shadow-sm border border-[#F0EDED] relative">
+                  {/* Quote mark */}
+                  <div className="absolute -top-4 left-7 lg:left-9 text-5xl font-serif text-[#FD6C26]/20 leading-none select-none">&ldquo;</div>
+                  <p className="text-[15px] lg:text-base text-[#444] leading-[2] font-medium pt-2">
+                    障害を持つ方々の可能性は、環境と正しい理解、そしてテクノロジー（AI）があれば大きく広がります。私たちは「プロとしての専門性」を持って個性を徹底分析し、彼らが御社にとって欠かせない<strong className="text-[#333]">「戦力」</strong>となる未来を創ります。このエシカル（倫理的）なコミュニティに賛同いただける企業様との出会いを心待ちにしています。
+                  </p>
+                  {/* Closing quote */}
+                  <div className="text-right text-5xl font-serif text-[#FD6C26]/20 leading-none select-none -mt-2">&rdquo;</div>
+                </div>
+              </div>
+            </div>
           </div>
         </AnimatedSection>
       </div>
