@@ -9,7 +9,7 @@
  */
 
 import { useEffect, useRef, useState } from "react";
-import { CheckCircle2, ChevronDown, Download, Users, ArrowRight, Shield, Brain, HeartHandshake, Sparkles, Building2, Phone } from "lucide-react";
+import { CheckCircle2, ChevronDown, Download, Users, ArrowRight, Shield, Brain, HeartHandshake, Sparkles, Building2, Phone, UserX, Banknote, UserCog, Building, AlertTriangle } from "lucide-react";
 
 // Intersection Observer hook for scroll animations
 function useInView(threshold = 0.15) {
@@ -194,59 +194,251 @@ function HeroSection() {
 }
 
 // ============================================================
-// SECTION 2: PROBLEM / PAIN POINTS
+// SECTION 2: PROBLEM / PAIN POINTS (Redesigned with visual impact)
 // ============================================================
+function ProblemCard({ icon, label, text, index }: { icon: React.ReactNode; label: string; text: string; index: number }) {
+  const { ref, isInView } = useInView(0.2);
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      ref={ref}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="relative group cursor-default"
+      style={{
+        opacity: isInView ? 1 : 0,
+        transform: isInView
+          ? hovered ? "translateY(-6px) scale(1.02)" : "translateY(0) scale(1)"
+          : "translateY(40px) scale(0.95)",
+        transition: `opacity 0.6s cubic-bezier(0.22,1,0.36,1) ${index * 0.15}s, transform 0.4s cubic-bezier(0.22,1,0.36,1)`,
+      }}
+    >
+      {/* Glow effect on hover */}
+      <div
+        className="absolute -inset-1 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"
+        style={{ background: "radial-gradient(circle, rgba(253,108,38,0.15) 0%, transparent 70%)" }}
+      />
+
+      <div className="relative bg-white rounded-2xl p-6 lg:p-7 shadow-sm border border-[#F0EDED] group-hover:shadow-xl group-hover:border-[#FD6C26]/30 transition-all duration-400 overflow-hidden">
+        {/* Animated corner accent */}
+        <div
+          className="absolute top-0 right-0 w-24 h-24 transition-all duration-500"
+          style={{
+            background: hovered
+              ? "linear-gradient(135deg, transparent 50%, rgba(253,108,38,0.08) 50%)"
+              : "linear-gradient(135deg, transparent 50%, rgba(253,108,38,0.03) 50%)",
+          }}
+        />
+
+        {/* Number badge */}
+        <div className="absolute top-4 right-5 text-5xl font-black text-[#FD6C26]/[0.06] group-hover:text-[#FD6C26]/[0.12] transition-colors duration-500 select-none">
+          {String(index + 1).padStart(2, "0")}
+        </div>
+
+        <div className="flex items-start gap-5">
+          {/* Icon container with pulse animation */}
+          <div className="relative flex-shrink-0">
+            <div
+              className="w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-400"
+              style={{
+                background: hovered
+                  ? "linear-gradient(135deg, #FD6C26, #FF8F5C)"
+                  : "linear-gradient(135deg, #FFF4EE, #FFE8DA)",
+              }}
+            >
+              <div
+                className="transition-colors duration-400"
+                style={{ color: hovered ? "#fff" : "#FD6C26" }}
+              >
+                {icon}
+              </div>
+            </div>
+            {/* Pulse ring on hover */}
+            <div
+              className="absolute inset-0 rounded-xl border-2 border-[#FD6C26]/30 transition-all duration-700"
+              style={{
+                opacity: hovered ? 1 : 0,
+                transform: hovered ? "scale(1.3)" : "scale(1)",
+              }}
+            />
+          </div>
+
+          <div className="flex-1 min-w-0">
+            <p className="text-xs font-bold text-[#FD6C26] tracking-wider mb-1.5 uppercase">{label}</p>
+            <p className="text-[15px] lg:text-base text-[#444] leading-[1.8] font-medium">{text}</p>
+          </div>
+        </div>
+
+        {/* Bottom progress bar animation */}
+        <div className="absolute bottom-0 left-0 h-[3px] bg-gradient-to-r from-[#FD6C26] to-[#FF8F5C] transition-all duration-700 ease-out" style={{ width: hovered ? "100%" : "0%" }} />
+      </div>
+    </div>
+  );
+}
+
+function AnimatedCounter({ target, suffix = "", isInView }: { target: number; suffix?: string; isInView: boolean }) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    if (!isInView) return;
+    let start = 0;
+    const duration = 1500;
+    const step = (timestamp: number) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(eased * target));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [isInView, target]);
+  return <>{count}{suffix}</>;
+}
+
 function ProblemSection() {
+  const { ref: statsRef, isInView: statsInView } = useInView(0.3);
+  const { ref: ctaRef, isInView: ctaInView } = useInView(0.3);
+
   const problems = [
-    "せっかく採用しても、現場の理解やサポートが追いつかず早期離職してしまう。",
-    "求人広告や人材紹介会社を使っても、自社に合う人材に出会えず採用経費ばかりが嵩む。",
-    "現場に専任の障害者管理者を配置する余力（コスト・人員）がない。",
-    "オフィス環境の整備や通勤の配慮など、受け入れのインフラ（諸経費）がハードルになっている。",
+    {
+      icon: <UserX className="w-6 h-6" />,
+      label: "早期離職",
+      text: "せっかく採用しても、現場の理解やサポートが追いつかず早期離職してしまう。",
+    },
+    {
+      icon: <Banknote className="w-6 h-6" />,
+      label: "採用コスト",
+      text: "求人広告や人材紹介会社を使っても、自社に合う人材に出会えず採用経費ばかりが嵩む。",
+    },
+    {
+      icon: <UserCog className="w-6 h-6" />,
+      label: "管理体制",
+      text: "現場に専任の障害者管理者を配置する余力（コスト・人員）がない。",
+    },
+    {
+      icon: <Building className="w-6 h-6" />,
+      label: "インフラ整備",
+      text: "オフィス環境の整備や通勤の配慮など、受け入れのインフラ（諸経費）がハードルになっている。",
+    },
   ];
 
   return (
-    <section id="problem" className="bg-[#F8F8F8] py-20 lg:py-28">
-      <div className="max-w-[1100px] mx-auto px-6 lg:px-10">
+    <section id="problem" className="relative py-24 lg:py-32 overflow-hidden">
+      {/* Dark gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460]" />
+
+      {/* Animated floating orbs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[10%] left-[5%] w-72 h-72 rounded-full bg-[#FD6C26]/[0.04] blur-3xl animate-[float_8s_ease-in-out_infinite]" />
+        <div className="absolute bottom-[15%] right-[8%] w-96 h-96 rounded-full bg-[#FD6C26]/[0.03] blur-3xl animate-[float_12s_ease-in-out_infinite_reverse]" />
+        <div className="absolute top-[50%] left-[50%] w-48 h-48 rounded-full bg-[#FF8F5C]/[0.03] blur-3xl animate-[float_10s_ease-in-out_2s_infinite]" />
+      </div>
+
+      {/* Grid pattern overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundSize: "60px 60px",
+        }}
+      />
+
+      <div className="relative z-10 max-w-[1200px] mx-auto px-6 lg:px-10">
+        {/* Header with animated alert icon */}
         <AnimatedSection>
-          <div className="text-center mb-12">
-            <p className="text-sm font-bold text-[#FD6C26] tracking-wider mb-3">PROBLEM</p>
-            <h2 className="text-2xl sm:text-3xl lg:text-[2rem] font-black text-[#333] leading-snug">
-              障害者雇用に前向きに取り組む企業ほど、
-              <br className="hidden sm:block" />
-              こんな<span className="text-[#FD6C26]">「壁」</span>にぶつかっていませんか？
-            </h2>
+          <div className="text-center mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FD6C26]/10 border border-[#FD6C26]/20 mb-6">
+              <AlertTriangle className="w-4 h-4 text-[#FD6C26] animate-pulse" />
+              <span className="text-sm font-bold text-[#FD6C26] tracking-wider">PROBLEM</span>
+            </div>
           </div>
+          <h2 className="text-center text-2xl sm:text-3xl lg:text-[2.25rem] font-black text-white leading-snug mb-4">
+            障害者雇用に前向きに取り組む企業ほど、
+            <br className="hidden sm:block" />
+            こんな<span className="text-[#FD6C26]">「壁」</span>にぶつかっていませんか？
+          </h2>
+          <p className="text-center text-white/50 text-sm mb-14 max-w-[600px] mx-auto">
+            多くの企業が直面する4つの構造的な課題
+          </p>
         </AnimatedSection>
 
-        <div className="space-y-4 max-w-[800px] mx-auto">
-          {problems.map((text, i) => (
-            <AnimatedSection key={i} delay={i * 0.1}>
-              <div className="flex items-start gap-4 bg-white rounded-xl p-5 shadow-sm border border-[#EFEFEF] hover:shadow-md transition-shadow">
-                <div className="w-7 h-7 rounded-full bg-[#FD6C26]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#FD6C26]" />
-                </div>
-                <p className="text-[15px] text-[#444] leading-relaxed font-medium">{text}</p>
-              </div>
-            </AnimatedSection>
+        {/* Problem cards in 2x2 grid */}
+        <div className="grid sm:grid-cols-2 gap-5 lg:gap-6 max-w-[960px] mx-auto mb-16">
+          {problems.map((p, i) => (
+            <ProblemCard key={i} icon={p.icon} label={p.label} text={p.text} index={i} />
           ))}
         </div>
 
-        <AnimatedSection delay={0.4}>
-          <div className="mt-12 text-center bg-white rounded-2xl p-8 shadow-sm border border-[#EFEFEF] max-w-[800px] mx-auto">
-            <p className="text-base lg:text-lg text-[#555] leading-relaxed">
+        {/* Animated stats bar */}
+        <div ref={statsRef} className="max-w-[960px] mx-auto mb-14">
+          <div
+            className="grid grid-cols-3 gap-4 lg:gap-6"
+            style={{
+              opacity: statsInView ? 1 : 0,
+              transform: statsInView ? "translateY(0)" : "translateY(30px)",
+              transition: "opacity 0.7s ease-out 0.3s, transform 0.7s ease-out 0.3s",
+            }}
+          >
+            {[
+              { value: 49, suffix: "%", label: "1年以内の離職率", sub: "（障害者雇用の平均）" },
+              { value: 200, suffix: "万円〜", label: "年間の採用・管理コスト", sub: "（1名あたり推定）" },
+              { value: 2.7, suffix: "%", label: "2026年 法定雇用率", sub: "（段階的引上げ）" },
+            ].map((stat, i) => (
+              <div
+                key={i}
+                className="relative text-center py-6 lg:py-8 px-4 rounded-2xl overflow-hidden"
+                style={{ background: "rgba(255,255,255,0.04)", backdropFilter: "blur(8px)" }}
+              >
+                <div className="absolute inset-0 border border-white/[0.08] rounded-2xl" />
+                <p className="text-3xl lg:text-4xl font-black text-[#FD6C26] mb-1">
+                  {typeof stat.value === "number" && Number.isInteger(stat.value)
+                    ? <AnimatedCounter target={stat.value} suffix={stat.suffix} isInView={statsInView} />
+                    : <>{stat.value}{stat.suffix}</>}
+                </p>
+                <p className="text-sm font-bold text-white/80">{stat.label}</p>
+                <p className="text-xs text-white/40 mt-0.5">{stat.sub}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom CTA message with animated border */}
+        <div
+          ref={ctaRef}
+          className="relative max-w-[800px] mx-auto"
+          style={{
+            opacity: ctaInView ? 1 : 0,
+            transform: ctaInView ? "translateY(0)" : "translateY(30px)",
+            transition: "opacity 0.7s ease-out 0.5s, transform 0.7s ease-out 0.5s",
+          }}
+        >
+          {/* Animated gradient border */}
+          <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-[#FD6C26]/40 via-[#FF8F5C]/20 to-[#FD6C26]/40 animate-[shimmer_3s_ease-in-out_infinite]" />
+
+          <div className="relative bg-[#1a1a2e]/90 backdrop-blur-sm rounded-2xl p-8 lg:p-10 text-center">
+            <p className="text-base lg:text-lg text-white/80 leading-relaxed">
               法定雇用率は達成したい。でも「とりあえずの採用」や「ただの作業」ではなく、
               <br className="hidden lg:block" />
-              将来的に<strong className="text-[#333]">自社の戦力として活躍してほしい。</strong>
+              将来的に<strong className="text-white">自社の戦力として活躍してほしい。</strong>
             </p>
-            <div className="mt-4 flex items-center justify-center gap-2">
-              <div className="w-12 h-[2px] bg-[#FD6C26]" />
-              <p className="text-[#FD6C26] font-bold text-base">
+            <div className="mt-5 flex items-center justify-center gap-3">
+              <div className="w-10 h-[2px] bg-gradient-to-r from-transparent to-[#FD6C26]" />
+              <p className="text-[#FD6C26] font-bold text-base lg:text-lg">
                 その想い、エシカルコミュニティが実現します。
               </p>
-              <div className="w-12 h-[2px] bg-[#FD6C26]" />
+              <div className="w-10 h-[2px] bg-gradient-to-l from-transparent to-[#FD6C26]" />
+            </div>
+
+            {/* Animated down arrow */}
+            <div className="mt-6 flex justify-center">
+              <a href="#solution" className="group">
+                <div className="w-10 h-10 rounded-full border border-[#FD6C26]/40 flex items-center justify-center group-hover:bg-[#FD6C26]/10 transition-colors duration-300 animate-bounce">
+                  <ChevronDown className="w-5 h-5 text-[#FD6C26]" />
+                </div>
+              </a>
             </div>
           </div>
-        </AnimatedSection>
+        </div>
       </div>
     </section>
   );
