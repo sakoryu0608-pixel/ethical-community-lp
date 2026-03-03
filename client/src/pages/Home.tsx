@@ -291,10 +291,10 @@ function SolutionSection() {
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
-            <div className="rounded-2xl overflow-hidden shadow-xl">
+            <div className="rounded-2xl overflow-hidden shadow-xl bg-white">
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663384608434/YwT9YaGpotKVs9ejRKfzEn/llp-concept-Ub7hTP7c2oDdNGmfKj8kRH.webp"
-                alt="LLP（有限責任事業組合）の仕組み"
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663384608434/YwT9YaGpotKVs9ejRKfzEn/infographic-llp-scheme-Pf6G3TEQ2uadCHSKwy6Z4c.webp"
+                alt="LLP（有限責任事業組合）の仕組み - 企業が共同出資し、共同雇用で雇用率算定が可能"
                 className="w-full h-auto"
               />
             </div>
@@ -380,7 +380,17 @@ function CostSection() {
         </AnimatedSection>
 
         <AnimatedSection delay={0.3}>
-          <div className="mt-10 text-center">
+          <div className="mt-10 rounded-2xl overflow-hidden shadow-lg bg-white max-w-[800px] mx-auto">
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663384608434/YwT9YaGpotKVs9ejRKfzEn/infographic-cost-comparison-NCrFxZxy69do4x4NoTwLLF.webp"
+              alt="自社雇用 vs エシカルコミュニティのコスト比較インフォグラフィック"
+              className="w-full h-auto"
+            />
+          </div>
+        </AnimatedSection>
+
+        <AnimatedSection delay={0.4}>
+          <div className="mt-8 text-center">
             <p className="text-[15px] text-[#555] leading-[1.9] max-w-[800px] mx-auto">
               採用から定着支援までを組合内で完結させるため、御社の<strong className="text-[#333]">「運用負荷低減」</strong>と、オフィス・賃金・通勤等の<strong className="text-[#333]">「雇用経費の大幅な軽減」</strong>を同時に実現します。
             </p>
@@ -408,14 +418,14 @@ function StrengthsSection() {
       title: "定着支援・採用・育成の「運用負荷低減」",
       desc: "「どう接すればいいか分からない」という現場の悩みを解消。日々のメンタルケアから業務指導まで、障害特性への理解度が極めて高い専門スタッフが伴走するため、御社の人事・現場の負担は最小限に抑えられます。",
       icon: <HeartHandshake className="w-7 h-7" />,
-      image: null,
+      image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663384608434/YwT9YaGpotKVs9ejRKfzEn/infographic-support-team-UoBB4D3JrnsnnfJy3BRAkH.webp",
     },
     {
       num: "03",
       title: "AIを駆使するスタッフの「将来の戦力への期待」",
       desc: "私たちのビジョンは、単なる業務の切り出しではありません。上級者レベルの生成AIスキル（ChatGPT等）を習得できる独自の育成カリキュラムを提供。単純作業から「創造的業務（即戦力）」へとスタッフを育て上げ、最終的には組合員企業への「就職（転籍）」をゴールとしています。",
       icon: <Sparkles className="w-7 h-7" />,
-      image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663384608434/YwT9YaGpotKVs9ejRKfzEn/ai-training-4a3jfYduMD7PchFZ5KqxKL.webp",
+      image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663384608434/YwT9YaGpotKVs9ejRKfzEn/infographic-ai-training-PUXKTFUUXEtestpD2sytPy.webp",
     },
   ];
 
@@ -449,23 +459,11 @@ function StrengthsSection() {
                   </h3>
                   <p className="text-[15px] text-[#555] leading-[1.9]">{s.desc}</p>
                 </div>
-                {s.image ? (
-                  <div className={`${i % 2 === 1 ? "lg:order-1" : ""}`}>
-                    <div className="rounded-2xl overflow-hidden shadow-lg">
-                      <img src={s.image} alt={s.title} className="w-full h-auto" />
-                    </div>
+                <div className={`${i % 2 === 1 ? "lg:order-1" : ""}`}>
+                  <div className="rounded-2xl overflow-hidden shadow-lg bg-white">
+                    <img src={s.image} alt={s.title} className="w-full h-auto" />
                   </div>
-                ) : (
-                  <div className={`${i % 2 === 1 ? "lg:order-1" : ""}`}>
-                    <div className="bg-[#FFF4EE] rounded-2xl p-10 flex flex-col items-center justify-center min-h-[280px]">
-                      <div className="w-20 h-20 rounded-full bg-[#FD6C26]/10 flex items-center justify-center mb-4">
-                        <HeartHandshake className="w-10 h-10 text-[#FD6C26]" />
-                      </div>
-                      <p className="text-center text-[#FD6C26] font-bold text-lg">専門スタッフが伴走</p>
-                      <p className="text-center text-[#999] text-sm mt-2">御社の人事・現場の負担を最小限に</p>
-                    </div>
-                  </div>
-                )}
+                </div>
               </div>
             </AnimatedSection>
           ))}
