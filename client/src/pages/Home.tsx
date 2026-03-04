@@ -125,21 +125,23 @@ function HeroSection() {
                 障害者雇用に前向きな企業が選ぶ、第3の選択肢。
               </p>
               <p className="text-sm lg:text-base text-[#666] leading-relaxed">
-                プロフェッショナルによる「徹底分析」と「AI育成」で、圧倒的なコスト低減と運用負荷低減を実現するLLP（有限責任事業組合）スキーム。
+                プロフェッショナルによる「徹底分析」と障害のある人が、生成AIを武器に働ける社会へ。<br />
+                業務分析と生成AI教育を組み合わせ、AIを活用できる人材を育成。<br />
+                生産性向上と運用負荷軽減を同時に実現するLLP（有限責任事業組合）モデルです。
               </p>
 
               {/* Authority badges */}
               <div className="flex flex-wrap gap-3 pt-2">
-                <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#FFF4EE] text-[#FD6C26] text-xs font-bold rounded-full border border-[#FD6C26]/20">
-                  <Shield className="w-3.5 h-3.5" />
+                <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm font-bold rounded-full border border-[#FD6C26]/20">
+                  <Shield className="w-4 h-4" />
                   経済産業省推進の法人格
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#FFF4EE] text-[#FD6C26] text-xs font-bold rounded-full border border-[#FD6C26]/20">
-                  <Users className="w-3.5 h-3.5" />
+                <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm font-bold rounded-full border border-[#FD6C26]/20">
+                  <Users className="w-4 h-4" />
                   就労支援のプロによる監修
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#FFF4EE] text-[#FD6C26] text-xs font-bold rounded-full border border-[#FD6C26]/20">
-                  <Sparkles className="w-3.5 h-3.5" />
+                <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm font-bold rounded-full border border-[#FD6C26]/20">
+                  <Sparkles className="w-4 h-4" />
                   初期費用・紹介料0円
                 </span>
               </div>
@@ -434,7 +436,7 @@ function SolutionSection() {
                 企業が共同で出資し合い、事業を運営する<strong className="text-[#333]">「LLP（有限責任事業組合）」</strong>の仕組みを活用。
               </p>
               <p className="text-[15px] text-[#555] leading-[1.9]">
-                <strong className="text-[#333]">「自社で雇用しない（※組合での共同雇用）」</strong>にも関わらず、出資比率に応じて<strong className="text-[#FD6C26]">自社の障害者雇用率として算定が可能</strong>です。
+                <strong className="text-[#333]">「自社で雇用しない（※組合での共同雇用）」</strong>にも関わらず、出資比率に応じて<strong className="text-[#FD6C26]">自社の雇用率算定が可能</strong>です。
               </p>
               <p className="text-[15px] text-[#555] leading-[1.9]">
                 これにより、自社単独で雇用する際のリスクとコストを大幅に最適化します。
@@ -560,7 +562,7 @@ function StrengthsSection() {
   const strengths = [
     {
       num: "01",
-      title: "各障害者スタッフの「徹底分析」と最適なマッチング",
+      title: "障害者スタッフ一人ひとりの「徹底分析」と最適なマッチング",
       desc: "就労支援の現場を知り尽くしたプロフェッショナルが、経験と専用ツールで一人ひとりの特性・強み・課題を多角的なアセスメントで徹底的に分析。専門的な見地に基づく的確な合理的配慮とマネジメントにより、高い定着率を実現します。",
       icon: <Brain className="w-7 h-7" />,
       image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663384608434/YwT9YaGpotKVs9ejRKfzEn/support-team-UX2tQzq4mDkZ7V86C8bjJv.webp",
@@ -752,7 +754,9 @@ function VisionSection() {
                   <div className="absolute top-7 left-0 w-1 h-16 bg-gradient-to-b from-[#FD6C26] to-[#FF8F5C] rounded-r-full" />
 
                   <p className="text-[15px] lg:text-base text-[#444] leading-[2.1] font-medium pl-4">
-                    障害を持つ方々の可能性は、環境と正しい理解、そしてテクノロジー（AI）があれば大きく広がります。
+                    障害のある方が、AIを武器に社会で活躍する。<br />
+                    それは理想ではなく、実現できる未来です。<br /><br />
+                    必要なのは、特別扱いではなく、正しい環境設計と育成の仕組み。
                   </p>
                   <p
                     className="text-[15px] lg:text-base text-[#444] leading-[2.1] font-medium pl-4 mt-4"
@@ -762,7 +766,9 @@ function VisionSection() {
                       transition: "opacity 0.7s ease-out 0.5s, transform 0.7s ease-out 0.5s",
                     }}
                   >
-                    私たちは<strong className="text-[#333]">「プロとしての専門性」</strong>を持って個性を徹底分析し、彼らが貴社にとって欠かせない<strong className="text-[#FD6C26]">「戦力」</strong>となる未来を創ります。
+                    <span style={{color: '#fd6c26'}}>私たちは専門性をもって個性を分析し、<br />
+                    生成AIという新しい力を掛け合わせることで、<br />
+                    "支援される側"から"選ばれる戦力"へと転換させます。</span>
                   </p>
                   <p
                     className="text-[15px] lg:text-base text-[#444] leading-[2.1] font-medium pl-4 mt-4"
@@ -772,7 +778,8 @@ function VisionSection() {
                       transition: "opacity 0.7s ease-out 0.8s, transform 0.7s ease-out 0.8s",
                     }}
                   >
-                    このエシカル（倫理的）なコミュニティに賛同いただける企業様との出会いを心待ちにしています。
+                    雇用のかたちを、次の時代へ。<br />
+                    ともにその一歩を踏み出してくださる企業様をお待ちしています。
                   </p>
 
                   {/* Closing quote */}
@@ -792,7 +799,7 @@ function VisionSection() {
               >
                 <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#FD6C26]/40" />
                 <p className="text-sm text-[#888] font-medium">エシカルコミュニティLLP</p>
-                <p className="text-sm font-bold text-[#333]">代表　石原 奈津子</p>
+                <p className="text-sm font-bold text-[#333]"></p>
               </div>
             </div>
           </div>
