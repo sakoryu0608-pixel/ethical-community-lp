@@ -133,6 +133,10 @@ function HeroSection() {
               {/* Authority badges */}
               <div className="flex flex-wrap gap-3 pt-2">
                 <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#FFF4EE] text-[#FD6C26] text-xl font-bold rounded-full border border-[#FD6C26]/20">
+                  <CheckCircle2 className="w-5 h-5" />
+                  法定雇用率算定可能
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#FFF4EE] text-[#FD6C26] text-xl font-bold rounded-full border border-[#FD6C26]/20">
                   <Shield className="w-5 h-5" />
                   経済産業省推進の法人格
                 </span>
@@ -176,18 +180,7 @@ function HeroSection() {
                   className="w-full h-auto object-cover"
                 />
               </div>
-              {/* Floating badge */}
-              <div className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-lg p-4 border border-[#F0F0F0]">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-[#FD6C26] rounded-full flex items-center justify-center">
-                    <CheckCircle2 className="w-7 h-7 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-[#999] font-medium">法定雇用率</p>
-                    <p className="text-lg font-black text-[#333]">算定可能</p>
-                  </div>
-                </div>
-              </div>
+
             </div>
           </AnimatedSection>
         </div>
