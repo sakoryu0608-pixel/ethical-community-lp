@@ -8,7 +8,7 @@
  * - Border radius: pill buttons, 8-16px cards
  */
 
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CheckCircle2, ChevronDown, Download, Users, ArrowRight, Shield, Brain, HeartHandshake, Sparkles, Building2, Phone, TrendingUp, UserMinus, ClipboardX, Wrench, Menu, X } from "lucide-react";
 import { Link } from "wouter";
 
@@ -191,21 +191,30 @@ function NeonFrame({ visible, children }: { visible: boolean; children: React.Re
 function ImpactSection() {
   const [phase, setPhase] = useState(0); // 0=waiting, 1=chars dropping, 2=flash, 3=shimmer
   const keywordRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  // Line 1: 「自社で直接雇用しない」のに、
+  // Line 2: 「自社の戦力」が育っていく。
+  // breakAfter=true inserts a mobile-only line break after this part
   const textParts = [
-    { text: "「", isKeyword: true },
-    { text: "自社で直接雇用しない", isKeyword: true },
-    { text: "」", isKeyword: true },
-    { text: "のに、", isKeyword: false },
-    { text: "「", isKeyword: true },
-    { text: "自社の戦力", isKeyword: true },
-    { text: "」", isKeyword: true },
-    { text: "が育っていく。", isKeyword: false },
+    { text: "「", isKeyword: true, line: 1 },
+    { text: "自社で直接雇用しない", isKeyword: true, line: 1 },
+    { text: "」", isKeyword: true, line: 1 },
+    { text: "のに、", isKeyword: false, line: 1, breakAfter: true },
+    { text: "「", isKeyword: true, line: 2 },
+    { text: "自社の戦力", isKeyword: true, line: 2 },
+    { text: "」", isKeyword: true, line: 2 },
+    { text: "が育っていく。", isKeyword: false, line: 2 },
   ];
 
-  // Build flat char array with keyword flag
-  const chars = textParts.flatMap(part =>
-    part.text.split('').map(ch => ({ ch, isKeyword: part.isKeyword }))
-  );
+  // Build flat char array with keyword flag + breakAfter index tracking
+  const chars: { ch: string; isKeyword: boolean; breakAfter?: boolean }[] = [];
+  textParts.forEach(part => {
+    const partChars = part.text.split('').map((ch, ci) => ({
+      ch,
+      isKeyword: part.isKeyword,
+      breakAfter: part.breakAfter && ci === part.text.length - 1,
+    }));
+    chars.push(...partChars);
+  });
 
   // Track keyword char indices for glow animation
   const keywordIndices = chars.reduce<number[]>((acc, c, i) => {
@@ -273,32 +282,35 @@ function ImpactSection() {
         {/* Neon frame wrapper with Canvas animated border */}
         <NeonFrame visible={phase >= 2}>
 
-          {/* The headline - wraps on mobile */}
+          {/* The headline
+               - PC (md+): font scales down via clamp, single line or natural wrap
+               - Mobile (<md): forced break after 「のに、」 at punctuation
+          */}
           <h1
-            className="text-center w-full relative z-10"
+            className="text-center w-full relative z-10 impact-headline"
             style={{
-              fontSize: 'clamp(1rem, 4vw, 2.8rem)',
               lineHeight: 1.6,
               letterSpacing: '0.02em',
-              whiteSpace: 'normal',
             }}
           >
             {chars.map((c, i) => {
               const isKw = c.isKeyword;
               const refIdx = isKw ? keywordRefIdx++ : -1;
               return (
-                <span
-                  key={i}
-                  ref={isKw ? (el) => { keywordRefs.current[refIdx] = el; } : undefined}
-                  className={`impact-char ${isKw ? 'impact-keyword' : ''} ${phase >= 2 && isKw ? 'impact-keyword-flash' : ''}`}
-                  style={{
-                    animationDelay: phase >= 1 ? `${i * 0.05}s` : '999s',
-                    color: isKw ? '#FD6C26' : 'rgba(255,255,255,0.85)',
-                    fontWeight: isKw ? 900 : 600,
-                  }}
-                >
-                  {c.ch}
-                </span>
+                <React.Fragment key={i}>
+                  <span
+                    ref={isKw ? (el) => { keywordRefs.current[refIdx] = el; } : undefined}
+                    className={`impact-char ${isKw ? 'impact-keyword' : ''} ${phase >= 2 && isKw ? 'impact-keyword-flash' : ''}`}
+                    style={{
+                      animationDelay: phase >= 1 ? `${i * 0.05}s` : '999s',
+                      color: isKw ? '#FD6C26' : 'rgba(255,255,255,0.85)',
+                      fontWeight: isKw ? 900 : 600,
+                    }}
+                  >
+                    {c.ch}
+                  </span>
+                  {c.breakAfter && <br key={`br-${i}`} className="impact-mobile-br" />}
+                </React.Fragment>
               );
             })}
           </h1>

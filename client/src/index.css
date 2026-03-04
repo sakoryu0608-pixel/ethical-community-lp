@@ -426,7 +426,7 @@ body {
 
 @media (min-width: 1024px) {
   .neon-frame-inner {
-    padding: 4rem 5rem;
+    padding: 3.5rem 4rem;
   }
 }
 
@@ -510,4 +510,50 @@ body {
   animation: scanLine 4s linear infinite;
   animation-delay: 3s;
   pointer-events: none;
+}
+
+/* Impact headline: PC scales via clamp, mobile uses explicit 2-line break */
+.impact-headline {
+  /* Mobile first:
+     At 375px: 5vw = 18.75px → 15 chars × 18.75 ≈ 281px < 295px content width ✓
+     At 320px: 5vw = 16px → 15 chars × 16 = 240px < 255px content width ✓
+  */
+  font-size: clamp(1.05rem, 5vw, 1.4rem);
+  white-space: normal;
+}
+
+/* Tablet (640px+): allow natural wrap, slightly larger */
+@media (min-width: 640px) {
+  .impact-headline {
+    font-size: clamp(1.5rem, 3.2vw, 2.0rem);
+  }
+}
+
+/* Desktop (1024px+): scale to fit single line within frame */
+/* Frame inner padding is 4rem 4rem at lg → content width ≈ viewport - 2*4rem - 2*3px */
+/* 26 Japanese chars × ~0.9em spacing → need ~23.4em = 23.4 * fontSize */
+/* At 1280px viewport: content ≈ 1280 - 128 = 1152px → 1152/26 ≈ 44px max */
+/* Use 2.5vw to scale: 2.5vw * 1280 = 32px → 26 * 32 = 832px ✓ fits */
+@media (min-width: 1024px) {
+  .impact-headline {
+    font-size: clamp(1.8rem, 2.6vw, 2.4rem);
+  }
+}
+
+/* Large desktop (1440px+): can be slightly larger */
+@media (min-width: 1440px) {
+  .impact-headline {
+    font-size: clamp(2.2rem, 2.4vw, 2.8rem);
+  }
+}
+
+/* Mobile-only line break: visible on small screens, hidden on sm+ */
+.impact-mobile-br {
+  display: block;
+}
+
+@media (min-width: 640px) {
+  .impact-mobile-br {
+    display: none;
+  }
 }
