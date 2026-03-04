@@ -332,6 +332,155 @@ html {
   animation-delay: -5s;
 }
 
+/* ===== NEON FRAME (Pure CSS) ===== */
+.neon-frame-outer {
+  position: relative;
+  display: inline-block;
+  padding: 3px; /* border thickness */
+  border-radius: 20px;
+  overflow: visible;
+  animation: neonBoxShadowPulse 3s ease-in-out infinite;
+}
+
+/* Rotating gradient border - the magic */
+.neon-frame-border {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  border: 2px solid rgba(253, 108, 38, 0.5);
+  box-shadow:
+    0 0 15px rgba(253, 108, 38, 0.3),
+    0 0 30px rgba(253, 108, 38, 0.15),
+    inset 0 0 15px rgba(253, 108, 38, 0.05);
+  animation: neonBorderPulse 3s ease-in-out infinite;
+}
+
+/* Animated light trail using pseudo-element */
+.neon-frame-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 22px;
+  background: conic-gradient(
+    from var(--neon-angle, 0deg),
+    transparent 0%,
+    transparent 70%,
+    rgba(253, 108, 38, 0.9) 78%,
+    rgba(255, 180, 80, 1) 82%,
+    rgba(253, 108, 38, 0.9) 86%,
+    transparent 94%,
+    transparent 100%
+  );
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  padding: 2px;
+  animation: neonRotate 3s linear infinite;
+  filter: blur(0.5px);
+}
+
+/* Second trail offset */
+.neon-frame-border::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 22px;
+  background: conic-gradient(
+    from var(--neon-angle2, 180deg),
+    transparent 0%,
+    transparent 75%,
+    rgba(255, 180, 80, 0.6) 82%,
+    rgba(253, 108, 38, 0.7) 85%,
+    transparent 92%,
+    transparent 100%
+  );
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  padding: 2px;
+  animation: neonRotate2 4s linear infinite;
+  filter: blur(1px);
+}
+
+/* Inner content area */
+.neon-frame-inner {
+  position: relative;
+  z-index: 1;
+  padding: 4rem 5rem;
+  background: rgba(13, 13, 13, 0.95);
+  border-radius: 18px;
+}
+
+/* Corner accent dots */
+.neon-corner-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FD6C26;
+  box-shadow: 0 0 10px rgba(253, 108, 38, 0.9), 0 0 25px rgba(253, 108, 38, 0.5);
+  animation: cornerDotPulse 2s ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes neonRotate {
+  0% { --neon-angle: 0deg; }
+  100% { --neon-angle: 360deg; }
+}
+
+@keyframes neonRotate2 {
+  0% { --neon-angle2: 180deg; }
+  100% { --neon-angle2: 540deg; }
+}
+
+@keyframes neonBorderPulse {
+  0%, 100% {
+    border-color: rgba(253, 108, 38, 0.4);
+    box-shadow:
+      0 0 15px rgba(253, 108, 38, 0.2),
+      0 0 30px rgba(253, 108, 38, 0.1),
+      inset 0 0 15px rgba(253, 108, 38, 0.03);
+  }
+  50% {
+    border-color: rgba(253, 108, 38, 0.7);
+    box-shadow:
+      0 0 25px rgba(253, 108, 38, 0.5),
+      0 0 50px rgba(253, 108, 38, 0.25),
+      inset 0 0 20px rgba(253, 108, 38, 0.08);
+  }
+}
+
+@keyframes neonBoxShadowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(253, 108, 38, 0.15));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(253, 108, 38, 0.3));
+  }
+}
+
+@keyframes cornerDotPulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.6); }
+}
+
+/* Register custom properties for conic-gradient animation */
+@property --neon-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --neon-angle2 {
+  syntax: '<angle>';
+  initial-value: 180deg;
+  inherits: false;
+}
+
+
+
 /* Scan line overlay */
 .impact-scan::after {
   content: '';

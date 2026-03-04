@@ -102,6 +102,34 @@ function Header() {
 }
 
 // ============================================================
+// NEON FRAME: Pure CSS animated neon border with light trail
+// ============================================================
+function NeonFrame({ visible, children }: { visible: boolean; children: React.ReactNode }) {
+  return (
+    <div
+      className="neon-frame-outer"
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'scale(1)' : 'scale(0.95)',
+        transition: 'opacity 0.8s ease-out, transform 0.8s ease-out',
+      }}
+    >
+      {/* Rotating gradient border */}
+      <div className="neon-frame-border" />
+      {/* Inner content area */}
+      <div className="neon-frame-inner">
+        {children}
+      </div>
+      {/* Corner accents */}
+      <div className="neon-corner-dot" style={{ top: -4, left: -4 }} />
+      <div className="neon-corner-dot" style={{ top: -4, right: -4, animationDelay: '0.5s' }} />
+      <div className="neon-corner-dot" style={{ bottom: -4, right: -4, animationDelay: '1s' }} />
+      <div className="neon-corner-dot" style={{ bottom: -4, left: -4, animationDelay: '1.5s' }} />
+    </div>
+  );
+}
+
+// ============================================================
 // IMPACT MINI-SECTION: CINEMATIC TEXT-ONLY FIRST VIEW
 // ============================================================
 function ImpactSection() {
@@ -184,36 +212,41 @@ function ImpactSection() {
 
 
       {/* Main text container */}
-      <div className="relative z-10 w-full flex flex-col items-center justify-center px-4" style={{ perspective: '1000px' }}>
+      <div className="relative z-10 w-full flex flex-col items-center justify-center px-8" style={{ perspective: '1000px', maxWidth: '90vw', margin: '0 auto' }}>
 
-        {/* The headline - forced single line, centered */}
-        <h1
-          className="whitespace-nowrap text-center w-full"
-          style={{
-            fontSize: 'clamp(1rem, 3.2vw, 3rem)',
-            lineHeight: 1.3,
-            letterSpacing: '-0.01em',
-          }}
-        >
-          {chars.map((c, i) => {
-            const isKw = c.isKeyword;
-            const refIdx = isKw ? keywordRefIdx++ : -1;
-            return (
-              <span
-                key={i}
-                ref={isKw ? (el) => { keywordRefs.current[refIdx] = el; } : undefined}
-                className={`impact-char ${isKw ? 'impact-keyword' : ''} ${phase >= 2 && isKw ? 'impact-keyword-flash' : ''}`}
-                style={{
-                  animationDelay: phase >= 1 ? `${i * 0.05}s` : '999s',
-                  color: isKw ? '#FD6C26' : 'rgba(255,255,255,0.85)',
-                  fontWeight: isKw ? 900 : 600,
-                }}
-              >
-                {c.ch}
-              </span>
-            );
-          })}
-        </h1>
+        {/* Neon frame wrapper with Canvas animated border */}
+        <NeonFrame visible={phase >= 2}>
+
+          {/* The headline - single line on desktop, wraps on mobile */}
+          <h1
+            className="text-center w-full relative z-10"
+            style={{
+              fontSize: 'clamp(1.1rem, 2.8vw, 2.8rem)',
+              lineHeight: 1.5,
+              letterSpacing: '0.02em',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {chars.map((c, i) => {
+              const isKw = c.isKeyword;
+              const refIdx = isKw ? keywordRefIdx++ : -1;
+              return (
+                <span
+                  key={i}
+                  ref={isKw ? (el) => { keywordRefs.current[refIdx] = el; } : undefined}
+                  className={`impact-char ${isKw ? 'impact-keyword' : ''} ${phase >= 2 && isKw ? 'impact-keyword-flash' : ''}`}
+                  style={{
+                    animationDelay: phase >= 1 ? `${i * 0.05}s` : '999s',
+                    color: isKw ? '#FD6C26' : 'rgba(255,255,255,0.85)',
+                    fontWeight: isKw ? 900 : 600,
+                  }}
+                >
+                  {c.ch}
+                </span>
+              );
+            })}
+          </h1>
+        </NeonFrame>
 
 
         {/* Subtitle fade in */}
