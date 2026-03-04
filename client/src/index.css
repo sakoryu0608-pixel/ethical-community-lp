@@ -133,6 +133,11 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 /* Animation keyframes */
@@ -408,9 +413,21 @@ html {
 .neon-frame-inner {
   position: relative;
   z-index: 1;
-  padding: 4rem 5rem;
+  padding: 2rem 1.5rem;
   background: rgba(13, 13, 13, 0.95);
   border-radius: 18px;
+}
+
+@media (min-width: 640px) {
+  .neon-frame-inner {
+    padding: 3rem 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .neon-frame-inner {
+    padding: 4rem 5rem;
+  }
 }
 
 /* Corner accent dots */

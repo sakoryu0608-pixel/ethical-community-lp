@@ -51,11 +51,15 @@ function AnimatedSection({ children, className = "", delay = 0 }: { children: Re
 // ============================================================
 function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close menu on nav click
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <header
@@ -63,13 +67,13 @@ function Header() {
         scrolled ? "bg-white/95 backdrop-blur-sm shadow-sm" : "bg-white"
       }`}
     >
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-10 flex items-center justify-between h-[72px]">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between h-[64px] lg:h-[72px]">
         <div className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-[#FD6C26] rounded-lg flex items-center justify-center">
-            <HeartHandshake className="w-6 h-6 text-white" />
+          <div className="w-9 h-9 lg:w-10 lg:h-10 bg-[#FD6C26] rounded-lg flex items-center justify-center">
+            <HeartHandshake className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
           </div>
           <div>
-            <span className="text-lg font-bold text-[#333]">エシカルコミュニティ</span>
+            <span className="text-base lg:text-lg font-bold text-[#333]">エシカルコミュニティ</span>
             <span className="text-xs text-[#999] ml-1">LLP</span>
           </div>
         </div>
@@ -80,22 +84,74 @@ function Header() {
           <a href="#strengths" className="text-sm text-[#666] hover:text-[#FD6C26] transition-colors font-medium">強み</a>
           <a href="#vision" className="text-sm text-[#666] hover:text-[#FD6C26] transition-colors font-medium">ビジョン</a>
         </nav>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 lg:gap-3">
           <Link
             href="/contact?type=document"
-            className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-[#FD6C26] text-white text-sm font-bold rounded-full hover:bg-[#e55e1a] transition-colors shadow-md shadow-[#FD6C26]/20"
+            className="hidden sm:inline-flex items-center gap-2 px-4 lg:px-5 py-2 lg:py-2.5 bg-[#FD6C26] text-white text-sm font-bold rounded-full hover:bg-[#e55e1a] transition-colors shadow-md shadow-[#FD6C26]/20"
           >
             <Download className="w-4 h-4" />
             資料ダウンロード
           </Link>
           <Link
             href="/contact?type=consultation"
-            className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 border-2 border-[#FD6C26] text-[#FD6C26] text-sm font-bold rounded-full hover:bg-[#FFF4EE] transition-colors"
+            className="hidden md:inline-flex items-center gap-2 px-4 lg:px-5 py-2 lg:py-2.5 border-2 border-[#FD6C26] text-[#FD6C26] text-sm font-bold rounded-full hover:bg-[#FFF4EE] transition-colors"
           >
             <Phone className="w-4 h-4" />
             相談会に申し込む
           </Link>
+          {/* Hamburger button - mobile only */}
+          <button
+            className="lg:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-[#FFF4EE] transition-colors"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="メニューを開く"
+          >
+            {menuOpen ? <X className="w-5 h-5 text-[#333]" /> : <Menu className="w-5 h-5 text-[#333]" />}
+          </button>
         </div>
+      </div>
+
+      {/* Mobile drawer menu */}
+      <div
+        className={`lg:hidden overflow-hidden transition-all duration-300 bg-white border-t border-[#F0F0F0] ${
+          menuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <nav className="px-4 py-4 space-y-1">
+          {[
+            { href: "#problem", label: "課題" },
+            { href: "#solution", label: "LLPスキーム" },
+            { href: "#cost", label: "コストメリット" },
+            { href: "#strengths", label: "強み" },
+            { href: "#vision", label: "ビジョン" },
+          ].map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={closeMenu}
+              className="block px-4 py-3 text-base font-medium text-[#333] hover:text-[#FD6C26] hover:bg-[#FFF4EE] rounded-xl transition-colors"
+            >
+              {item.label}
+            </a>
+          ))}
+          <div className="pt-3 space-y-2">
+            <Link
+              href="/contact?type=document"
+              onClick={closeMenu}
+              className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-[#FD6C26] text-white text-sm font-bold rounded-full hover:bg-[#e55e1a] transition-colors"
+            >
+              <Download className="w-4 h-4" />
+              資料ダウンロード（無料）
+            </Link>
+            <Link
+              href="/contact?type=consultation"
+              onClick={closeMenu}
+              className="flex items-center justify-center gap-2 w-full px-5 py-3 border-2 border-[#FD6C26] text-[#FD6C26] text-sm font-bold rounded-full hover:bg-[#FFF4EE] transition-colors"
+            >
+              <Phone className="w-4 h-4" />
+              オンライン相談会に申し込む
+            </Link>
+          </div>
+        </nav>
       </div>
     </header>
   );
@@ -193,7 +249,7 @@ function ImpactSection() {
   let keywordRefIdx = 0;
 
   return (
-    <section className="relative pt-[72px] overflow-hidden bg-[#0d0d0d]" style={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+    <section className="relative pt-[64px] lg:pt-[72px] overflow-hidden bg-[#0d0d0d]" style={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
       {/* Radial gradient spotlight */}
       <div className="absolute inset-0 pointer-events-none" style={{
         background: 'radial-gradient(ellipse 60% 50% at 50% 45%, rgba(253,108,38,0.06) 0%, transparent 70%)',
@@ -212,19 +268,19 @@ function ImpactSection() {
 
 
       {/* Main text container */}
-      <div className="relative z-10 w-full flex flex-col items-center justify-center px-8" style={{ perspective: '1000px', maxWidth: '90vw', margin: '0 auto' }}>
+      <div className="relative z-10 w-full flex flex-col items-center justify-center px-4 sm:px-8" style={{ perspective: '1000px', maxWidth: '95vw', margin: '0 auto' }}>
 
         {/* Neon frame wrapper with Canvas animated border */}
         <NeonFrame visible={phase >= 2}>
 
-          {/* The headline - single line on desktop, wraps on mobile */}
+          {/* The headline - wraps on mobile */}
           <h1
             className="text-center w-full relative z-10"
             style={{
-              fontSize: 'clamp(1.1rem, 2.8vw, 2.8rem)',
-              lineHeight: 1.5,
+              fontSize: 'clamp(1rem, 4vw, 2.8rem)',
+              lineHeight: 1.6,
               letterSpacing: '0.02em',
-              whiteSpace: 'nowrap',
+              whiteSpace: 'normal',
             }}
           >
             {chars.map((c, i) => {
@@ -287,11 +343,11 @@ function HeroSection() {
   return (
     <section className="relative overflow-hidden">
       {/* Background decorations */}
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#FFF4EE] rounded-full -translate-x-1/2 -translate-y-1/4 opacity-60" />
-      <div className="absolute top-[120px] right-[10%] w-28 h-28 bg-[#FFF4EE] rounded-full opacity-50" />
+      <div className="absolute top-0 left-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-[#FFF4EE] rounded-full -translate-x-1/2 -translate-y-1/4 opacity-60" />
+      <div className="absolute top-[120px] right-[10%] w-20 sm:w-28 h-20 sm:h-28 bg-[#FFF4EE] rounded-full opacity-50" />
 
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-10 py-16 lg:py-24 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-16 lg:py-24 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left: Text */}
           <AnimatedSection>
             <div className="space-y-6">
@@ -305,40 +361,40 @@ function HeroSection() {
               </p>
 
               {/* Authority badges */}
-              <div className="flex flex-wrap gap-3 pt-2">
-                <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#FFF4EE] text-[#FD6C26] text-xl font-bold rounded-full border border-[#FD6C26]/20">
-                  <CheckCircle2 className="w-5 h-5" />
+              <div className="flex flex-wrap gap-2 sm:gap-3 pt-2">
+                <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/20">
+                  <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5" />
                   法定雇用率算定可能
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#FFF4EE] text-[#FD6C26] text-xl font-bold rounded-full border border-[#FD6C26]/20">
-                  <Shield className="w-5 h-5" />
+                <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/20">
+                  <Shield className="w-4 h-4 sm:w-5 sm:h-5" />
                   経済産業省推進の法人格
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#FFF4EE] text-[#FD6C26] text-xl font-bold rounded-full border border-[#FD6C26]/20">
-                  <Users className="w-5 h-5" />
+                <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/20">
+                  <Users className="w-4 h-4 sm:w-5 sm:h-5" />
                   就労支援のプロによる監修
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#FFF4EE] text-[#FD6C26] text-xl font-bold rounded-full border border-[#FD6C26]/20">
-                  <Sparkles className="w-5 h-5" />
-                  初期費用・紹介料0円
+                <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/20">
+                  <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
+                  初期費用・紹介料０円
                 </span>
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <div className="flex flex-col gap-3 pt-4">
                 <Link
                   href="/contact?type=document"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#FD6C26] text-white text-base font-bold rounded-full hover:bg-[#e55e1a] transition-all shadow-lg shadow-[#FD6C26]/30 hover:shadow-xl hover:shadow-[#FD6C26]/40 hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-8 sm:py-4 bg-[#FD6C26] text-white text-sm sm:text-base font-bold rounded-full hover:bg-[#e55e1a] transition-all shadow-lg shadow-[#FD6C26]/30 hover:shadow-xl hover:shadow-[#FD6C26]/40 hover:-translate-y-0.5"
                 >
-                  <Download className="w-5 h-5" />
-                  詳しい仕組みがわかる！サービス紹介資料ダウンロード（無料）
+                  <Download className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                  <span>詳しい仕組みがわかる！サービス紹介資料ダウンロード（無料）</span>
                 </Link>
                 <Link
                   href="/contact?type=consultation"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-[#FD6C26] text-[#FD6C26] text-base font-bold rounded-full hover:bg-[#FFF4EE] transition-all hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-8 sm:py-4 border-2 border-[#FD6C26] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full hover:bg-[#FFF4EE] transition-all hover:-translate-y-0.5"
                 >
-                  <Phone className="w-5 h-5" />
-                  オンライン個別相談会に申し込む
+                  <Phone className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                  <span>オンライン個別相談会に申し込む</span>
                 </Link>
               </div>
             </div>
@@ -395,19 +451,19 @@ function ProblemDetailCard({ icon, num, label, text, index }: { icon: React.Reac
         transition: `opacity 0.5s ease-out ${index * 0.12}s, transform 0.5s ease-out ${index * 0.12}s`,
       }}
     >
-      <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-5 lg:p-6 shadow-lg shadow-black/5 border border-white/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-        <div className="flex items-start gap-4">
+      <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 sm:p-5 lg:p-6 shadow-lg shadow-black/5 border border-white/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+        <div className="flex items-start gap-3 sm:gap-4">
           <div className="flex-shrink-0">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#FD6C26] to-[#FF8F5C] flex items-center justify-center text-white shadow-md shadow-[#FD6C26]/20">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-[#FD6C26] to-[#FF8F5C] flex items-center justify-center text-white shadow-md shadow-[#FD6C26]/20">
               {icon}
             </div>
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1.5">
-              <span className="text-xl font-black text-[#FD6C26]/40">{num}</span>
-              <span className="text-xl font-bold text-[#333]">{label}</span>
+              <span className="text-lg sm:text-xl font-black text-[#FD6C26]/40">{num}</span>
+              <span className="text-base sm:text-xl font-bold text-[#333]">{label}</span>
             </div>
-            <p className="text-[14px] lg:text-[15px] text-[#555] leading-[1.8]">{text}</p>
+            <p className="text-[13px] sm:text-[14px] lg:text-[15px] text-[#555] leading-[1.8]">{text}</p>
           </div>
         </div>
       </div>
@@ -447,7 +503,7 @@ function ProblemSection() {
   ];
 
   return (
-    <section id="problem" className="relative py-24 lg:py-32 overflow-hidden">
+    <section id="problem" className="relative py-16 sm:py-24 lg:py-32 overflow-hidden">
       {/* Warm orange gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#FD6C26] via-[#FF7E3F] to-[#FF9A5C]" />
 
@@ -463,7 +519,7 @@ function ProblemSection() {
         <div className="absolute bottom-[10%] left-[5%] w-80 h-80 rounded-full bg-white/[0.04] blur-3xl animate-[float_14s_ease-in-out_infinite_reverse]" />
       </div>
 
-      <div className="relative z-10 max-w-[1200px] mx-auto px-6 lg:px-10">
+      <div className="relative z-10 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
         {/* Header */}
         <AnimatedSection>
           <div className="text-center mb-6">
@@ -496,16 +552,16 @@ function ProblemSection() {
         </AnimatedSection>
 
         {/* Problem detail cards */}
-        <div className="grid sm:grid-cols-2 gap-4 lg:gap-5 max-w-[960px] mx-auto mb-14">
+        <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-5 max-w-[960px] mx-auto mb-8 sm:mb-14">
           {problems.map((p, i) => (
             <ProblemDetailCard key={i} icon={p.icon} num={p.num} label={p.label} text={p.text} index={i} />
           ))}
         </div>
 
         {/* Animated stats bar */}
-        <div ref={statsRef} className="max-w-[960px] mx-auto mb-14">
+        <div ref={statsRef} className="max-w-[960px] mx-auto mb-10 sm:mb-14">
           <div
-            className="grid grid-cols-3 gap-3 lg:gap-5"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-3 lg:gap-5 overflow-hidden"
             style={{
               opacity: statsInView ? 1 : 0,
               transform: statsInView ? "translateY(0)" : "translateY(30px)",
@@ -577,10 +633,10 @@ function ProblemSection() {
 // ============================================================
 function SolutionSection() {
   return (
-    <section id="solution" className="py-20 lg:py-28 bg-white">
-      <div className="max-w-[1100px] mx-auto px-6 lg:px-10">
+    <section id="solution" className="py-14 sm:py-20 lg:py-28 bg-white">
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10">
         <AnimatedSection>
-          <div className="text-center mb-14">
+          <div className="text-center mb-8 sm:mb-14">
             <p className="text-sm font-bold text-[#FD6C26] tracking-wider mb-3">SOLUTION</p>
             <h2 className="text-2xl sm:text-3xl lg:text-[2rem] font-black text-[#333] leading-snug">
               自社で抱え込まない。
@@ -592,7 +648,7 @@ function SolutionSection() {
           </div>
         </AnimatedSection>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <AnimatedSection>
             <div className="space-y-6">
               <p className="text-[15px] text-[#555] leading-[1.9]">
@@ -648,10 +704,10 @@ function CostSection() {
   ];
 
   return (
-    <section id="cost" className="bg-[#FFF4EE] py-20 lg:py-28">
-      <div className="max-w-[1100px] mx-auto px-6 lg:px-10">
+    <section id="cost" className="bg-[#FFF4EE] py-14 sm:py-20 lg:py-28">
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10">
         <AnimatedSection>
-          <div className="text-center mb-14">
+          <div className="text-center mb-8 sm:mb-14">
             <p className="text-sm font-bold text-[#FD6C26] tracking-wider mb-3">COST MERIT</p>
             <h2 className="text-2xl sm:text-3xl lg:text-[2rem] font-black text-[#333] leading-snug">
               一般的な「自社単独雇用」と比較して、
@@ -664,8 +720,8 @@ function CostSection() {
         {/* Comparison Table */}
         <AnimatedSection delay={0.15}>
           <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-            {/* Table header */}
-            <div className="grid grid-cols-[1fr_1fr_1fr] bg-[#F8F8F8] border-b border-[#E8E8E8]">
+            {/* Desktop: 3-column table header */}
+            <div className="hidden sm:grid grid-cols-[1fr_1fr_1fr] bg-[#F8F8F8] border-b border-[#E8E8E8]">
               <div className="p-4 lg:p-5 text-center">
                 <span className="text-sm font-bold text-[#999]">項目</span>
               </div>
@@ -677,25 +733,46 @@ function CostSection() {
               </div>
             </div>
 
-            {/* Table rows */}
-            {comparisons.map((item, i) => (
-              <div
-                key={i}
-                className={`grid grid-cols-[1fr_1fr_1fr] ${
-                  i < comparisons.length - 1 ? "border-b border-[#F0F0F0]" : ""
-                }`}
-              >
-                <div className="p-4 lg:p-5 flex items-center justify-center">
-                  <span className="text-sm font-bold text-[#333]">{item.category}</span>
+            {/* Desktop: 3-column table rows */}
+            <div className="hidden sm:block">
+              {comparisons.map((item, i) => (
+                <div
+                  key={i}
+                  className={`grid grid-cols-[1fr_1fr_1fr] ${
+                    i < comparisons.length - 1 ? "border-b border-[#F0F0F0]" : ""
+                  }`}
+                >
+                  <div className="p-4 lg:p-5 flex items-center justify-center">
+                    <span className="text-sm font-bold text-[#333]">{item.category}</span>
+                  </div>
+                  <div className="p-4 lg:p-5 border-l border-[#F0F0F0] bg-[#FD6C26]/5 flex items-center">
+                    <span className="text-sm font-bold text-[#FD6C26] leading-relaxed">{item.ethical}</span>
+                  </div>
+                  <div className="p-4 lg:p-5 border-l border-[#F0F0F0] flex items-center">
+                    <span className="text-sm text-[#888] leading-relaxed">{item.self}</span>
+                  </div>
                 </div>
-                <div className="p-4 lg:p-5 border-l border-[#F0F0F0] bg-[#FD6C26]/5 flex items-center">
-                  <span className="text-sm font-bold text-[#FD6C26] leading-relaxed">{item.ethical}</span>
+              ))}
+            </div>
+
+            {/* Mobile: Card-style layout */}
+            <div className="sm:hidden divide-y divide-[#F0F0F0]">
+              {comparisons.map((item, i) => (
+                <div key={i} className="p-4">
+                  <p className="text-xs font-bold text-[#999] mb-2">{item.category}</p>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="bg-[#FD6C26]/5 rounded-xl p-3">
+                      <p className="text-[10px] font-bold text-[#FD6C26] mb-1">エシカル</p>
+                      <p className="text-xs font-bold text-[#FD6C26] leading-relaxed">{item.ethical}</p>
+                    </div>
+                    <div className="bg-[#F8F8F8] rounded-xl p-3">
+                      <p className="text-[10px] font-bold text-[#999] mb-1">自社雇用</p>
+                      <p className="text-xs text-[#888] leading-relaxed">{item.self}</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="p-4 lg:p-5 border-l border-[#F0F0F0] flex items-center">
-                  <span className="text-sm text-[#888] leading-relaxed">{item.self}</span>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </AnimatedSection>
 
@@ -750,10 +827,10 @@ function StrengthsSection() {
   ];
 
   return (
-    <section id="strengths" className="py-20 lg:py-28 bg-white">
-      <div className="max-w-[1100px] mx-auto px-6 lg:px-10">
+    <section id="strengths" className="py-14 sm:py-20 lg:py-28 bg-white">
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10">
         <AnimatedSection>
-          <div className="text-center mb-14">
+          <div className="text-center mb-8 sm:mb-14">
             <p className="text-sm font-bold text-[#FD6C26] tracking-wider mb-3">STRENGTHS</p>
             <h2 className="text-2xl sm:text-3xl lg:text-[2rem] font-black text-[#333] leading-snug">
               障害者支援のプロフェッショナルが導く、
@@ -763,21 +840,21 @@ function StrengthsSection() {
           </div>
         </AnimatedSection>
 
-        <div className="space-y-16">
+        <div className="space-y-10 sm:space-y-16">
           {strengths.map((s, i) => (
             <AnimatedSection key={i} delay={i * 0.15}>
-              <div className={`grid lg:grid-cols-2 gap-10 items-center ${i % 2 === 1 ? "lg:direction-rtl" : ""}`}>
-                <div className={`space-y-5 ${i % 2 === 1 ? "lg:order-2" : ""}`}>
-                  <div className="flex items-center gap-4">
-                    <span className="text-5xl font-black text-[#FD6C26]/15">{s.num}</span>
-                    <div className="w-12 h-12 rounded-xl bg-[#FD6C26] flex items-center justify-center text-white">
+              <div className={`grid lg:grid-cols-2 gap-6 lg:gap-10 items-center ${i % 2 === 1 ? "lg:direction-rtl" : ""}`}>
+                <div className={`space-y-4 sm:space-y-5 ${i % 2 === 1 ? "lg:order-2" : ""}`}>
+                  <div className="flex items-center gap-3">
+                    <span className="text-4xl sm:text-5xl font-black text-[#FD6C26]/15">{s.num}</span>
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#FD6C26] flex items-center justify-center text-white">
                       {s.icon}
                     </div>
                   </div>
-                  <h3 className="text-xl lg:text-2xl font-bold text-[#333] leading-snug">
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-[#333] leading-snug">
                     {s.title}
                   </h3>
-                  <p className="text-[15px] text-[#555] leading-[1.9]">{s.desc}</p>
+                  <p className="text-[14px] sm:text-[15px] text-[#555] leading-[1.9]">{s.desc}</p>
                 </div>
                 <div className={`${i % 2 === 1 ? "lg:order-1" : ""}`}>
                   <div className="rounded-2xl overflow-hidden shadow-lg bg-white">
@@ -804,7 +881,7 @@ function VisionSection() {
   const { ref: lineRef, isInView: lineInView } = useInView(0.3);
 
   return (
-    <section id="vision" ref={sectionRef} className="relative py-24 lg:py-36 overflow-hidden">
+    <section id="vision" ref={sectionRef} className="relative py-16 sm:py-24 lg:py-36 overflow-hidden">
       {/* Background image with semi-transparent overlay */}
       <div
         className="absolute inset-0 bg-cover bg-center transition-transform duration-[2s] ease-out"
@@ -823,7 +900,7 @@ function VisionSection() {
       <div className="absolute bottom-16 left-16 w-16 h-16 border-2 border-[#FD6C26]/8 rounded-full hidden lg:block" />
       <div className="absolute top-1/3 left-8 w-1 h-20 bg-gradient-to-b from-[#FD6C26]/15 to-transparent hidden lg:block" />
 
-      <div className="max-w-[1100px] mx-auto px-6 lg:px-10 relative z-10">
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
         {/* Section label */}
         <div
           className="text-center mb-10"
@@ -871,7 +948,7 @@ function VisionSection() {
                 <div className="absolute -bottom-3 -right-3 w-full h-full bg-gradient-to-br from-[#FD6C26]/10 to-[#FF8F5C]/5 rounded-xl transition-all duration-700 group-hover:-bottom-4 group-hover:-right-4" />
 
                 {/* Photo container - Square */}
-                <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-xl overflow-hidden shadow-2xl shadow-[#FD6C26]/10">
+                <div className="relative w-44 h-44 sm:w-56 sm:h-56 lg:w-72 lg:h-72 rounded-xl overflow-hidden shadow-2xl shadow-[#FD6C26]/10">
                   <img
                     src="https://private-us-east-1.manuscdn.com/user_upload_by_module/session_file/310519663384608434/mGdRqzCpWUaaftfz.jpg?Expires=1804041501&Signature=s-X9oNjm1cG0UvXRGijtPXhhqwgIGugyQ0I-5gCdQA3CCJa3GCP1e8ezetv1GAO1-HOaxhbnggC43aS3IV6bt8R~JAC9a1Qsv3713mgzPtIKWvzvBDezlIGnY6hmOLeFa3HYSIMVSTBh0A0wTuWpSvkPulp3iC5sNf37WJCkNpnv-DFyJpPjvDuUvLyWMB6k0DcPFwBxiCVpQ7FG2JNLgAeellU5nsGkI69S5GgvqBmEgIdscrHAONrhvymy53ph8Q0P~5~3bjxXek36aDNb2iry-tILF~mmYlD52kz~tINbSm4AiBNktnUx9ghNbubkB4-o9JPUj56ripvTJApn8w__&Key-Pair-Id=K2HSFNDJXOU9YS"
                     alt="代表 石原 奈津子"
@@ -980,8 +1057,8 @@ function VisionSection() {
 // ============================================================
 function CTASection() {
   return (
-    <section id="cta" className="py-20 lg:py-28 bg-white">
-      <div className="max-w-[1100px] mx-auto px-6 lg:px-10">
+    <section id="cta" className="py-14 sm:py-20 lg:py-28 bg-white">
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10">
         <AnimatedSection>
           <div className="text-center mb-10">
             <p className="text-sm font-bold text-[#FD6C26] tracking-wider mb-3">CONTACT</p>
@@ -1016,21 +1093,21 @@ function CTASection() {
         </AnimatedSection>
 
         <AnimatedSection delay={0.3}>
-          <div className="bg-gradient-to-br from-[#FD6C26] to-[#E55A10] rounded-2xl p-8 lg:p-12 shadow-xl shadow-[#FD6C26]/20">
-            <div className="flex flex-col lg:flex-row gap-6 items-center justify-center">
+          <div className="bg-gradient-to-br from-[#FD6C26] to-[#E55A10] rounded-2xl p-6 sm:p-8 lg:p-12 shadow-xl shadow-[#FD6C26]/20">
+            <div className="flex flex-col gap-4 items-center justify-center">
               <Link
                 href="/contact?type=document"
-                className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-white text-[#FD6C26] text-lg font-bold rounded-full hover:bg-[#FFF4EE] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 w-full lg:w-auto"
+                className="inline-flex items-center justify-center gap-3 px-6 sm:px-10 py-4 sm:py-5 bg-white text-[#FD6C26] text-base sm:text-lg font-bold rounded-full hover:bg-[#FFF4EE] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 w-full"
               >
-                <Download className="w-5 h-5" />
-                3分でわかる！サービス紹介資料ダウンロード（無料）
+                <Download className="w-5 h-5 flex-shrink-0" />
+                <span>3分でわかる！サービス紹介資料ダウンロード（無料）</span>
               </Link>
               <Link
                 href="/contact?type=consultation"
-                className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-transparent border-2 border-white text-white text-lg font-bold rounded-full hover:bg-white/10 transition-all hover:-translate-y-0.5 w-full lg:w-auto"
+                className="inline-flex items-center justify-center gap-3 px-6 sm:px-10 py-4 sm:py-5 bg-transparent border-2 border-white text-white text-base sm:text-lg font-bold rounded-full hover:bg-white/10 transition-all hover:-translate-y-0.5 w-full"
               >
-                <Phone className="w-5 h-5" />
-                専門コンサルタントによる オンライン個別相談会（無料）
+                <Phone className="w-5 h-5 flex-shrink-0" />
+                <span>専門コンサルタントによる オンライン個別相談会（無料）</span>
               </Link>
             </div>
           </div>
@@ -1057,20 +1134,20 @@ function FloatingCTA() {
         visible ? "translate-y-0" : "translate-y-full"
       }`}
     >
-      <div className="max-w-[1440px] mx-auto px-4 py-3 flex items-center justify-center gap-3 flex-wrap">
+      <div className="max-w-[1440px] mx-auto px-3 py-2 sm:py-3 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2 sm:gap-3">
         <Link
           href="/contact?type=document"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-[#FD6C26] text-white text-sm font-bold rounded-full hover:bg-[#e55e1a] transition-colors shadow-md shadow-[#FD6C26]/20"
+          className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-[#FD6C26] text-white text-xs sm:text-sm font-bold rounded-full hover:bg-[#e55e1a] transition-colors shadow-md shadow-[#FD6C26]/20"
         >
-          <Download className="w-4 h-4" />
-          詳しい仕組みがわかる！資料ダウンロード（無料）
+          <Download className="w-4 h-4 flex-shrink-0" />
+          <span>詳しい仕組みがわかる！資料ダウンロード（無料）</span>
         </Link>
         <Link
           href="/contact?type=consultation"
-          className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#FD6C26] text-[#FD6C26] text-sm font-bold rounded-full hover:bg-[#FFF4EE] transition-colors"
+          className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 border-2 border-[#FD6C26] text-[#FD6C26] text-xs sm:text-sm font-bold rounded-full hover:bg-[#FFF4EE] transition-colors"
         >
-          <Phone className="w-4 h-4" />
-          オンライン個別相談会に申し込む
+          <Phone className="w-4 h-4 flex-shrink-0" />
+          <span>オンライン個別相談会に申し込む</span>
         </Link>
       </div>
     </div>
@@ -1082,8 +1159,8 @@ function FloatingCTA() {
 // ============================================================
 function Footer() {
   return (
-    <footer className="bg-[#333] text-white py-12 pb-24">
-      <div className="max-w-[1100px] mx-auto px-6 lg:px-10">
+    <footer className="bg-[#333] text-white py-10 sm:py-12 pb-28 sm:pb-24">
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10">
         <div className="flex flex-col lg:flex-row justify-between gap-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
@@ -1123,7 +1200,7 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-8 sm:mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
           <div className="flex items-center gap-6 text-xs">
             <Link href="/privacy" className="text-white/40 hover:text-white/60 transition-colors">プライバシーポリシー</Link>
             <Link href="/security" className="text-white/40 hover:text-white/60 transition-colors">情報セキュリティ方針</Link>
