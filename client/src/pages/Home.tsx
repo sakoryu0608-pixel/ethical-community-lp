@@ -544,7 +544,7 @@ function CostSection() {
         <AnimatedSection delay={0.4}>
           <div className="mt-8 text-center">
             <p className="text-[15px] text-[#555] leading-[1.9] max-w-[800px] mx-auto">
-              採用から定着支援までを組合内で完結させるため、御社の<strong className="text-[#333]">「運用負荷低減」</strong>と、オフィス・賃金・通勤等の<strong className="text-[#333]">「雇用経費の大幅な軽減」</strong>を同時に実現します。
+              採用から定着支援までを組合内で完結させるため、貴社の<strong className="text-[#333]">「運用負荷低減」</strong>と、オフィス・賃金・通勤等の<strong className="text-[#333]">「雇用経費の大幅な軽減」</strong>を同時に実現します。
             </p>
           </div>
         </AnimatedSection>
@@ -568,7 +568,7 @@ function StrengthsSection() {
     {
       num: "02",
       title: "定着支援・採用・育成の「運用負荷低減」",
-      desc: "「どう接すればいいか分からない」という現場の悩みを解消。日々のメンタルケアから業務指導まで、障害特性への理解度が極めて高い専門スタッフが伴走するため、御社の人事・現場の負担は最小限に抑えられます。",
+      desc: "「どう接すればいいか分からない」という現場の悩みを解消。日々のメンタルケアから業務指導まで、障害特性への理解度が極めて高い専門スタッフが伴走するため、貴社の人事・現場の負担は最小限に抑えられます。",
       icon: <HeartHandshake className="w-7 h-7" />,
       image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663384608434/YwT9YaGpotKVs9ejRKfzEn/infographic-support-team-UoBB4D3JrnsnnfJy3BRAkH.webp",
     },
@@ -762,7 +762,7 @@ function VisionSection() {
                       transition: "opacity 0.7s ease-out 0.5s, transform 0.7s ease-out 0.5s",
                     }}
                   >
-                    私たちは<strong className="text-[#333]">「プロとしての専門性」</strong>を持って個性を徹底分析し、彼らが御社にとって欠かせない<strong className="text-[#FD6C26]">「戦力」</strong>となる未来を創ります。
+                    私たちは<strong className="text-[#333]">「プロとしての専門性」</strong>を持って個性を徹底分析し、彼らが貴社にとって欠かせない<strong className="text-[#FD6C26]">「戦力」</strong>となる未来を創ります。
                   </p>
                   <p
                     className="text-[15px] lg:text-base text-[#444] leading-[2.1] font-medium pl-4 mt-4"
@@ -813,7 +813,7 @@ function CTASection() {
           <div className="text-center mb-10">
             <p className="text-sm font-bold text-[#FD6C26] tracking-wider mb-3">CONTACT</p>
             <h2 className="text-2xl sm:text-3xl lg:text-[2rem] font-black text-[#333] leading-snug">
-              御社の課題に合わせた、
+              貴社の課題に合わせた、
               <br className="hidden sm:block" />
               最適な雇用プランとコスト削減をご提案します。
             </h2>
