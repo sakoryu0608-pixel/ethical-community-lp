@@ -102,45 +102,186 @@ function Header() {
 }
 
 // ============================================================
-// HERO / FIRST VIEW
+// IMPACT MINI-SECTION: CINEMATIC TEXT-ONLY FIRST VIEW
 // ============================================================
-function HeroSection() {
-  const [loaded, setLoaded] = useState(false);
-  useEffect(() => {
-    const timer = setTimeout(() => setLoaded(true), 100);
-    return () => clearTimeout(timer);
+function ImpactSection() {
+  const [phase, setPhase] = useState(0); // 0=waiting, 1=chars dropping, 2=flash, 3=shimmer
+  const keywordRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const textParts = [
+    { text: "「", isKeyword: true },
+    { text: "自社で直接雇用しない", isKeyword: true },
+    { text: "」", isKeyword: true },
+    { text: "のに、", isKeyword: false },
+    { text: "「", isKeyword: true },
+    { text: "自社の戦力", isKeyword: true },
+    { text: "」", isKeyword: true },
+    { text: "が育っていく。", isKeyword: false },
+  ];
+
+  // Build flat char array with keyword flag
+  const chars = textParts.flatMap(part =>
+    part.text.split('').map(ch => ({ ch, isKeyword: part.isKeyword }))
+  );
+
+  // Track keyword char indices for glow animation
+  const keywordIndices = chars.reduce<number[]>((acc, c, i) => {
+    if (c.isKeyword) acc.push(i);
+    return acc;
   }, []);
 
-  return (
-    <section className="relative pt-[72px] overflow-hidden min-h-[100vh]">
-      {/* Background decorations */}
-      <div className="absolute top-[72px] left-0 w-[500px] h-[500px] bg-[#FFF4EE] rounded-full -translate-x-1/2 -translate-y-1/4 opacity-60" />
-      <div className="absolute top-[200px] right-[10%] w-28 h-28 bg-[#FFF4EE] rounded-full opacity-50" />
+  useEffect(() => {
+    const t1 = setTimeout(() => setPhase(1), 300);
+    const totalCharTime = chars.length * 50 + 600;
+    const t2 = setTimeout(() => setPhase(2), 300 + totalCharTime);
+    const t3 = setTimeout(() => setPhase(3), 300 + totalCharTime + 1200);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
+  }, []);
 
-      {/* Floating particles */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="hero-particle" />
-        <div className="hero-particle" />
-        <div className="hero-particle" />
-        <div className="hero-particle" />
-        <div className="hero-particle" />
+  // JS-driven glow pulse animation for keywords (avoids CSS animation conflict)
+  useEffect(() => {
+    if (phase < 3) return;
+    let frame: number;
+    const animate = () => {
+      const t = Date.now() / 1000;
+      keywordRefs.current.forEach((el) => {
+        if (!el) return;
+        const pulse = Math.sin(t * 1.5) * 0.5 + 0.5; // 0-1 oscillation
+        const glow = 10 + pulse * 30;
+        const glow2 = 5 + pulse * 20;
+        el.style.textShadow = `0 0 ${glow}px rgba(253,108,38,${0.3 + pulse * 0.4}), 0 0 ${glow2}px rgba(253,108,38,${0.1 + pulse * 0.2})`;
+        // Subtle color shift
+        const r = 253;
+        const g = Math.round(108 + pulse * 46);
+        const b = Math.round(38 + pulse * 30);
+        el.style.color = `rgb(${r},${g},${b})`;
+        (el.style as any).webkitTextFillColor = `rgb(${r},${g},${b})`;
+      });
+      frame = requestAnimationFrame(animate);
+    };
+    frame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frame);
+  }, [phase]);
+
+  let keywordRefIdx = 0;
+
+  return (
+    <section className="relative pt-[72px] overflow-hidden bg-[#0d0d0d]" style={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+      {/* Radial gradient spotlight */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        background: 'radial-gradient(ellipse 60% 50% at 50% 45%, rgba(253,108,38,0.06) 0%, transparent 70%)',
+      }} />
+
+      {/* Ambient orbs */}
+      <div className="impact-orb" />
+      <div className="impact-orb" />
+      <div className="impact-orb" />
+
+      {/* Subtle grid overlay */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        backgroundImage: 'linear-gradient(rgba(253,108,38,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(253,108,38,0.02) 1px, transparent 1px)',
+        backgroundSize: '80px 80px',
+      }} />
+
+      {/* Horizontal scan line */}
+      <div
+        className="absolute left-0 right-0 h-[1px] pointer-events-none z-20"
+        style={{
+          top: '50%',
+          background: 'linear-gradient(90deg, transparent 0%, rgba(253,108,38,0.15) 20%, rgba(253,108,38,0.3) 50%, rgba(253,108,38,0.15) 80%, transparent 100%)',
+          opacity: phase >= 2 ? 1 : 0,
+          transition: 'opacity 1.5s ease-out',
+        }}
+      />
+
+      {/* Main text container */}
+      <div className="relative z-10 w-full flex flex-col items-center justify-center px-4" style={{ perspective: '1000px' }}>
+        {/* Top decorative line */}
+        <div
+          className={`mb-10 h-[1px] bg-gradient-to-r from-transparent via-[#FD6C26] to-transparent ${phase >= 1 ? 'impact-line' : 'opacity-0'}`}
+          style={{ width: '100px', animationDelay: '0.1s' }}
+        />
+
+        {/* The headline - forced single line, centered */}
+        <h1
+          className="whitespace-nowrap text-center w-full"
+          style={{
+            fontSize: 'clamp(1rem, 3.2vw, 3rem)',
+            lineHeight: 1.3,
+            letterSpacing: '-0.01em',
+          }}
+        >
+          {chars.map((c, i) => {
+            const isKw = c.isKeyword;
+            const refIdx = isKw ? keywordRefIdx++ : -1;
+            return (
+              <span
+                key={i}
+                ref={isKw ? (el) => { keywordRefs.current[refIdx] = el; } : undefined}
+                className={`impact-char ${isKw ? 'impact-keyword' : ''} ${phase >= 2 && isKw ? 'impact-keyword-flash' : ''}`}
+                style={{
+                  animationDelay: phase >= 1 ? `${i * 0.05}s` : '999s',
+                  color: isKw ? '#FD6C26' : 'rgba(255,255,255,0.85)',
+                  fontWeight: isKw ? 900 : 600,
+                }}
+              >
+                {c.ch}
+              </span>
+            );
+          })}
+        </h1>
+
+        {/* Bottom decorative line */}
+        <div
+          className={`mt-10 h-[1px] bg-gradient-to-r from-transparent via-[#FD6C26] to-transparent ${phase >= 2 ? 'impact-line' : 'opacity-0'}`}
+          style={{ width: '180px', animationDelay: '0.3s' }}
+        />
+
+        {/* Subtitle fade in */}
+        <p
+          className="mt-8 text-xs tracking-[0.35em] uppercase"
+          style={{
+            color: 'rgba(253,108,38,0.5)',
+            opacity: phase >= 3 ? 1 : 0,
+            transform: phase >= 3 ? 'translateY(0)' : 'translateY(12px)',
+            transition: 'opacity 1s ease-out, transform 1s ease-out',
+          }}
+        >
+          Ethical Community LLP
+        </p>
       </div>
+
+      {/* Scroll indicator */}
+      <div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+        style={{
+          opacity: phase >= 3 ? 1 : 0,
+          transition: 'opacity 1s ease-out 0.5s',
+        }}
+      >
+        <span className="text-[9px] font-semibold tracking-[0.5em] uppercase text-white/25">Scroll</span>
+        <div className="impact-scroll-arrow">
+          <ChevronDown className="w-4 h-4 text-[#FD6C26]/50" />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================================
+// HERO / SECOND VIEW (Content section)
+// ============================================================
+function HeroSection() {
+  return (
+    <section className="relative overflow-hidden">
+      {/* Background decorations */}
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#FFF4EE] rounded-full -translate-x-1/2 -translate-y-1/4 opacity-60" />
+      <div className="absolute top-[120px] right-[10%] w-28 h-28 bg-[#FFF4EE] rounded-full opacity-50" />
 
       <div className="max-w-[1440px] mx-auto px-6 lg:px-10 py-16 lg:py-24 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left: Text */}
-          <div>
+          <AnimatedSection>
             <div className="space-y-6">
-              <h1 className="text-3xl sm:text-4xl lg:text-[3rem] xl:text-[3.5rem] font-black leading-[1.2] text-[#333] tracking-tight">
-                <span className={`block ${loaded ? 'hero-line-1' : 'opacity-0'}`}>
-                  <span className="hero-keyword hero-glow">「自社で直接雇用しない」</span>
-                  <span className="text-[#333]">のに、</span>
-                </span>
-                <span className={`block mt-2 ${loaded ? 'hero-line-2' : 'opacity-0'}`}>
-                  <span className="hero-underline"><span className="hero-keyword hero-glow">「自社の戦力」</span></span>
-                  <span className="text-[#333]">が育っていく。</span>
-                </span>
-              </h1>
               <p className="text-lg lg:text-xl font-bold text-[#555] leading-relaxed">
                 障害者雇用に前向きな企業が選ぶ、第3の選択肢。
               </p>
@@ -188,7 +329,7 @@ function HeroSection() {
                 </Link>
               </div>
             </div>
-          </div>
+          </AnimatedSection>
 
           {/* Right: Image */}
           <AnimatedSection delay={0.2}>
@@ -200,16 +341,9 @@ function HeroSection() {
                   className="w-full h-auto object-cover"
                 />
               </div>
-
             </div>
           </AnimatedSection>
         </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="scroll-indicator absolute bottom-8 left-1/2 z-20 flex flex-col items-center gap-2">
-        <span className="text-xs font-bold text-[#FD6C26] tracking-widest uppercase">Scroll</span>
-        <div className="w-[2px] h-10 bg-gradient-to-b from-[#FD6C26] to-transparent rounded-full" />
       </div>
     </section>
   );
@@ -996,6 +1130,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main>
+        <ImpactSection />
         <HeroSection />
         <ProblemSection />
         <SolutionSection />
