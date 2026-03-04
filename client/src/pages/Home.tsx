@@ -9,7 +9,7 @@
  */
 
 import { useEffect, useRef, useState } from "react";
-import { CheckCircle2, ChevronDown, Download, Users, ArrowRight, Shield, Brain, HeartHandshake, Sparkles, Building2, Phone, UserX, Banknote, UserCog, Building, AlertTriangle, Menu, X } from "lucide-react";
+import { CheckCircle2, ChevronDown, Download, Users, ArrowRight, Shield, Brain, HeartHandshake, Sparkles, Building2, Phone, TrendingUp, LogOut, ClipboardX, Wrench, Menu, X } from "lucide-react";
 import { Link } from "wouter";
 
 // Intersection Observer hook for scroll animations
@@ -248,25 +248,25 @@ function ProblemSection() {
 
   const problems = [
     {
-      icon: <Banknote className="w-6 h-6" />,
+      icon: <TrendingUp className="w-6 h-6" />,
       num: "01",
       label: "採用コスト増大",
       text: "求人広告や人材紹介会社を使っても、自社に合う人材に出会えず採用経費ばかりが崩む。",
     },
     {
-      icon: <UserX className="w-6 h-6" />,
+      icon: <LogOut className="w-6 h-6" />,
       num: "02",
       label: "早期離職",
       text: "せっかく採用しても、現場の理解やサポートが追いつかず早期離職してしまう。",
     },
     {
-      icon: <UserCog className="w-6 h-6" />,
+      icon: <ClipboardX className="w-6 h-6" />,
       num: "03",
       label: "管理体制不足",
       text: "現場に専任の障害者管理者を配置する余力（コスト・人員）がない。",
     },
     {
-      icon: <Building className="w-6 h-6" />,
+      icon: <Wrench className="w-6 h-6" />,
       num: "04",
       label: "インフラ整備の壁",
       text: "オフィス環境の整備や通勤の配慮など、受け入れのインフラ（諸経費）がハードルになっている。",
@@ -295,7 +295,7 @@ function ProblemSection() {
         <AnimatedSection>
           <div className="text-center mb-6">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 border border-white/25 mb-6 backdrop-blur-sm">
-              <AlertTriangle className="w-4 h-4 text-white animate-pulse" />
+              <TrendingUp className="w-4 h-4 text-white animate-pulse" />
               <span className="text-sm font-bold text-white tracking-wider">PROBLEM</span>
             </div>
           </div>
