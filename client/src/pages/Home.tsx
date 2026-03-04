@@ -182,24 +182,9 @@ function ImpactSection() {
         backgroundSize: '80px 80px',
       }} />
 
-      {/* Horizontal scan line */}
-      <div
-        className="absolute left-0 right-0 h-[1px] pointer-events-none z-20"
-        style={{
-          top: '50%',
-          background: 'linear-gradient(90deg, transparent 0%, rgba(253,108,38,0.15) 20%, rgba(253,108,38,0.3) 50%, rgba(253,108,38,0.15) 80%, transparent 100%)',
-          opacity: phase >= 2 ? 1 : 0,
-          transition: 'opacity 1.5s ease-out',
-        }}
-      />
 
       {/* Main text container */}
       <div className="relative z-10 w-full flex flex-col items-center justify-center px-4" style={{ perspective: '1000px' }}>
-        {/* Top decorative line */}
-        <div
-          className={`mb-10 h-[1px] bg-gradient-to-r from-transparent via-[#FD6C26] to-transparent ${phase >= 1 ? 'impact-line' : 'opacity-0'}`}
-          style={{ width: '100px', animationDelay: '0.1s' }}
-        />
 
         {/* The headline - forced single line, centered */}
         <h1
@@ -230,11 +215,6 @@ function ImpactSection() {
           })}
         </h1>
 
-        {/* Bottom decorative line */}
-        <div
-          className={`mt-10 h-[1px] bg-gradient-to-r from-transparent via-[#FD6C26] to-transparent ${phase >= 2 ? 'impact-line' : 'opacity-0'}`}
-          style={{ width: '180px', animationDelay: '0.3s' }}
-        />
 
         {/* Subtitle fade in */}
         <p
