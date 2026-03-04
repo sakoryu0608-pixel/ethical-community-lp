@@ -496,11 +496,11 @@ function CostSection() {
               <div className="p-4 lg:p-5 text-center">
                 <span className="text-sm font-bold text-[#999]">項目</span>
               </div>
-              <div className="p-4 lg:p-5 text-center border-l border-[#E8E8E8]">
-                <span className="text-sm font-bold text-[#666]">自社雇用</span>
-              </div>
               <div className="p-4 lg:p-5 text-center border-l border-[#E8E8E8] bg-[#FD6C26]/5">
                 <span className="text-sm font-bold text-[#FD6C26]">エシカルコミュニティ</span>
+              </div>
+              <div className="p-4 lg:p-5 text-center border-l border-[#E8E8E8]">
+                <span className="text-sm font-bold text-[#666]">自社雇用</span>
               </div>
             </div>
 
@@ -515,11 +515,11 @@ function CostSection() {
                 <div className="p-4 lg:p-5 flex items-center justify-center">
                   <span className="text-sm font-bold text-[#333]">{item.category}</span>
                 </div>
-                <div className="p-4 lg:p-5 border-l border-[#F0F0F0] flex items-center">
-                  <span className="text-sm text-[#888] leading-relaxed">{item.self}</span>
-                </div>
                 <div className="p-4 lg:p-5 border-l border-[#F0F0F0] bg-[#FD6C26]/5 flex items-center">
                   <span className="text-sm font-bold text-[#FD6C26] leading-relaxed">{item.ethical}</span>
+                </div>
+                <div className="p-4 lg:p-5 border-l border-[#F0F0F0] flex items-center">
+                  <span className="text-sm text-[#888] leading-relaxed">{item.self}</span>
                 </div>
               </div>
             ))}
