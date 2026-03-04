@@ -9,7 +9,7 @@
  */
 
 import { useEffect, useRef, useState } from "react";
-import { CheckCircle2, ChevronDown, Download, Users, ArrowRight, Shield, Brain, HeartHandshake, Sparkles, Building2, Phone, TrendingUp, LogOut, ClipboardX, Wrench, Menu, X } from "lucide-react";
+import { CheckCircle2, ChevronDown, Download, Users, ArrowRight, Shield, Brain, HeartHandshake, Sparkles, Building2, Phone, TrendingUp, UserMinus, ClipboardX, Wrench, Menu, X } from "lucide-react";
 import { Link } from "wouter";
 
 // Intersection Observer hook for scroll animations
@@ -254,7 +254,7 @@ function ProblemSection() {
       text: "求人広告や人材紹介会社を使っても、自社に合う人材に出会えず採用経費ばかりが崩む。",
     },
     {
-      icon: <LogOut className="w-6 h-6" />,
+      icon: <UserMinus className="w-6 h-6" />,
       num: "02",
       label: "早期離職",
       text: "せっかく採用しても、現場の理解やサポートが追いつかず早期離職してしまう。",
