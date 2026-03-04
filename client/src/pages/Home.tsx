@@ -105,21 +105,41 @@ function Header() {
 // HERO / FIRST VIEW
 // ============================================================
 function HeroSection() {
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => setLoaded(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <section className="relative pt-[72px] overflow-hidden">
+    <section className="relative pt-[72px] overflow-hidden min-h-[100vh]">
       {/* Background decorations */}
       <div className="absolute top-[72px] left-0 w-[500px] h-[500px] bg-[#FFF4EE] rounded-full -translate-x-1/2 -translate-y-1/4 opacity-60" />
       <div className="absolute top-[200px] right-[10%] w-28 h-28 bg-[#FFF4EE] rounded-full opacity-50" />
 
+      {/* Floating particles */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="hero-particle" />
+        <div className="hero-particle" />
+        <div className="hero-particle" />
+        <div className="hero-particle" />
+        <div className="hero-particle" />
+      </div>
+
       <div className="max-w-[1440px] mx-auto px-6 lg:px-10 py-16 lg:py-24 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left: Text */}
-          <AnimatedSection>
+          <div>
             <div className="space-y-6">
-              <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-black leading-tight text-[#333] tracking-tight">
-                <span className="text-[#FD6C26]">「自社で直接雇用しない」</span>のに、
-                <br />
-                <span className="text-[#FD6C26]">「自社の戦力」</span>が育っていく。
+              <h1 className="text-3xl sm:text-4xl lg:text-[3rem] xl:text-[3.5rem] font-black leading-[1.2] text-[#333] tracking-tight">
+                <span className={`block ${loaded ? 'hero-line-1' : 'opacity-0'}`}>
+                  <span className="hero-keyword hero-glow">「自社で直接雇用しない」</span>
+                  <span className="text-[#333]">のに、</span>
+                </span>
+                <span className={`block mt-2 ${loaded ? 'hero-line-2' : 'opacity-0'}`}>
+                  <span className="hero-underline"><span className="hero-keyword hero-glow">「自社の戦力」</span></span>
+                  <span className="text-[#333]">が育っていく。</span>
+                </span>
               </h1>
               <p className="text-lg lg:text-xl font-bold text-[#555] leading-relaxed">
                 障害者雇用に前向きな企業が選ぶ、第3の選択肢。
@@ -168,7 +188,7 @@ function HeroSection() {
                 </Link>
               </div>
             </div>
-          </AnimatedSection>
+          </div>
 
           {/* Right: Image */}
           <AnimatedSection delay={0.2}>
@@ -184,6 +204,12 @@ function HeroSection() {
             </div>
           </AnimatedSection>
         </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="scroll-indicator absolute bottom-8 left-1/2 z-20 flex flex-col items-center gap-2">
+        <span className="text-xs font-bold text-[#FD6C26] tracking-widest uppercase">Scroll</span>
+        <div className="w-[2px] h-10 bg-gradient-to-b from-[#FD6C26] to-transparent rounded-full" />
       </div>
     </section>
   );

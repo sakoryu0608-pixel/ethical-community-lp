@@ -171,3 +171,159 @@ html {
   0%, 100% { opacity: 0.4; }
   50% { opacity: 0.8; }
 }
+
+/* ============================================================
+   HERO HEADLINE ADVANCED ANIMATIONS
+   ============================================================ */
+
+/* Staggered text reveal with clip-path */
+@keyframes heroLineReveal {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    clip-path: inset(0 0% 0 0);
+    opacity: 1;
+  }
+}
+
+/* Glowing underline sweep */
+@keyframes underlineSweep {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  100% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+/* Gradient text shimmer */
+@keyframes gradientShimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Subtle glow pulse for emphasis */
+@keyframes glowPulse {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(253, 108, 38, 0.0);
+  }
+  50% {
+    text-shadow: 0 0 30px rgba(253, 108, 38, 0.3), 0 0 60px rgba(253, 108, 38, 0.1);
+  }
+}
+
+/* Bounce-in for scroll indicator */
+@keyframes scrollBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  40% {
+    transform: translateY(-12px) translateX(-50%);
+  }
+  60% {
+    transform: translateY(-6px) translateX(-50%);
+  }
+}
+
+/* Particle float */
+@keyframes particleDrift {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Hero line classes */
+.hero-line-1 {
+  animation: heroLineReveal 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both;
+}
+
+.hero-line-2 {
+  animation: heroLineReveal 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s both;
+}
+
+/* Gradient shimmer text effect */
+.hero-keyword {
+  background: linear-gradient(
+    90deg,
+    #FD6C26 0%,
+    #FF9A5C 25%,
+    #FD6C26 50%,
+    #FF4500 75%,
+    #FD6C26 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShimmer 4s linear infinite;
+}
+
+/* Glowing underline */
+.hero-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #FD6C26, #FF9A5C, #FD6C26);
+  border-radius: 2px;
+  animation: underlineSweep 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.4s both;
+  box-shadow: 0 2px 12px rgba(253, 108, 38, 0.4);
+}
+
+/* Glow pulse on keywords */
+.hero-glow {
+  animation: glowPulse 3s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  animation: scrollBounce 2.5s ease-in-out infinite;
+  animation-delay: 2.5s;
+}
+
+/* Particle effects */
+.hero-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #FD6C26;
+  border-radius: 50%;
+  animation: particleDrift 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero-particle:nth-child(1) { left: 10%; bottom: 20%; animation-delay: 0s; animation-duration: 3.5s; opacity: 0.4; }
+.hero-particle:nth-child(2) { left: 25%; bottom: 10%; animation-delay: 0.5s; animation-duration: 4s; opacity: 0.3; width: 4px; height: 4px; }
+.hero-particle:nth-child(3) { left: 40%; bottom: 25%; animation-delay: 1s; animation-duration: 3s; opacity: 0.5; width: 8px; height: 8px; }
+.hero-particle:nth-child(4) { left: 55%; bottom: 15%; animation-delay: 1.5s; animation-duration: 4.5s; opacity: 0.3; }
+.hero-particle:nth-child(5) { left: 70%; bottom: 30%; animation-delay: 2s; animation-duration: 3.2s; opacity: 0.4; width: 5px; height: 5px; }
