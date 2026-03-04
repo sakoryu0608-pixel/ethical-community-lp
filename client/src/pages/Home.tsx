@@ -314,8 +314,8 @@ function ProblemSection() {
           <div className="max-w-[900px] mx-auto mb-12">
             <div className="bg-white rounded-3xl p-4 lg:p-6 shadow-2xl shadow-black/10">
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663384608434/YwT9YaGpotKVs9ejRKfzEn/problem-infographic-v2-avJSvoPQCXEpipYB9VdrMG.webp"
-                alt="障害者雇用の4つの課題 - 採用コスト増大・早期離職・管理体制不足・インフラ整備の壁"
+                src="https://private-us-east-1.manuscdn.com/user_upload_by_module/session_file/310519663384608434/uBggcmdKEFrdssik.png?Expires=1804064504&Signature=cL160oCeMafnqBwDCVQByz~MtYiFABjRCbQ7VI8dvhlFhbRVv9gDDYGeISgQuZN54t~aY6mFGLGIBNeyxbe48x04qjHLE9NhmwWpLC0ED6A3ximjXQ4i-9gpdeyAJ8eMgZQ3JsNDLadvxK~JLu~LEy-AhV85qvdK2ww3vrXv5DG9tJTD4GpcdLXlqi0bWDYZXRQ6x0xyyBI4Wm7oUv1QS9BEl747SZacAPOke7D02uEf0LA7Ul-ek8OxW10USdxRmuNtYPcGPuRe8bohO5FR8rQTPNMsqews3I8GZNPxhXDTAnT0D~5IthbiLlehz34KtV0MsWumSzDBgnCBpcY8uA__&Key-Pair-Id=K2HSFNDJXOU9YS"
+                alt="障害者雇用の4つの課題 - 早期離職・採用コスト増大・管理体制不足・インフラ整備の壁"
                 className="w-full h-auto rounded-2xl"
               />
             </div>
