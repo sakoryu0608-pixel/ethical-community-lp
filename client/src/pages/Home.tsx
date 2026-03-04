@@ -248,16 +248,16 @@ function ProblemSection() {
 
   const problems = [
     {
-      icon: <UserX className="w-6 h-6" />,
+      icon: <Banknote className="w-6 h-6" />,
       num: "01",
-      label: "早期離職",
-      text: "せっかく採用しても、現場の理解やサポートが追いつかず早期離職してしまう。",
+      label: "採用コスト増大",
+      text: "求人広告や人材紹介会社を使っても、自社に合う人材に出会えず採用経費ばかりが崩む。",
     },
     {
-      icon: <Banknote className="w-6 h-6" />,
+      icon: <UserX className="w-6 h-6" />,
       num: "02",
-      label: "採用コスト増大",
-      text: "求人広告や人材紹介会社を使っても、自社に合う人材に出会えず採用経費ばかりが嵩む。",
+      label: "早期離職",
+      text: "せっかく採用しても、現場の理解やサポートが追いつかず早期離職してしまう。",
     },
     {
       icon: <UserCog className="w-6 h-6" />,
