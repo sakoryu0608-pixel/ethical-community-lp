@@ -132,16 +132,16 @@ function HeroSection() {
 
               {/* Authority badges */}
               <div className="flex flex-wrap gap-3 pt-2">
-                <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm font-bold rounded-full border border-[#FD6C26]/20">
-                  <Shield className="w-4 h-4" />
+                <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#FFF4EE] text-[#FD6C26] text-xl font-bold rounded-full border border-[#FD6C26]/20">
+                  <Shield className="w-5 h-5" />
                   経済産業省推進の法人格
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm font-bold rounded-full border border-[#FD6C26]/20">
-                  <Users className="w-4 h-4" />
+                <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#FFF4EE] text-[#FD6C26] text-xl font-bold rounded-full border border-[#FD6C26]/20">
+                  <Users className="w-5 h-5" />
                   就労支援のプロによる監修
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm font-bold rounded-full border border-[#FD6C26]/20">
-                  <Sparkles className="w-4 h-4" />
+                <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#FFF4EE] text-[#FD6C26] text-xl font-bold rounded-full border border-[#FD6C26]/20">
+                  <Sparkles className="w-5 h-5" />
                   初期費用・紹介料0円
                 </span>
               </div>
