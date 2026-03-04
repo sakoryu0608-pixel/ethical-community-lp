@@ -230,6 +230,17 @@ function ImpactSection() {
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, []);
 
+  // Auto-scroll to HeroSection 5 seconds after mount
+  useEffect(() => {
+    const scrollTimer = setTimeout(() => {
+      const heroEl = document.getElementById('hero');
+      if (heroEl) {
+        heroEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 5000);
+    return () => clearTimeout(scrollTimer);
+  }, []);
+
   // JS-driven glow pulse animation for keywords (avoids CSS animation conflict)
   useEffect(() => {
     if (phase < 3) return;
@@ -353,7 +364,7 @@ function ImpactSection() {
 // ============================================================
 function HeroSection() {
   return (
-    <section className="relative overflow-hidden">
+    <section id="hero" className="relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute top-0 left-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-[#FFF4EE] rounded-full -translate-x-1/2 -translate-y-1/4 opacity-60" />
       <div className="absolute top-[120px] right-[10%] w-20 sm:w-28 h-20 sm:h-28 bg-[#FFF4EE] rounded-full opacity-50" />
