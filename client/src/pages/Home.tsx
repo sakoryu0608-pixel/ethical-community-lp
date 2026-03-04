@@ -440,8 +440,8 @@ function SolutionSection() {
           <AnimatedSection delay={0.2}>
             <div className="rounded-2xl overflow-hidden shadow-xl bg-white">
               <img
-                src="https://private-us-east-1.manuscdn.com/user_upload_by_module/session_file/310519663384608434/oXfdmnbikvIUuUFT.png?Expires=1804064504&Signature=Btkvk~kCGPJ7lbYQVCqZIp9MbSp25hlcHBQnIHjM7rTshVtQhher~dE9BJwWfu8C0EBoOTCRxIs-CgSp5H2iS-mKrKyGDI-xQaSw~aXedZP87zbagPHYrUzz4w0ubANz2o0kxYzi0V5xcvia~xs9gPl~uMxebyAyvxUJuYMqpTjGfXjggKtVHLnSR4HUgLXc7jBFQ3fQe41ft71kM9qK9DsfYVQ9TTeh8851BEi4UA2WZwaN7AgoeB0nWOvUc4aC-oTMMRGjRj0Ro517OXVPNyaTT4kSD5lUBtw6Z5ZK~hcAAtJvIdlxakP~bPe7HZPX8d-U5Fk-FcZ-Nm4kI1cp5g__&Key-Pair-Id=K2HSFNDJXOU9YS"
-                alt="LLP（有限責任事業組合）の仕組み - 企業が共同出資し、共同雇用で雇用率算定が可能"
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663384608434/YwT9YaGpotKVs9ejRKfzEn/problem-infographic-v2-avJSvoPQCXEpipYB9VdrMG.webp"
+                alt="障害者雇用の4つの課題 - 採用コスト増大・早期離職・管理体制不足・インフラ整備の壁"
                 className="w-full h-auto"
               />
             </div>
