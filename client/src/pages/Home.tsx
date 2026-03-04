@@ -231,8 +231,8 @@ function ProblemDetailCard({ icon, num, label, text, index }: { icon: React.Reac
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1.5">
-              <span className="text-xs font-black text-[#FD6C26]/40">{num}</span>
-              <span className="text-sm font-bold text-[#333]">{label}</span>
+              <span className="text-xl font-black text-[#FD6C26]/40">{num}</span>
+              <span className="text-xl font-bold text-[#333]">{label}</span>
             </div>
             <p className="text-[14px] lg:text-[15px] text-[#555] leading-[1.8]">{text}</p>
           </div>
