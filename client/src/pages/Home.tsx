@@ -1034,7 +1034,7 @@ function VisionSection() {
                   >
                     <span style={{color: '#fd6c26'}}>エシカルコミュニティは、企業が協働しながら<br />
                     障害者雇用とAI人材育成を実現する共同事業コミュニティです。</span><br /><br />
-                    <span style={{color: '#fd6c26'}}>私たちは専門性をもって個性を分析し、生成AIという新しい力を掛け合わせることで、「支援される側」から「選ばれる戦力へ」と転換させます。</span>
+                    <span style={{color: '#fd6c26'}}>私たちは専門性をもって特性を分析し、生成AIという新しい力を掛け合わせることで、「支援される側」から「選ばれる戦力へ」と転換させます。</span>
                   </p>
                   <p
                     className="text-[15px] lg:text-base text-[#444] leading-[2.1] font-medium pl-4 mt-4"
@@ -1089,26 +1089,26 @@ function ManagementSection() {
     },
     {
       label: "所在地",
-      content: "[住所が入ります]",
+      content: "〒813-0035 福岡市東区松崎3-33-36",
     },
     {
       label: "設立",
-      content: "[設立年月日が入ります]",
+      content: "2026年2月25日",
     },
     {
       label: "事業内容",
       content: (
         <ul className="space-y-1">
           <li>・LLPスキームによる障害者共同雇用事業の運営</li>
-          <li>・障害者スタッフに対する生成AIスキル等の教育訓練</li>
-          <li>・特性分析システム「co-mii」を用いた定着支援</li>
+          <li>・障害者に対する生成AIスキル等の教育訓練</li>
+          <li>・特性分析システムを用いた定着支援</li>
           <li>・バーチャルオフィス「OASIS」による遠隔労務管理サポート</li>
         </ul>
       ),
     },
     {
       label: "組合員構成",
-      content: "[事務局運営会社名]ほか、参画組合員会社",
+      content: "《運営会社》株式会社サミットランほか、参画組合員会社",
     },
     {
       label: "監修・パートナー",
