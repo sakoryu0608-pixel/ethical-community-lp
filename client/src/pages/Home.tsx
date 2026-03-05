@@ -1131,11 +1131,10 @@ function ManagementSection() {
   ];
 
   return (
-    <section id="management" className="py-14 sm:py-20 lg:py-28 bg-[#0D0D0D] relative overflow-hidden">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: 'repeating-linear-gradient(0deg, #FD6C26 0px, #FD6C26 1px, transparent 1px, transparent 60px), repeating-linear-gradient(90deg, #FD6C26 0px, #FD6C26 1px, transparent 1px, transparent 60px)',
-      }} />
+    <section id="management" className="py-14 sm:py-20 lg:py-28 bg-[#FFF4EE] relative overflow-hidden">
+      {/* Subtle background decoration */}
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#FD6C26]/5 rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#FD6C26]/5 rounded-full -translate-x-1/3 translate-y-1/3 pointer-events-none" />
 
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
 
@@ -1143,7 +1142,7 @@ function ManagementSection() {
         <AnimatedSection>
           <div className="text-center mb-12 sm:mb-16">
             <p className="text-sm font-bold text-[#FD6C26] tracking-widest mb-3">MANAGEMENT</p>
-            <h2 className="text-2xl sm:text-3xl lg:text-[2rem] font-black text-white leading-snug">
+            <h2 className="text-2xl sm:text-3xl lg:text-[2rem] font-black text-[#333] leading-snug">
               組織概要・運営体制
             </h2>
             <div className="mt-4 w-12 h-[3px] bg-[#FD6C26] mx-auto rounded-full" />
@@ -1160,13 +1159,13 @@ function ManagementSection() {
             transition: 'opacity 0.7s ease-out, transform 0.7s ease-out',
           }}
         >
-          <div className="border border-white/10 rounded-2xl overflow-hidden">
+          <div className="border border-[#FD6C26]/20 rounded-2xl overflow-hidden bg-white shadow-sm shadow-[#FD6C26]/10">
             {orgRows.map((row, i) => (
               <div
                 key={i}
                 className={`flex flex-col sm:flex-row ${
-                  i % 2 === 0 ? 'bg-white/[0.03]' : 'bg-transparent'
-                } border-b border-white/10 last:border-b-0`}
+                  i % 2 === 0 ? 'bg-[#FFF4EE]/60' : 'bg-white'
+                } border-b border-[#FD6C26]/10 last:border-b-0`}
                 style={{
                   opacity: tableInView ? 1 : 0,
                   transform: tableInView ? 'translateY(0)' : 'translateY(12px)',
@@ -1178,10 +1177,10 @@ function ManagementSection() {
                   <span className="text-sm sm:text-base font-bold text-[#FD6C26]">{row.label}</span>
                 </div>
                 {/* Divider */}
-                <div className="hidden sm:block w-px bg-white/10 my-3" />
+                <div className="hidden sm:block w-px bg-[#FD6C26]/15 my-3" />
                 {/* Content */}
                 <div className="flex-1 px-5 sm:px-8 py-4 sm:py-5">
-                  <div className="text-sm sm:text-[15px] text-white/80 leading-relaxed">
+                  <div className="text-sm sm:text-[15px] text-[#555] leading-relaxed">
                     {row.content}
                   </div>
                 </div>
@@ -1200,7 +1199,7 @@ function ManagementSection() {
           }}
         >
           <div className="text-center mb-8 sm:mb-10">
-            <h3 className="text-xl sm:text-2xl font-black text-white">
+            <h3 className="text-xl sm:text-2xl font-black text-[#333]">
               パートナー・参画会社
             </h3>
             <div className="mt-3 w-10 h-[3px] bg-[#FD6C26] mx-auto rounded-full" />
@@ -1210,14 +1209,14 @@ function ManagementSection() {
             {partners.map((p, i) => (
               <div
                 key={i}
-                className="bg-white/[0.05] border border-white/10 rounded-xl p-6 sm:p-8 flex items-center justify-center hover:bg-white/[0.08] hover:border-[#FD6C26]/30 transition-all duration-300 group"
+                className="bg-white border border-[#FD6C26]/20 rounded-xl p-6 sm:p-8 flex items-center justify-center hover:bg-[#FFF4EE] hover:border-[#FD6C26]/50 transition-all duration-300 group shadow-sm"
                 style={{
                   opacity: partnerInView ? 1 : 0,
                   transform: partnerInView ? 'translateY(0)' : 'translateY(16px)',
                   transition: `opacity 0.5s ease-out ${0.3 + i * 0.08}s, transform 0.5s ease-out ${0.3 + i * 0.08}s`,
                 }}
               >
-                <span className="text-xs sm:text-sm text-white/30 group-hover:text-white/50 transition-colors font-medium text-center">{p.name}</span>
+                <span className="text-xs sm:text-sm text-[#BBB] group-hover:text-[#FD6C26]/60 transition-colors font-medium text-center">{p.name}</span>
               </div>
             ))}
           </div>
