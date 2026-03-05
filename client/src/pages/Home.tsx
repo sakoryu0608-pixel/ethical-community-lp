@@ -1032,9 +1032,9 @@ function VisionSection() {
                       transition: "opacity 0.7s ease-out 0.5s, transform 0.7s ease-out 0.5s",
                     }}
                   >
-                    <span style={{color: '#fd6c26'}}>私たちは専門性をもって特性を分析し、<br />
-                    生成AIという新しい力を掛け合わせることで、<br />
-                    "支援される側"から"選ばれる戦力"へと転換させます。</span>
+                    <span style={{color: '#fd6c26'}}>エシカルコミュニティは、企業が協働しながら<br />
+                    障害者雇用とAI人材育成を実現する共同事業コミュニティです。</span><br /><br />
+                    <span style={{color: '#fd6c26'}}>私たちは専門性をもって個性を分析し、生成AIという新しい力を掛け合わせることで、「支援される側」から「選ばれる戦力へ」と転換させます。</span>
                   </p>
                   <p
                     className="text-[15px] lg:text-base text-[#444] leading-[2.1] font-medium pl-4 mt-4"
@@ -1045,11 +1045,11 @@ function VisionSection() {
                     }}
                   >
                     雇用のかたちを、次の時代へ。<br />
-                    ともにその一歩を踏み出してくださる企業様をお待ちしています。
+                    ともにその一歩を踏み出してくださる企業様との出会いを心よりお待ちしております。
                   </p>
 
                   {/* Closing quote */}
-                  <div className="text-right text-[4rem] font-serif text-[#FD6C26]/10 leading-none select-none -mt-4 -mr-1">&rdquo;</div>
+                  <div className="text-right text-[4rem] font-serif text-[#FD6C26]/10 leading-none select-none -mt-4 -mr-1">”</div>
                 </div>
               </div>
 
