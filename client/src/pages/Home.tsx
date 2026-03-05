@@ -364,78 +364,92 @@ function ImpactSection() {
 // ============================================================
 function HeroSection() {
   return (
-    <section id="hero" className="relative overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute top-0 left-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-[#FFF4EE] rounded-full -translate-x-1/2 -translate-y-1/4 opacity-60" />
-      <div className="absolute top-[120px] right-[10%] w-20 sm:w-28 h-20 sm:h-28 bg-[#FFF4EE] rounded-full opacity-50" />
+    <section id="hero" className="relative bg-white overflow-hidden">
+      {/* Subtle top border accent */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FD6C26] to-transparent" />
 
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-16 lg:py-24 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* Left: Text */}
-          <AnimatedSection>
-            <div className="space-y-6">
-              <p className="text-lg lg:text-xl font-bold text-[#555] leading-relaxed">
-                障害者雇用に前向きな企業が選ぶ、第3の選択肢。
-              </p>
-              <p className="text-sm lg:text-base text-[#666] leading-relaxed">
-                プロフェッショナルによる「徹底分析」と障害のある人が、生成AIを武器に働ける社会へ。<br />
-                業務分析と生成AI教育を組み合わせ、AIを活用できる人材を育成。<br />
-                生産性向上と運用負荷軽減を同時に実現するLLP（有限責任事業組合）モデルです。
-              </p>
+      {/* Background texture */}
+      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, #FD6C26 1px, transparent 0)', backgroundSize: '40px 40px' }} />
 
-              {/* Authority badges */}
-              <div className="flex flex-wrap gap-2 sm:gap-3 pt-2">
-                <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/20">
-                  <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5" />
-                  法定雇用率算定可能
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/20">
-                  <Shield className="w-4 h-4 sm:w-5 sm:h-5" />
-                  経済産業省推進の法人格
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/20">
-                  <Users className="w-4 h-4 sm:w-5 sm:h-5" />
-                  就労支援のプロによる監修
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/20">
-                  <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
-                  初期費用・紹介料０円
-                </span>
-              </div>
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 py-14 sm:py-20 lg:py-28 relative z-10">
 
-              {/* CTA Buttons */}
-              <div className="flex flex-col gap-3 pt-4">
-                <Link
-                  href="/contact?type=document"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-8 sm:py-4 bg-[#FD6C26] text-white text-sm sm:text-base font-bold rounded-full hover:bg-[#e55e1a] transition-all shadow-lg shadow-[#FD6C26]/30 hover:shadow-xl hover:shadow-[#FD6C26]/40 hover:-translate-y-0.5"
-                >
-                  <Download className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
-                  <span>詳しい仕組みがわかる！サービス紹介資料ダウンロード（無料）</span>
-                </Link>
-                <Link
-                  href="/contact?type=consultation"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-8 sm:py-4 border-2 border-[#FD6C26] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full hover:bg-[#FFF4EE] transition-all hover:-translate-y-0.5"
-                >
-                  <Phone className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
-                  <span>オンライン個別相談会に申し込む</span>
-                </Link>
-              </div>
+        {/* Section label */}
+        <AnimatedSection>
+          <div className="flex items-center gap-3 mb-6">
+            <span className="text-xs font-black tracking-[0.25em] text-[#FD6C26] uppercase">Purpose</span>
+            <div className="flex-1 h-px bg-gradient-to-r from-[#FD6C26]/40 to-transparent" />
+          </div>
+        </AnimatedSection>
+
+        {/* Main heading */}
+        <AnimatedSection delay={0.1}>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.6rem] font-black text-[#1A1A1A] leading-[1.35] mb-10 lg:mb-14">
+            AIと専門性で障害者雇用を「戦力」に変える<br className="hidden sm:block" />
+            新しい仕組みを、<span className="text-[#FD6C26]">エシカルコミュニティ</span>が実現
+          </h2>
+        </AnimatedSection>
+
+        {/* Infographic image - full width, prominent */}
+        <AnimatedSection delay={0.2}>
+          <div className="relative mb-12 lg:mb-16">
+            <div className="rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl shadow-[#FD6C26]/15 border border-[#FD6C26]/10">
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663384608434/YwT9YaGpotKVs9ejRKfzEn/purpose-infographic-Mde3pYHLLTtkLRn5LiQ3DH.webp"
+                alt="LLPモデル インフォグラフィック - 専門家チーム・障害のある人材・参画企業の三角形モデル"
+                className="w-full h-auto object-cover"
+              />
             </div>
-          </AnimatedSection>
+            {/* Decorative glow */}
+            <div className="absolute -inset-4 bg-[#FD6C26]/5 rounded-3xl blur-2xl -z-10" />
+          </div>
+        </AnimatedSection>
 
-          {/* Right: Image */}
-          <AnimatedSection delay={0.2}>
-            <div className="relative">
-              <div className="rounded-2xl overflow-hidden shadow-2xl shadow-[#FD6C26]/10">
-                <img
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663384608434/YwT9YaGpotKVs9ejRKfzEn/hero-business-KCzVTP8GEQSdSLVKdNKo3p.webp"
-                  alt="エシカルコミュニティLLP - プロフェッショナルチーム"
-                  className="w-full h-auto object-cover"
-                />
-              </div>
+        {/* Lead text - 2 column on desktop */}
+        <AnimatedSection delay={0.3}>
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-10 mb-10">
+            {/* Left column */}
+            <div className="space-y-4">
+              <p className="text-[15px] lg:text-base text-[#444] leading-[2] font-medium">
+                エシカルコミュニティは、障害のある方が<span className="text-[#FD6C26] font-bold">生成AIを武器に</span>企業の業務に貢献する、新しい働き方のコミュニティです。
+              </p>
+              <p className="text-[15px] lg:text-base text-[#444] leading-[2] font-medium">
+                業務を運営するプロフェッショナル、AIを活用できる人材、そして障害者雇用に前向きな企業。これらを<span className="text-[#FD6C26] font-bold">LLP（有限責任事業組合）モデル</span>でシームレスに統合します。
+              </p>
             </div>
-          </AnimatedSection>
-        </div>
+            {/* Right column */}
+            <div className="space-y-4">
+              <p className="text-[15px] lg:text-base text-[#444] leading-[2] font-medium">
+                プロの監修による的確な業務分析と、AIを駆使する人材育成を掛け合わせることで、企業の運用負荷を抑えながら<span className="text-[#FD6C26] font-bold">生産性向上と法定雇用率の達成</span>を両立します。
+              </p>
+              <p className="text-[15px] lg:text-base text-[#444] leading-[2] font-medium">
+                私たちは、障害者雇用を「義務」ではなく<span className="text-[#FD6C26] font-bold">価値を生み出す仕組み</span>に変えていきます。
+              </p>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Authority badges */}
+        <AnimatedSection delay={0.4}>
+          <div className="flex flex-wrap gap-2 sm:gap-3">
+            <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/20">
+              <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5" />
+              法定雇用率算定可能
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/20">
+              <Shield className="w-4 h-4 sm:w-5 sm:h-5" />
+              経済産業省推進の法人格
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/20">
+              <Users className="w-4 h-4 sm:w-5 sm:h-5" />
+              就労支援のプロによる監修
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/20">
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
+              初期費用・紹介料０円
+            </span>
+          </div>
+        </AnimatedSection>
+
       </div>
     </section>
   );
