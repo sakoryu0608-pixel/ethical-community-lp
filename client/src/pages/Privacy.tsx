@@ -18,8 +18,7 @@ export default function Privacy() {
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[#E8E8E8] shadow-sm">
         <div className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <img src="/ethical-community-lp/logo.png" alt="エシカルコミュニティLLP ロゴ" className="w-8 h-8 object-contain" />
-            <span className="text-base font-bold text-[#333]">エシカルコミュニティ <span className="text-xs text-[#999] font-normal">LLP</span></span>
+            <img src="/ethical-community-lp/logo.png" alt="エシカルコミュニティLLP ロゴ" className="w-16 h-16 object-contain" />
           </Link>
           <Link
             href="/"
