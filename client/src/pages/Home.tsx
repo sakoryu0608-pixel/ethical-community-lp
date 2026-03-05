@@ -404,8 +404,8 @@ function HeroSection() {
         <AnimatedSection delay={0.2}>
           <div className="max-w-[820px] mx-auto space-y-6 mb-14 lg:mb-18">
             <p className="text-base sm:text-lg lg:text-xl text-[#444] leading-[2] text-center">
-              エシカルコミュニティは、障害のある方が
-              <span className="text-[#1A1A1A] font-bold">生成AIを武器に</span>企業の業務に貢献する、
+              エシカルコミュニティは、<br />
+              障害のある方が<span className="text-[#1A1A1A] font-bold">生成AIを武器に</span>企業の業務に貢献する、
               新しい働き方のコミュニティです。
             </p>
             <p className="text-base sm:text-lg lg:text-xl text-[#444] leading-[2] text-center">
