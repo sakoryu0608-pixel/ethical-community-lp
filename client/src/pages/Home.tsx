@@ -69,9 +69,7 @@ function Header() {
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between h-[64px] lg:h-[72px]">
         <div className="flex items-center gap-2">
-          <div className="w-9 h-9 lg:w-10 lg:h-10 bg-[#FD6C26] rounded-lg flex items-center justify-center">
-            <HeartHandshake className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
-          </div>
+          <img src="/ethical-community-lp/logo.png" alt="エシカルコミュニティLLP ロゴ" className="w-9 h-9 lg:w-10 lg:h-10 object-contain" />
           <div>
             <span className="text-base lg:text-lg font-bold text-[#333]">エシカルコミュニティ</span>
             <span className="text-xs text-[#999] ml-1">LLP</span>
@@ -1362,9 +1360,7 @@ function Footer() {
         <div className="flex flex-col lg:flex-row justify-between gap-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-[#FD6C26] rounded-lg flex items-center justify-center">
-                <HeartHandshake className="w-5 h-5 text-white" />
-              </div>
+              <img src="/ethical-community-lp/logo.png" alt="エシカルコミュニティLLP ロゴ" className="w-8 h-8 object-contain" />
               <span className="text-base font-bold">エシカルコミュニティLLP</span>
             </div>
             <p className="text-sm text-white/60 leading-relaxed max-w-[400px]">
