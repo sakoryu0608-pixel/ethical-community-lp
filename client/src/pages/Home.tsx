@@ -1076,7 +1076,160 @@ function VisionSection() {
 }
 
 // ============================================================
-// SECTION 7: CTA / CLOSING
+// SECTION 7: MANAGEMENT 組織概要・運営体制
+// ============================================================
+function ManagementSection() {
+  const { ref: tableRef, isInView: tableInView } = useInView(0.1);
+  const { ref: partnerRef, isInView: partnerInView } = useInView(0.1);
+
+  const orgRows = [
+    {
+      label: "名称",
+      content: "エシカルコミュニティ有限責任事業組合",
+    },
+    {
+      label: "所在地",
+      content: "[住所が入ります]",
+    },
+    {
+      label: "設立",
+      content: "[設立年月日が入ります]",
+    },
+    {
+      label: "事業内容",
+      content: (
+        <ul className="space-y-1">
+          <li>・LLPスキームによる障害者共同雇用事業の運営</li>
+          <li>・障害者スタッフに対する生成AIスキル等の教育訓練</li>
+          <li>・特性分析システム「co-mii」を用いた定着支援</li>
+          <li>・バーチャルオフィス「OASIS」による遠隔労務管理サポート</li>
+        </ul>
+      ),
+    },
+    {
+      label: "組合員構成",
+      content: "[事務局運営会社名]ほか、参画組合員会社",
+    },
+    {
+      label: "監修・パートナー",
+      content: (
+        <ul className="space-y-1">
+          <li>法務監修：[弁護士事務所名]</li>
+          <li>労務監修：[社会保険労務士事務所名]</li>
+          <li>戦略的パートナー：株式会社サミットラン、株式会社エクステンシブル</li>
+          <li>エンドースメント団体：公益財団法人日本ダウン症協会</li>
+        </ul>
+      ),
+    },
+  ];
+
+  const partners = [
+    { name: "Partner Logo A" },
+    { name: "Partner Logo B" },
+    { name: "Partner Logo C" },
+    { name: "Partner Logo D" },
+  ];
+
+  return (
+    <section id="management" className="py-14 sm:py-20 lg:py-28 bg-[#0D0D0D] relative overflow-hidden">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 opacity-[0.03]" style={{
+        backgroundImage: 'repeating-linear-gradient(0deg, #FD6C26 0px, #FD6C26 1px, transparent 1px, transparent 60px), repeating-linear-gradient(90deg, #FD6C26 0px, #FD6C26 1px, transparent 1px, transparent 60px)',
+      }} />
+
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
+
+        {/* Section header */}
+        <AnimatedSection>
+          <div className="text-center mb-12 sm:mb-16">
+            <p className="text-sm font-bold text-[#FD6C26] tracking-widest mb-3">MANAGEMENT</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-[2rem] font-black text-white leading-snug">
+              組織概要・運営体制
+            </h2>
+            <div className="mt-4 w-12 h-[3px] bg-[#FD6C26] mx-auto rounded-full" />
+          </div>
+        </AnimatedSection>
+
+        {/* Organization table */}
+        <div
+          ref={tableRef}
+          className="mb-16 sm:mb-20"
+          style={{
+            opacity: tableInView ? 1 : 0,
+            transform: tableInView ? 'translateY(0)' : 'translateY(24px)',
+            transition: 'opacity 0.7s ease-out, transform 0.7s ease-out',
+          }}
+        >
+          <div className="border border-white/10 rounded-2xl overflow-hidden">
+            {orgRows.map((row, i) => (
+              <div
+                key={i}
+                className={`flex flex-col sm:flex-row ${
+                  i % 2 === 0 ? 'bg-white/[0.03]' : 'bg-transparent'
+                } border-b border-white/10 last:border-b-0`}
+                style={{
+                  opacity: tableInView ? 1 : 0,
+                  transform: tableInView ? 'translateY(0)' : 'translateY(12px)',
+                  transition: `opacity 0.5s ease-out ${0.1 + i * 0.07}s, transform 0.5s ease-out ${0.1 + i * 0.07}s`,
+                }}
+              >
+                {/* Label */}
+                <div className="w-full sm:w-[200px] lg:w-[240px] flex-shrink-0 px-5 sm:px-8 py-4 sm:py-5 flex items-start">
+                  <span className="text-sm sm:text-base font-bold text-[#FD6C26]">{row.label}</span>
+                </div>
+                {/* Divider */}
+                <div className="hidden sm:block w-px bg-white/10 my-3" />
+                {/* Content */}
+                <div className="flex-1 px-5 sm:px-8 py-4 sm:py-5">
+                  <div className="text-sm sm:text-[15px] text-white/80 leading-relaxed">
+                    {row.content}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Partner logos */}
+        <div
+          ref={partnerRef}
+          style={{
+            opacity: partnerInView ? 1 : 0,
+            transform: partnerInView ? 'translateY(0)' : 'translateY(24px)',
+            transition: 'opacity 0.7s ease-out 0.2s, transform 0.7s ease-out 0.2s',
+          }}
+        >
+          <div className="text-center mb-8 sm:mb-10">
+            <h3 className="text-xl sm:text-2xl font-black text-white">
+              パートナー・参画会社
+            </h3>
+            <div className="mt-3 w-10 h-[3px] bg-[#FD6C26] mx-auto rounded-full" />
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+            {partners.map((p, i) => (
+              <div
+                key={i}
+                className="bg-white/[0.05] border border-white/10 rounded-xl p-6 sm:p-8 flex items-center justify-center hover:bg-white/[0.08] hover:border-[#FD6C26]/30 transition-all duration-300 group"
+                style={{
+                  opacity: partnerInView ? 1 : 0,
+                  transform: partnerInView ? 'translateY(0)' : 'translateY(16px)',
+                  transition: `opacity 0.5s ease-out ${0.3 + i * 0.08}s, transform 0.5s ease-out ${0.3 + i * 0.08}s`,
+                }}
+              >
+                <span className="text-xs sm:text-sm text-white/30 group-hover:text-white/50 transition-colors font-medium text-center">{p.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+// ============================================================
+// SECTION 8: CTA / CLOSING
 // ============================================================
 function CTASection() {
   return (
@@ -1250,6 +1403,7 @@ export default function Home() {
         <CostSection />
         <StrengthsSection />
         <VisionSection />
+        <ManagementSection />
         <CTASection />
       </main>
       <Footer />
