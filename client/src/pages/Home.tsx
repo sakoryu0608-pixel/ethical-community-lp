@@ -1032,7 +1032,7 @@ function VisionSection() {
                       transition: "opacity 0.7s ease-out 0.5s, transform 0.7s ease-out 0.5s",
                     }}
                   >
-                    <span style={{color: '#fd6c26'}}>私たちは専門性をもって個性を分析し、<br />
+                    <span style={{color: '#fd6c26'}}>私たちは専門性をもって特性を分析し、<br />
                     生成AIという新しい力を掛け合わせることで、<br />
                     "支援される側"から"選ばれる戦力"へと転換させます。</span>
                   </p>
