@@ -364,13 +364,13 @@ function ImpactSection() {
 // ============================================================
 function HeroSection() {
   return (
-    <section id="hero" className="relative overflow-hidden" style={{ background: 'linear-gradient(160deg, #0f0f0f 0%, #1a1008 50%, #0f0f0f 100%)' }}>
-      {/* Subtle grid lines */}
-      <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'linear-gradient(#FD6C26 1px, transparent 1px), linear-gradient(90deg, #FD6C26 1px, transparent 1px)', backgroundSize: '80px 80px' }} />
-      {/* Ambient glow top-left */}
-      <div className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #FD6C26 0%, transparent 70%)', transform: 'translate(-30%, -30%)' }} />
-      {/* Ambient glow bottom-right */}
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full opacity-8" style={{ background: 'radial-gradient(circle, #FD6C26 0%, transparent 70%)', transform: 'translate(30%, 30%)' }} />
+    <section id="hero" className="relative overflow-hidden bg-[#FAFAF8]">
+      {/* Subtle dot pattern */}
+      <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, #FD6C26 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+      {/* Soft warm glow top-right */}
+      <div className="absolute top-0 right-0 w-[700px] h-[500px] rounded-full opacity-20" style={{ background: 'radial-gradient(ellipse, #FFF0E6 0%, transparent 70%)', transform: 'translate(20%, -20%)' }} />
+      {/* Soft warm glow bottom-left */}
+      <div className="absolute bottom-0 left-0 w-[500px] h-[400px] rounded-full opacity-15" style={{ background: 'radial-gradient(ellipse, #FFE8D6 0%, transparent 70%)', transform: 'translate(-20%, 20%)' }} />
 
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10 py-16 sm:py-24 lg:py-32 relative z-10">
 
@@ -378,15 +378,15 @@ function HeroSection() {
         <AnimatedSection>
           <div className="flex items-center gap-3 mb-8 sm:mb-10">
             <span className="text-[10px] sm:text-xs font-black tracking-[0.3em] text-[#FD6C26] uppercase">Purpose</span>
-            <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, rgba(253,108,38,0.5) 0%, transparent 100%)' }} />
+            <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, rgba(253,108,38,0.4) 0%, transparent 100%)' }} />
           </div>
         </AnimatedSection>
 
         {/* Main heading — large, bold, centered */}
         <AnimatedSection delay={0.1}>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.2rem] font-black text-white leading-[1.25] mb-12 lg:mb-16 text-center">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.2rem] font-black text-[#1A1A1A] leading-[1.25] mb-12 lg:mb-16 text-center">
             AIと専門性で障害者雇用を<br />
-            <span style={{ color: '#FD6C26' }}>「戦力」</span>に変える新しい仕組みを、<br className="hidden sm:block" />
+            <span className="text-[#FD6C26]">「戦力」</span>に変える新しい仕組みを、<br className="hidden sm:block" />
             エシカルコミュニティが実現
           </h2>
         </AnimatedSection>
@@ -394,29 +394,29 @@ function HeroSection() {
         {/* Divider line */}
         <AnimatedSection delay={0.15}>
           <div className="flex items-center gap-4 mb-12 lg:mb-16">
-            <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(253,108,38,0.4))' }} />
+            <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(253,108,38,0.35))' }} />
             <div className="w-2 h-2 rounded-full bg-[#FD6C26]" />
-            <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, rgba(253,108,38,0.4), transparent)' }} />
+            <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, rgba(253,108,38,0.35), transparent)' }} />
           </div>
         </AnimatedSection>
 
         {/* Lead paragraphs — stacked, generous line height */}
         <AnimatedSection delay={0.2}>
           <div className="max-w-[820px] mx-auto space-y-6 mb-14 lg:mb-18">
-            <p className="text-base sm:text-lg lg:text-xl text-white/80 leading-[2] text-center">
+            <p className="text-base sm:text-lg lg:text-xl text-[#444] leading-[2] text-center">
               エシカルコミュニティは、障害のある方が
-              <span className="text-white font-bold">生成AIを武器に</span>企業の業務に貢献する、
+              <span className="text-[#1A1A1A] font-bold">生成AIを武器に</span>企業の業務に貢献する、
               新しい働き方のコミュニティです。
             </p>
-            <p className="text-base sm:text-lg lg:text-xl text-white/80 leading-[2] text-center">
+            <p className="text-base sm:text-lg lg:text-xl text-[#444] leading-[2] text-center">
               業務を運営するプロフェッショナル、AIを活用できる人材、
               そして障害者雇用に前向きな企業。
               これらを<span className="text-[#FD6C26] font-bold">LLP（有限責任事業組合）モデル</span>でシームレスに統合します。
             </p>
-            <p className="text-base sm:text-lg lg:text-xl text-white/80 leading-[2] text-center">
+            <p className="text-base sm:text-lg lg:text-xl text-[#444] leading-[2] text-center">
               プロの監修による的確な業務分析と、AIを駆使する人材育成を掛け合わせることで、
               企業の運用負荷を抑えながら
-              <span className="text-white font-bold">生産性向上と法定雇用率の達成</span>を両立します。
+              <span className="text-[#1A1A1A] font-bold">生産性向上と法定雇用率の達成</span>を両立します。
             </p>
           </div>
         </AnimatedSection>
@@ -424,15 +424,15 @@ function HeroSection() {
         {/* Closing statement — large accent quote */}
         <AnimatedSection delay={0.3}>
           <div className="max-w-[820px] mx-auto mb-14 lg:mb-16">
-            <div className="relative px-6 sm:px-10 py-8 sm:py-10 rounded-2xl border border-[#FD6C26]/25" style={{ background: 'rgba(253,108,38,0.06)' }}>
+            <div className="relative px-6 sm:px-10 py-8 sm:py-10 rounded-2xl border border-[#FD6C26]/20" style={{ background: 'linear-gradient(135deg, #FFF4EE 0%, #FFF8F4 100%)' }}>
               {/* Quote mark */}
-              <span className="absolute top-4 left-6 text-5xl font-black leading-none select-none" style={{ color: 'rgba(253,108,38,0.2)' }}>&ldquo;</span>
-              <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white leading-[1.8] text-center pt-4">
+              <span className="absolute top-4 left-6 text-5xl font-black leading-none select-none text-[#FD6C26]/25">&ldquo;</span>
+              <p className="text-lg sm:text-xl lg:text-2xl font-bold text-[#1A1A1A] leading-[1.8] text-center pt-4">
                 私たちは、障害者雇用を<br className="hidden sm:block" />
                 <span className="text-[#FD6C26]">「義務」</span>ではなく
                 <span className="text-[#FD6C26]">価値を生み出す仕組み</span>に変えていきます。
               </p>
-              <span className="absolute bottom-4 right-6 text-5xl font-black leading-none select-none" style={{ color: 'rgba(253,108,38,0.2)' }}>&rdquo;</span>
+              <span className="absolute bottom-4 right-6 text-5xl font-black leading-none select-none text-[#FD6C26]/25">&rdquo;</span>
             </div>
           </div>
         </AnimatedSection>
@@ -440,19 +440,19 @@ function HeroSection() {
         {/* Authority badges */}
         <AnimatedSection delay={0.4}>
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-            <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/30" style={{ background: 'rgba(253,108,38,0.1)' }}>
+            <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/20">
               <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5" />
               法定雇用率算定可能
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/30" style={{ background: 'rgba(253,108,38,0.1)' }}>
+            <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/20">
               <Shield className="w-4 h-4 sm:w-5 sm:h-5" />
               経済産業省推進の法人格
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/30" style={{ background: 'rgba(253,108,38,0.1)' }}>
+            <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/20">
               <Users className="w-4 h-4 sm:w-5 sm:h-5" />
               就労支援のプロによる監修
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/30" style={{ background: 'rgba(253,108,38,0.1)' }}>
+            <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/20">
               <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
               初期費用・紹介料０円
             </span>
