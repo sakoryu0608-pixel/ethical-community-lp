@@ -9,9 +9,9 @@ import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
 import Security from "./pages/Security";
 
-// GitHub Pages では /ethical-community-lp/ というベースパスが付くため
-// Vite の import.meta.env.BASE_URL からベースパスを取得する
-const base = import.meta.env.BASE_URL;
+// GitHub Pages では /ethical-community-lp というベースパスが付く
+// BASE_URL は "/ethical-community-lp/" のように末尾スラッシュ付きで来るため除去する
+const base = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
 
 function AppRouter() {
   return (
