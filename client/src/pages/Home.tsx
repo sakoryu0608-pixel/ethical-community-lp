@@ -189,14 +189,10 @@ function ImpactSection() {
   // Line 2: 「自社の戦力」が育っていく。
   // breakAfter=true inserts a mobile-only line break after this part
   const textParts = [
-    { text: "「", isKeyword: true, line: 1 },
-    { text: "自社で直接雇用しない", isKeyword: true, line: 1 },
-    { text: "」", isKeyword: true, line: 1 },
-    { text: "のに、", isKeyword: false, line: 1, breakAfter: true },
-    { text: "「", isKeyword: true, line: 2 },
+    { text: "共同雇用", isKeyword: true, line: 1 },
+    { text: "なのに、", isKeyword: false, line: 1, breakAfter: true },
     { text: "自社の戦力", isKeyword: true, line: 2 },
-    { text: "」", isKeyword: true, line: 2 },
-    { text: "が育っていく。", isKeyword: false, line: 2 },
+    { text: "が育つ。", isKeyword: false, line: 2 },
   ];
 
   // Build flat char array with keyword flag + breakAfter index tracking
