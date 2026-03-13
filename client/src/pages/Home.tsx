@@ -436,7 +436,7 @@ function HeroSection() {
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/20">
               <Shield className="w-4 h-4 sm:w-5 sm:h-5" />
-              経済産業省推進の法人格
+              厚生労働省推進の組合
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/20">
               <Users className="w-4 h-4 sm:w-5 sm:h-5" />
