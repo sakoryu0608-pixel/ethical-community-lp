@@ -350,7 +350,7 @@ function ImpactSection() {
 }
 
 // ============================================================
-// HERO / SECOND VIEW (Content section)
+// HERO / SECOND VIEW (Content section) - Re-build to force label change to ビジョン
 // ============================================================
 function HeroSection() {
   return (
