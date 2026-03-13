@@ -948,7 +948,7 @@ function VisionSection() {
         >
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#FD6C26]/8 border border-[#FD6C26]/15 mb-5">
             <Sparkles className="w-4 h-4 text-[#FD6C26]" />
-            <span className="text-sm font-bold text-[#FD6C26] tracking-[0.15em]">VISION</span>
+            <span className="text-xs font-bold text-[#FD6C26] tracking-widest">ビジョン</span>
           </div>
           <h2
             className="text-2xl sm:text-3xl lg:text-[2.25rem] font-black text-[#333] leading-snug"
