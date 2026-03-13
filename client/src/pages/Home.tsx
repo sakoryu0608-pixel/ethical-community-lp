@@ -444,7 +444,7 @@ function HeroSection() {
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/20">
               <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
-              初期費用・紹介料０円
+              紹介料0円
             </span>
           </div>
         </AnimatedSection>
