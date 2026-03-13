@@ -401,7 +401,7 @@ function HeroSection() {
             <p className="text-base sm:text-lg lg:text-xl text-[#444] leading-[2] text-center">
               業務を運営するプロフェッショナル、AIを活用できる人材、
               そして障害者雇用に前向きな企業。
-              これらを<span className="text-[#FD6C26] font-bold">LLP（有限責任事業組合）モデル</span>でシームレスに統合します。
+              これらを<span className="text-[#FD6C26] font-bold">LLP（有限責任事業組合）モデル</span>でスマートに統合します。
             </p>
             <p className="text-base sm:text-lg lg:text-xl text-[#444] leading-[2] text-center">
               プロの監修による的確な業務分析と、AIを駆使する人材育成を掛け合わせることで、
