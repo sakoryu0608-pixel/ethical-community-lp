@@ -367,7 +367,7 @@ function HeroSection() {
         {/* Section label */}
         <AnimatedSection>
           <div className="flex items-center gap-3 mb-8 sm:mb-10">
-            <span className="text-[10px] sm:text-xs font-black tracking-[0.3em] text-[#FD6C26] uppercase">Purpose</span>
+            <span className="text-[10px] sm:text-xs font-black tracking-[0.3em] text-[#FD6C26]">ビジョン</span>
             <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, rgba(253,108,38,0.4) 0%, transparent 100%)' }} />
           </div>
         </AnimatedSection>
