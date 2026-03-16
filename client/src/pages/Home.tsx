@@ -705,8 +705,8 @@ function SolutionSection() {
           <AnimatedSection delay={0.2}>
             <div className="rounded-2xl overflow-hidden shadow-xl bg-white">
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663384608434/YwT9YaGpotKVs9ejRKfzEn/problem-infographic-v2-avJSvoPQCXEpipYB9VdrMG.webp"
-                alt="障害者雇用の4つの課題 - 採用コスト増大・早期離職・管理体制不足・インフラ整備の壁"
+                src="/llp-scheme-infographic.png"
+                alt="法定雇用率算定の仕組み - LLP有限責任事業組合による共同雇用スキーム"
                 className="w-full h-auto"
               />
             </div>
