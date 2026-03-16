@@ -80,18 +80,10 @@ function Header() {
         </nav>
         <div className="flex items-center gap-2 lg:gap-3">
           <Link
-            href="/contact?type=document"
-            className="hidden sm:inline-flex items-center gap-2 px-4 lg:px-5 py-2 lg:py-2.5 bg-[#FD6C26] text-white text-sm font-bold rounded-full hover:bg-[#e55e1a] transition-colors shadow-md shadow-[#FD6C26]/20"
+            href="/contact"
+            className="hidden sm:inline-flex items-center gap-2 px-4 lg:px-6 py-2 lg:py-2.5 bg-[#FD6C26] text-white text-sm font-bold rounded-full hover:bg-[#e55e1a] transition-colors shadow-md shadow-[#FD6C26]/20"
           >
-            <Download className="w-4 h-4" />
-            資料ダウンロード
-          </Link>
-          <Link
-            href="/contact?type=consultation"
-            className="hidden md:inline-flex items-center gap-2 px-4 lg:px-5 py-2 lg:py-2.5 border-2 border-[#FD6C26] text-[#FD6C26] text-sm font-bold rounded-full hover:bg-[#FFF4EE] transition-colors"
-          >
-            <Phone className="w-4 h-4" />
-            相談会に申し込む
+            資料請求とご相談はこちらから
           </Link>
           {/* Hamburger button - mobile only */}
           <button
@@ -127,22 +119,13 @@ function Header() {
               {item.label}
             </a>
           ))}
-          <div className="pt-3 space-y-2">
+          <div className="pt-3">
             <Link
-              href="/contact?type=document"
+              href="/contact"
               onClick={closeMenu}
-              className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-[#FD6C26] text-white text-sm font-bold rounded-full hover:bg-[#e55e1a] transition-colors"
+              className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-[#FD6C26] text-white text-sm font-bold rounded-full hover:bg-[#e55e1a] transition-colors shadow-md shadow-[#FD6C26]/20"
             >
-              <Download className="w-4 h-4" />
-              資料ダウンロード（無料）
-            </Link>
-            <Link
-              href="/contact?type=consultation"
-              onClick={closeMenu}
-              className="flex items-center justify-center gap-2 w-full px-5 py-3 border-2 border-[#FD6C26] text-[#FD6C26] text-sm font-bold rounded-full hover:bg-[#FFF4EE] transition-colors"
-            >
-              <Phone className="w-4 h-4" />
-              オンライン相談会に申し込む
+              資料請求とご相談はこちらから
             </Link>
           </div>
         </nav>
@@ -1148,20 +1131,13 @@ function CTASection() {
 
         <AnimatedSection delay={0.3}>
           <div className="bg-gradient-to-br from-[#FD6C26] to-[#E55A10] rounded-2xl p-6 sm:p-8 lg:p-12 shadow-xl shadow-[#FD6C26]/20">
-            <div className="flex flex-col gap-4 items-center justify-center">
+            <div className="flex flex-col items-center justify-center">
               <Link
-                href="/contact?type=document"
-                className="inline-flex items-center justify-center gap-3 px-6 sm:px-10 py-4 sm:py-5 bg-white text-[#FD6C26] text-base sm:text-lg font-bold rounded-full hover:bg-[#FFF4EE] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 w-full"
+                href="/contact"
+                className="inline-flex items-center justify-center gap-3 px-6 sm:px-10 py-4 sm:py-5 bg-white text-[#FD6C26] text-base sm:text-lg font-bold rounded-full hover:bg-[#FFF4EE] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 w-full max-w-[600px]"
               >
-                <Download className="w-5 h-5 flex-shrink-0" />
-                <span>3分でわかる！サービス紹介資料ダウンロード（無料）</span>
-              </Link>
-              <Link
-                href="/contact?type=consultation"
-                className="inline-flex items-center justify-center gap-3 px-6 sm:px-10 py-4 sm:py-5 bg-transparent border-2 border-white text-white text-base sm:text-lg font-bold rounded-full hover:bg-white/10 transition-all hover:-translate-y-0.5 w-full"
-              >
-                <Phone className="w-5 h-5 flex-shrink-0" />
-                <span>専門コンサルタントによる オンライン個別相談会（無料）</span>
+                <span>資料請求とご相談はこちらから</span>
+                <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
           </div>
@@ -1188,20 +1164,13 @@ function FloatingCTA() {
         visible ? "translate-y-0" : "translate-y-full"
       }`}
     >
-      <div className="max-w-[1440px] mx-auto px-3 py-2 sm:py-3 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2 sm:gap-3">
+      <div className="max-w-[1440px] mx-auto px-3 py-2 sm:py-3 flex items-center justify-center">
         <Link
-          href="/contact?type=document"
-          className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-[#FD6C26] text-white text-xs sm:text-sm font-bold rounded-full hover:bg-[#e55e1a] transition-colors shadow-md shadow-[#FD6C26]/20"
+          href="/contact"
+          className="inline-flex items-center justify-center gap-2 px-8 sm:px-12 py-2.5 sm:py-3 bg-[#FD6C26] text-white text-sm sm:text-base font-bold rounded-full hover:bg-[#e55e1a] transition-colors shadow-md shadow-[#FD6C26]/20 w-full sm:w-auto"
         >
-          <Download className="w-4 h-4 flex-shrink-0" />
-          <span>詳しい仕組みがわかる！資料ダウンロード（無料）</span>
-        </Link>
-        <Link
-          href="/contact?type=consultation"
-          className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 border-2 border-[#FD6C26] text-[#FD6C26] text-xs sm:text-sm font-bold rounded-full hover:bg-[#FFF4EE] transition-colors"
-        >
-          <Phone className="w-4 h-4 flex-shrink-0" />
-          <span>オンライン個別相談会に申し込む</span>
+          <span>資料請求とご相談はこちらから</span>
+          <ArrowRight className="w-4 h-4" />
         </Link>
       </div>
     </div>
