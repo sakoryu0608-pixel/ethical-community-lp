@@ -663,7 +663,7 @@ function SolutionSection() {
                 企業が共同で出資し合い、事業を運営する<strong className="text-[#333]">「LLP（有限責任事業組合）」</strong>の仕組みを活用。
               </p>
               <p className="text-[15px] text-[#555] leading-[1.9]">
-                <strong className="text-[#333]">「自社で雇用しない（※組合での共同雇用）」</strong>にも関わらず、出資比率に応じて<strong className="text-[#FD6C26]">自社の雇用率算定が可能</strong>です。
+                <strong className="text-[#333]">「共同雇用」</strong>にも関わらず、出資比率に応じて<strong className="text-[#FD6C26]">自社の雇用率算定が可能</strong>です。
               </p>
               <p className="text-[15px] text-[#555] leading-[1.9]">
                 これにより、自社単独で雇用する際のリスクとコストを大幅に最適化します。
