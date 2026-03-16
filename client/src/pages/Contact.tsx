@@ -52,6 +52,7 @@ export default function Contact() {
     if (!company.trim()) newErrors.company = "会社・団体名を入力してください";
     if (!name.trim()) newErrors.name = "担当者氏名を入力してください";
     if (!furigana.trim()) newErrors.furigana = "ふりがなを入力してください";
+    if (!position.trim()) newErrors.position = "役職を入力してください";
     if (!email.trim()) newErrors.email = "メールアドレスを入力してください";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) newErrors.email = "正しいメールアドレスを入力してください";
     if (!phone.trim()) newErrors.phone = "お電話番号を入力してください";
@@ -191,13 +192,13 @@ export default function Contact() {
             </FormGroup>
 
             {/* 役職 */}
-            <FormGroup label="役職" optional>
+            <FormGroup label="役職" required error={errors.position}>
               <input
                 type="text"
                 value={position}
                 onChange={(e) => setPosition(e.target.value)}
                 placeholder="例: 代表取締役、人事部長など"
-                className="w-full px-4 py-3 border border-[#DDD] rounded-lg text-[15px] text-[#333] placeholder:text-[#BBB] focus:outline-none focus:border-[#FD6C26] focus:ring-2 focus:ring-[#FD6C26]/10 transition-all bg-[#FAFAFA] hover:bg-white"
+                className={`w-full px-4 py-3 border rounded-lg text-[15px] text-[#333] placeholder:text-[#BBB] focus:outline-none focus:border-[#FD6C26] focus:ring-2 focus:ring-[#FD6C26]/10 transition-all bg-[#FAFAFA] hover:bg-white ${errors.position ? "border-red-400" : "border-[#DDD]"}`}
               />
             </FormGroup>
 
