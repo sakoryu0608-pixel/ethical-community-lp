@@ -642,7 +642,7 @@ function SolutionSection() {
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10">
         <AnimatedSection>
           <div className="text-center mb-8 sm:mb-14">
-            <p className="text-sm font-bold text-[#FD6C26] tracking-wider mb-3">SOLUTION</p>
+            <p className="text-sm font-bold text-[#FD6C26] tracking-wider mb-3">解決策</p>
             <h2 className="text-2xl sm:text-3xl lg:text-[2rem] font-black text-[#333] leading-snug">
               自社で抱え込まない。
               <br className="hidden sm:block" />
