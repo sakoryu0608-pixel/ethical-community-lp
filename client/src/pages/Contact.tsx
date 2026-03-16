@@ -35,6 +35,7 @@ export default function Contact() {
   const [company, setCompany] = useState("");
   const [name, setName] = useState("");
   const [furigana, setFurigana] = useState("");
+  const [position, setPosition] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
@@ -48,7 +49,8 @@ export default function Contact() {
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
-    if (!name.trim()) newErrors.name = "お名前を入力してください";
+    if (!company.trim()) newErrors.company = "会社・団体名を入力してください";
+    if (!name.trim()) newErrors.name = "担当者氏名を入力してください";
     if (!furigana.trim()) newErrors.furigana = "ふりがなを入力してください";
     if (!email.trim()) newErrors.email = "メールアドレスを入力してください";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) newErrors.email = "正しいメールアドレスを入力してください";
@@ -156,18 +158,18 @@ export default function Contact() {
             </FormGroup>
 
             {/* 会社・団体名 */}
-            <FormGroup label="会社・団体名" optional>
+            <FormGroup label="会社・団体名" required error={errors.company}>
               <input
                 type="text"
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}
                 placeholder="例: エシカルコミュニティ株式会社"
-                className="w-full px-4 py-3 border border-[#DDD] rounded-lg text-[15px] text-[#333] placeholder:text-[#BBB] focus:outline-none focus:border-[#FD6C26] focus:ring-2 focus:ring-[#FD6C26]/10 transition-all bg-[#FAFAFA] hover:bg-white"
+                className={`w-full px-4 py-3 border rounded-lg text-[15px] text-[#333] placeholder:text-[#BBB] focus:outline-none focus:border-[#FD6C26] focus:ring-2 focus:ring-[#FD6C26]/10 transition-all bg-[#FAFAFA] hover:bg-white ${errors.company ? "border-red-400" : "border-[#DDD]"}`}
               />
             </FormGroup>
 
-            {/* お名前 */}
-            <FormGroup label="お名前" required error={errors.name}>
+            {/* 担当者氏名 */}
+            <FormGroup label="担当者氏名" required error={errors.name}>
               <input
                 type="text"
                 value={name}
@@ -185,6 +187,17 @@ export default function Contact() {
                 onChange={(e) => setFurigana(e.target.value)}
                 placeholder="例: やまだ たろう"
                 className={`w-full px-4 py-3 border rounded-lg text-[15px] text-[#333] placeholder:text-[#BBB] focus:outline-none focus:border-[#FD6C26] focus:ring-2 focus:ring-[#FD6C26]/10 transition-all bg-[#FAFAFA] hover:bg-white ${errors.furigana ? "border-red-400" : "border-[#DDD]"}`}
+              />
+            </FormGroup>
+
+            {/* 役職 */}
+            <FormGroup label="役職" optional>
+              <input
+                type="text"
+                value={position}
+                onChange={(e) => setPosition(e.target.value)}
+                placeholder="例: 代表取締役、人事部長など"
+                className="w-full px-4 py-3 border border-[#DDD] rounded-lg text-[15px] text-[#333] placeholder:text-[#BBB] focus:outline-none focus:border-[#FD6C26] focus:ring-2 focus:ring-[#FD6C26]/10 transition-all bg-[#FAFAFA] hover:bg-white"
               />
             </FormGroup>
 
