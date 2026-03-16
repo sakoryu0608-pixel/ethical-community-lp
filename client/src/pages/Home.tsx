@@ -674,7 +674,7 @@ function SolutionSection() {
           <AnimatedSection delay={0.2}>
             <div className="rounded-2xl overflow-hidden shadow-xl bg-white">
               <img
-                src="/ethical-community-lp/llp-scheme-infographic-v2.png"
+                src="/ethical-community-lp/solution-illustration.png"
                 alt="法定雇用率算定の仕組み - LLP有限責任事業組合による共同雇用スキーム"
                 className="w-full h-auto"
               />
