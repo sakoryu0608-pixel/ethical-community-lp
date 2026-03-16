@@ -674,7 +674,7 @@ function SolutionSection() {
           <AnimatedSection delay={0.2}>
             <div className="rounded-2xl overflow-hidden shadow-xl bg-white">
               <img
-                src="/ethical-community-lp/solution-benefit-illustration.png"
+                src="/ethical-community-lp/solution-japanese-benefit.png"
                 alt="共同雇用によるベネフィット：コスト削減、管理負担解消、雇用率達成"
                 className="w-full h-auto"
               />
