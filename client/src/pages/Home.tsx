@@ -952,20 +952,7 @@ function VisionSection() {
                 </div>
               </div>
 
-              {/* Signature line */}
-              <div
-                ref={lineRef}
-                className="mt-6 flex items-center gap-4 justify-center lg:justify-end"
-                style={{
-                  opacity: lineInView ? 1 : 0,
-                  transform: lineInView ? "translateY(0)" : "translateY(15px)",
-                  transition: "opacity 0.7s ease-out 0.5s, transform 0.7s ease-out 0.5s",
-                }}
-              >
-                <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#FD6C26]/40" />
-                <p className="text-sm text-[#888] font-medium">エシカルコミュニティLLP</p>
-                <p className="text-sm font-bold text-[#333]"></p>
-              </div>
+
             </div>
           </div>
         </div>
