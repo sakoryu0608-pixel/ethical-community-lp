@@ -569,22 +569,9 @@ function ProblemSection() {
             <br className="hidden sm:block" />
             こんな<span className="bg-white/20 px-2 py-0.5 rounded-lg">「壁」</span>にぶつかっていませんか？
           </h2>
-          <p className="text-center text-white/70 text-sm mb-10 max-w-[600px] mx-auto">
+                    <p className="text-center text-white/70 text-sm mb-10 max-w-[600px] mx-auto">
             多くの企業が直面する4つの構造的な課題
           </p>
-        </AnimatedSection>
-
-        {/* Infographic image */}
-        <AnimatedSection>
-          <div className="max-w-[900px] mx-auto mb-12">
-            <div className="bg-white rounded-3xl p-4 lg:p-6 shadow-2xl shadow-black/10">
-              <img
-                src="/ethical-community-lp/llp-scheme-infographic-v2.png"
-                alt="法定雇用率算定の仕組み - LLP有限責任事業組合による共同雇用スキーム"
-                className="w-full h-auto rounded-2xl"
-              />
-            </div>
-          </div>
         </AnimatedSection>
 
         {/* Problem detail cards */}
@@ -624,6 +611,19 @@ function ProblemSection() {
             ))}
           </div>
         </div>
+
+        {/* Infographic image */}
+        <AnimatedSection>
+          <div className="max-w-[900px] mx-auto mb-12">
+            <div className="bg-white rounded-3xl p-4 lg:p-6 shadow-2xl shadow-black/10">
+              <img
+                src="/ethical-community-lp/llp-scheme-infographic-v2.png"
+                alt="法定雇用率算定の仕組み - LLP有限責任事業組合による共同雇用スキーム"
+                className="w-full h-auto rounded-2xl"
+              />
+            </div>
+          </div>
+        </AnimatedSection>
 
         {/* Bottom CTA message */}
         <div
