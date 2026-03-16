@@ -561,7 +561,7 @@ function ProblemSection() {
           <div className="text-center mb-6">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 border border-white/25 mb-6 backdrop-blur-sm">
               <TrendingUp className="w-4 h-4 text-white animate-pulse" />
-              <span className="text-sm font-bold text-white tracking-wider">PROBLEM</span>
+              <span className="text-sm font-bold text-white tracking-wider">経営課題</span>
             </div>
           </div>
           <h2 className="text-center text-2xl sm:text-3xl lg:text-[2.25rem] font-black text-white leading-snug mb-4 drop-shadow-sm">
