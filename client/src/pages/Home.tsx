@@ -1214,7 +1214,7 @@ function Footer() {
             <div>
               <h4 className="text-sm font-bold mb-3 text-white/80">ポリシー</h4>
               <ul className="space-y-2">
-                <li><Link href="/privacy" className="text-sm text-white/50 hover:text-white/80 transition-colors">プライバシーポリシー</Link></li>
+                <li><Link href="/privacy" className="text-sm text-white/50 hover:text-white/80 transition-colors">個人情報保護方針</Link></li>
                 <li><Link href="/security" className="text-sm text-white/50 hover:text-white/80 transition-colors">情報セキュリティ方針</Link></li>
               </ul>
             </div>
@@ -1222,7 +1222,7 @@ function Footer() {
         </div>
         <div className="mt-8 sm:mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
           <div className="flex items-center gap-6 text-xs">
-            <Link href="/privacy" className="text-white/40 hover:text-white/60 transition-colors">プライバシーポリシー</Link>
+            <Link href="/privacy" className="text-white/40 hover:text-white/60 transition-colors">個人情報保護方針</Link>
             <Link href="/security" className="text-white/40 hover:text-white/60 transition-colors">情報セキュリティ方針</Link>
           </div>
           <p className="text-xs text-white/40">&copy; 2025 エシカルコミュニティLLP. All rights reserved.</p>
