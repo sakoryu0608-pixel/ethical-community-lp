@@ -742,7 +742,7 @@ function StrengthsSection() {
     {
       num: "03",
       title: "AIを駆使するスタッフの「将来の戦力への期待」",
-      desc: "私たちのビジョンは、単なる業務の切り出しではありません。上級者レベルの生成AIスキル（ChatGPT等）を習得できる独自の育成カリキュラムを提供。単純作業から「創造的業務（即戦力）」へとスタッフを育て上げ、最終的には組合員企業への「就職（転籍）」をゴールとしています。",
+      desc: "私たちのビジョンは、単なる業務の切り出しではありません。上級者レベルの生成AIスキル「AIエージェント」を習得できる独自の育成カリキュラムを提供。単純作業から「創造的業務（即戦力）」へとスタッフを育て上げ、最終的には組合員企業への「就職（転籍）」をゴールとしています。",
       icon: <Sparkles className="w-7 h-7" />,
       image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663384608434/YwT9YaGpotKVs9ejRKfzEn/infographic-ai-training-PUXKTFUUXEtestpD2sytPy.webp",
     },
