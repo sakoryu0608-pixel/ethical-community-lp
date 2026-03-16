@@ -579,8 +579,8 @@ function ProblemSection() {
           <div className="max-w-[900px] mx-auto mb-12">
             <div className="bg-white rounded-3xl p-4 lg:p-6 shadow-2xl shadow-black/10">
               <img
-                src="https://private-us-east-1.manuscdn.com/user_upload_by_module/session_file/310519663384608434/uBggcmdKEFrdssik.png?Expires=1804064504&Signature=cL160oCeMafnqBwDCVQByz~MtYiFABjRCbQ7VI8dvhlFhbRVv9gDDYGeISgQuZN54t~aY6mFGLGIBNeyxbe48x04qjHLE9NhmwWpLC0ED6A3ximjXQ4i-9gpdeyAJ8eMgZQ3JsNDLadvxK~JLu~LEy-AhV85qvdK2ww3vrXv5DG9tJTD4GpcdLXlqi0bWDYZXRQ6x0xyyBI4Wm7oUv1QS9BEl747SZacAPOke7D02uEf0LA7Ul-ek8OxW10USdxRmuNtYPcGPuRe8bohO5FR8rQTPNMsqews3I8GZNPxhXDTAnT0D~5IthbiLlehz34KtV0MsWumSzDBgnCBpcY8uA__&Key-Pair-Id=K2HSFNDJXOU9YS"
-                alt="障害者雇用の4つの課題 - 早期離職・採用コスト増大・管理体制不足・インフラ整備の壁"
+                src="/llp-scheme-infographic.png"
+                alt="法定雇用率算定の仕組み - LLP有限責任事業組合による共同雇用スキーム"
                 className="w-full h-auto rounded-2xl"
               />
             </div>
