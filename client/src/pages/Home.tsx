@@ -690,94 +690,17 @@ function SolutionSection() {
 // SECTION 4: COST COMPARISON
 // ============================================================
 function CostSection() {
-  const comparisons = [
-    {
-      category: "採用コスト",
-      self: "求人広告費や有料職業紹介料が高額発生",
-      ethical: "不要（0円）",
-    },
-    {
-      category: "管理コスト",
-      self: "現場の専任管理者・指導員の増員が必須",
-      ethical: "不要（プロが伴走・運用負荷低減）",
-    },
-    {
-      category: "インフラ・諸経費",
-      self: "オフィススペースの確保、通勤配慮、専用設備の準備",
-      ethical: "不要（完全リモート・組合で環境を用意）",
-    },
-  ];
-
   return (
     <section id="cost" className="bg-[#FFF4EE] py-14 sm:py-20 lg:py-28">
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10">
         <AnimatedSection>
           <div className="text-center mb-8 sm:mb-14">
-            <p className="text-sm font-bold text-[#FD6C26] tracking-wider mb-3">COST MERIT</p>
+            <p className="text-sm font-bold text-[#FD6C26] tracking-wider mb-3">コストメリット</p>
             <h2 className="text-2xl sm:text-3xl lg:text-[2rem] font-black text-[#333] leading-snug">
               一般的な「自社単独雇用」と比較して、
               <br className="hidden sm:block" />
               なぜ<span className="text-[#FD6C26]">圧倒的なコスト低減</span>が可能なのか？
             </h2>
-          </div>
-        </AnimatedSection>
-
-        {/* Comparison Table */}
-        <AnimatedSection delay={0.15}>
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-            {/* Desktop: 3-column table header */}
-            <div className="hidden sm:grid grid-cols-[1fr_1fr_1fr] bg-[#F8F8F8] border-b border-[#E8E8E8]">
-              <div className="p-4 lg:p-5 text-center">
-                <span className="text-sm font-bold text-[#999]">項目</span>
-              </div>
-              <div className="p-4 lg:p-5 text-center border-l border-[#E8E8E8] bg-[#FD6C26]/5">
-                <span className="text-sm font-bold text-[#FD6C26]">エシカルコミュニティ</span>
-              </div>
-              <div className="p-4 lg:p-5 text-center border-l border-[#E8E8E8]">
-                <span className="text-sm font-bold text-[#666]">自社雇用</span>
-              </div>
-            </div>
-
-            {/* Desktop: 3-column table rows */}
-            <div className="hidden sm:block">
-              {comparisons.map((item, i) => (
-                <div
-                  key={i}
-                  className={`grid grid-cols-[1fr_1fr_1fr] ${
-                    i < comparisons.length - 1 ? "border-b border-[#F0F0F0]" : ""
-                  }`}
-                >
-                  <div className="p-4 lg:p-5 flex items-center justify-center">
-                    <span className="text-sm font-bold text-[#333]">{item.category}</span>
-                  </div>
-                  <div className="p-4 lg:p-5 border-l border-[#F0F0F0] bg-[#FD6C26]/5 flex items-center">
-                    <span className="text-sm font-bold text-[#FD6C26] leading-relaxed">{item.ethical}</span>
-                  </div>
-                  <div className="p-4 lg:p-5 border-l border-[#F0F0F0] flex items-center">
-                    <span className="text-sm text-[#888] leading-relaxed">{item.self}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Mobile: Card-style layout */}
-            <div className="sm:hidden divide-y divide-[#F0F0F0]">
-              {comparisons.map((item, i) => (
-                <div key={i} className="p-4">
-                  <p className="text-xs font-bold text-[#999] mb-2">{item.category}</p>
-                  <div className="grid grid-cols-2 gap-2">
-                    <div className="bg-[#FD6C26]/5 rounded-xl p-3">
-                      <p className="text-[10px] font-bold text-[#FD6C26] mb-1">エシカル</p>
-                      <p className="text-xs font-bold text-[#FD6C26] leading-relaxed">{item.ethical}</p>
-                    </div>
-                    <div className="bg-[#F8F8F8] rounded-xl p-3">
-                      <p className="text-[10px] font-bold text-[#999] mb-1">自社雇用</p>
-                      <p className="text-xs text-[#888] leading-relaxed">{item.self}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </AnimatedSection>
 
