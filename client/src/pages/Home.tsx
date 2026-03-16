@@ -996,7 +996,7 @@ function ManagementSection() {
       label: "共同団体",
       content: (
         <ul className="space-y-1">
-          <li>組合員：株式会社サミットラン、株式会社エクステンシブル</li>
+          <li>組合員：株式会社サミットラン、株式会社偶成舎</li>
           <li>エンドースメント団体：公益財団法人日本ダウン症協会</li>
         </ul>
       ),
