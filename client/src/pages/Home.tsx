@@ -714,13 +714,7 @@ function CostSection() {
           </div>
         </AnimatedSection>
 
-        <AnimatedSection delay={0.4}>
-          <div className="mt-8 text-center">
-            <p className="text-[15px] text-[#555] leading-[1.9] max-w-[800px] mx-auto">
-              採用から定着支援までを組合内で完結させるため、貴社の<strong className="text-[#333]">「運用負荷低減」</strong>と、オフィス・賃金・通勤等の<strong className="text-[#333]">「雇用経費の大幅な軽減」</strong>を同時に実現します。
-            </p>
-          </div>
-        </AnimatedSection>
+
       </div>
     </section>
   );
