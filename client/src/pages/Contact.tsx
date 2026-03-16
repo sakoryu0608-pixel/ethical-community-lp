@@ -56,7 +56,7 @@ export default function Contact() {
     if (!email.trim()) newErrors.email = "メールアドレスを入力してください";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) newErrors.email = "正しいメールアドレスを入力してください";
     if (!phone.trim()) newErrors.phone = "お電話番号を入力してください";
-    if (!agreed) newErrors.agreed = "プライバシーポリシーに同意してください";
+    if (!agreed) newErrors.agreed = "個人情報保護方針に同意してください";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -238,20 +238,9 @@ export default function Contact() {
             {/* Divider */}
             <div className="border-t border-[#E8E8E8] my-8" />
 
-            {/* Privacy Policy Summary */}
-            <div className="bg-[#F8F8F8] rounded-xl p-6 mb-6 max-h-[200px] overflow-y-auto border border-[#ECECEC]">
-              <h4 className="text-sm font-bold text-[#333] mb-3 text-center">プライバシーポリシー</h4>
-              <p className="text-xs text-[#666] leading-[1.9] whitespace-pre-line">{PRIVACY_SUMMARY}</p>
-              <p className="mt-3 text-xs text-[#999]">
-                <Link href="/privacy" className="text-[#FD6C26] hover:underline">
-                  プライバシーポリシー全文はこちら
-                </Link>
-              </p>
-            </div>
-
             {/* Agreement Checkbox */}
             <label className={`flex items-center gap-3 justify-center cursor-pointer mb-8 group ${errors.agreed ? "text-red-500" : ""}`}>
-              <div className={`w-5 h-5 border-2 rounded flex items-center justify-center transition-all ${agreed ? "bg-[#FD6C26] border-[#FD6C26]" : errors.agreed ? "border-red-400" : "border-[#CCC] group-hover:border-[#FD6C26]"}`}>
+              <div className={`w-5 h-5 border-2 rounded flex items-center justify-center transition-all flex-shrink-0 ${agreed ? "bg-[#FD6C26] border-[#FD6C26]" : errors.agreed ? "border-red-400" : "border-[#CCC] group-hover:border-[#FD6C26]"}`}>
                 {agreed && <CheckCircle2 className="w-3.5 h-3.5 text-white" />}
               </div>
               <input
@@ -260,7 +249,12 @@ export default function Contact() {
                 onChange={(e) => setAgreed(e.target.checked)}
                 className="sr-only"
               />
-              <span className="text-sm font-medium text-[#444]">プライバシーポリシーに同意する</span>
+              <span className="text-sm font-medium text-[#444]">
+                <Link href="/privacy" className="text-[#FD6C26] hover:underline" onClick={(e) => e.stopPropagation()}>
+                  個人情報保護方針
+                </Link>
+                に同意する
+              </span>
             </label>
             {errors.agreed && <p className="text-xs text-red-500 text-center -mt-6 mb-6">{errors.agreed}</p>}
 
