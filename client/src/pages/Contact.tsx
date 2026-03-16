@@ -350,24 +350,23 @@ function RadioOption({
         onChange={onChange}
         className="sr-only"
       />
-      <span className="text-[15px] text-[#444]">{label}</span>
+      <span className={`text-[15px] font-medium transition-colors ${checked ? "text-[#333]" : "text-[#666] group-hover:text-[#333]"}`}>
+        {label}
+      </span>
     </label>
   );
 }
 
 function ContactHeader() {
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[#E8E8E8] shadow-sm">
-      <div className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <img src="/ethical-community-lp/logo.png" alt="エシカルコミュニティLLP ロゴ" className="w-16 h-16 object-contain" />
+    <header className="bg-white border-b border-[#F0F0F0] py-4">
+      <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between">
+        <Link href="/">
+          <img src="/ethical-community-lp/logo.png" alt="ロゴ" className="h-12 lg:h-14 cursor-pointer" />
         </Link>
-        <Link
-          href="/"
-          className="inline-flex items-center gap-1.5 text-sm text-[#666] hover:text-[#FD6C26] transition-colors font-medium"
-        >
+        <Link href="/" className="text-sm font-bold text-[#666] hover:text-[#FD6C26] transition-colors flex items-center gap-1.5">
           <ArrowLeft className="w-4 h-4" />
-          ホームへ戻る
+          サイトに戻る
         </Link>
       </div>
     </header>
@@ -377,17 +376,10 @@ function ContactHeader() {
 function ContactFooter() {
   return (
     <footer className="bg-[#333] text-white py-8">
-      <div className="max-w-[1100px] mx-auto px-6 text-center">
-        <div className="flex items-center justify-center gap-6 mb-4 text-sm">
-          <Link href="/privacy" className="text-white/50 hover:text-white/80 transition-colors">
-            プライバシーポリシー
-          </Link>
-          <span className="text-white/20">|</span>
-          <Link href="/security" className="text-white/50 hover:text-white/80 transition-colors">
-            情報セキュリティ方針
-          </Link>
-        </div>
-        <p className="text-xs text-white/40">&copy; 2025 エシカルコミュニティLLP. All rights reserved.</p>
+      <div className="max-w-[1200px] mx-auto px-6 text-center">
+        <p className="text-xs text-white/50">
+          &copy; 2026 エシカルコミュニティ有限責任事業組合 All Rights Reserved.
+        </p>
       </div>
     </footer>
   );
