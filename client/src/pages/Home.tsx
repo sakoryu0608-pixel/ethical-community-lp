@@ -727,7 +727,7 @@ function StrengthsSection() {
   const strengths = [
     {
       num: "01",
-      title: "障害者スタッフ一人ひとりの「徹底分析」と最適なマッチング",
+      title: "障害者一人ひとりを独自のシステムで「医科学的に評価&分析」し、働き方を最適化",
       desc: "就労支援の現場を知り尽くしたプロフェッショナルが、経験と専用ツールで一人ひとりの特性・強み・課題を多角的なアセスメントで徹底的に分析。専門的な見地に基づく的確な合理的配慮とマネジメントにより、高い定着率を実現します。",
       icon: <Brain className="w-7 h-7" />,
       image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663384608434/YwT9YaGpotKVs9ejRKfzEn/support-team-UX2tQzq4mDkZ7V86C8bjJv.webp",
@@ -753,7 +753,7 @@ function StrengthsSection() {
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10">
         <AnimatedSection>
           <div className="text-center mb-8 sm:mb-14">
-            <p className="text-sm font-bold text-[#FD6C26] tracking-wider mb-3">STRENGTHS</p>
+            <p className="text-sm font-bold text-[#FD6C26] tracking-wider mb-3">強み</p>
             <h2 className="text-2xl sm:text-3xl lg:text-[2rem] font-black text-[#333] leading-snug">
               障害者支援のプロフェッショナルが導く、
               <br className="hidden sm:block" />
