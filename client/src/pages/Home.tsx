@@ -581,37 +581,6 @@ function ProblemSection() {
           ))}
         </div>
 
-        {/* Animated stats bar */}
-        <div ref={statsRef} className="max-w-[960px] mx-auto mb-10 sm:mb-14">
-          <div
-            className="grid grid-cols-1 sm:grid-cols-3 gap-3 lg:gap-5 overflow-hidden"
-            style={{
-              opacity: statsInView ? 1 : 0,
-              transform: statsInView ? "translateY(0)" : "translateY(30px)",
-              transition: "opacity 0.7s ease-out 0.3s, transform 0.7s ease-out 0.3s",
-            }}
-          >
-            {[
-              { value: 49, suffix: "%", label: "1年以内の離職率", sub: "（障害者雇用の平均）" },
-              { value: 200, suffix: "万円〜", label: "年間の採用・管理コスト", sub: "（1名あたり推定）" },
-              { value: 2.7, suffix: "%", label: "2026年 法定雇用率", sub: "（段階的引上げ）" },
-            ].map((stat, i) => (
-              <div
-                key={i}
-                className="relative text-center py-5 lg:py-7 px-3 rounded-2xl bg-white/15 backdrop-blur-sm border border-white/20"
-              >
-                <p className="text-2xl sm:text-3xl lg:text-4xl font-black text-white mb-1 drop-shadow-sm">
-                  {typeof stat.value === "number" && Number.isInteger(stat.value)
-                    ? <AnimatedCounter target={stat.value} suffix={stat.suffix} isInView={statsInView} />
-                    : <>{stat.value}{stat.suffix}</>}
-                </p>
-                <p className="text-xs sm:text-sm font-bold text-white/90">{stat.label}</p>
-                <p className="text-[10px] sm:text-xs text-white/60 mt-0.5">{stat.sub}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* Infographic image */}
         <AnimatedSection>
           <div className="max-w-[900px] mx-auto mb-12">
