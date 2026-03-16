@@ -1062,7 +1062,7 @@ function ManagementSection() {
         >
           <div className="text-center mb-8 sm:mb-10">
             <h3 className="text-xl sm:text-2xl font-black text-[#333]">
-              パートナー・参画会社
+              協業団体
             </h3>
             <div className="mt-3 w-10 h-[3px] bg-[#FD6C26] mx-auto rounded-full" />
           </div>
