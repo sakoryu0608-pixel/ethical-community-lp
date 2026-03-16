@@ -988,20 +988,14 @@ function ManagementSection() {
           <li>・LLPスキームによる障害者共同雇用事業の運営</li>
           <li>・障害者に対する生成AIスキル等の教育訓練</li>
           <li>・特性分析システムを用いた定着支援</li>
-          <li>・バーチャルオフィス「OASIS」による遠隔労務管理サポート</li>
+          <li>・バーチャルオフィス「システム」による遠隔労務管理サポート</li>
         </ul>
       ),
     },
     {
-      label: "組合員構成",
-      content: "《運営会社》株式会社サミットランほか、参画組合員会社",
-    },
-    {
-      label: "監修・パートナー",
+      label: "共同団体",
       content: (
         <ul className="space-y-1">
-          <li>法務監修：[弁護士事務所名]</li>
-          <li>労務監修：[社会保険労務士事務所名]</li>
           <li>戦略的パートナー：株式会社サミットラン、株式会社エクステンシブル</li>
           <li>エンドースメント団体：公益財団法人日本ダウン症協会</li>
         </ul>
@@ -1027,9 +1021,8 @@ function ManagementSection() {
         {/* Section header */}
         <AnimatedSection>
           <div className="text-center mb-12 sm:mb-16">
-            <p className="text-sm font-bold text-[#FD6C26] tracking-widest mb-3">MANAGEMENT</p>
             <h2 className="text-2xl sm:text-3xl lg:text-[2rem] font-black text-[#333] leading-snug">
-              組織概要・運営体制
+              組織概要
             </h2>
             <div className="mt-4 w-12 h-[3px] bg-[#FD6C26] mx-auto rounded-full" />
           </div>
