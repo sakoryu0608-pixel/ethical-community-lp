@@ -579,7 +579,7 @@ function ProblemSection() {
           <div className="max-w-[900px] mx-auto mb-12">
             <div className="bg-white rounded-3xl p-4 lg:p-6 shadow-2xl shadow-black/10">
               <img
-                src="/ethical-community-lp/llp-scheme-infographic.png"
+                src="/ethical-community-lp/llp-scheme-infographic-v2.png"
                 alt="法定雇用率算定の仕組み - LLP有限責任事業組合による共同雇用スキーム"
                 className="w-full h-auto rounded-2xl"
               />
@@ -705,7 +705,7 @@ function SolutionSection() {
           <AnimatedSection delay={0.2}>
             <div className="rounded-2xl overflow-hidden shadow-xl bg-white">
               <img
-                src="/ethical-community-lp/llp-scheme-infographic.png"
+                src="/ethical-community-lp/llp-scheme-infographic-v2.png"
                 alt="法定雇用率算定の仕組み - LLP有限責任事業組合による共同雇用スキーム"
                 className="w-full h-auto"
               />
