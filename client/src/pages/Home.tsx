@@ -437,52 +437,63 @@ function HeroSection() {
           </div>
         </div>
 
-        {/* Authority badges — eye-catching orange panel */}
-        <div style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(20px)', transition: 'opacity 0.8s ease-out 0.5s, transform 0.8s ease-out 0.5s' }}>
-          <div className="max-w-[820px] mx-auto">
+      </div>
+    </section>
+  );
+}
+
+// ============================================================
+// AUTHORITY BADGES — standalone mini-section for maximum emphasis
+// ============================================================
+function AuthorityBadgesSection() {
+  const { ref, isInView } = useInView(0.2);
+  const badges = [
+    { icon: <CheckCircle2 className="w-6 h-6 sm:w-7 sm:h-7" />, label: "法定雇用率算定可能", desc: "雇用率の算定対象としてカウント" },
+    { icon: <Shield className="w-6 h-6 sm:w-7 sm:h-7" />, label: "厚生労働省推進の組合", desc: "国が推進するLLPモデルを採用" },
+    { icon: <Users className="w-6 h-6 sm:w-7 sm:h-7" />, label: "就労支援のプロによる監修", desc: "専門家が業務設計から定着まで支援" },
+    { icon: <Sparkles className="w-6 h-6 sm:w-7 sm:h-7" />, label: "紹介枙0円", desc: "初期費用を抑えて導入可能" },
+  ];
+
+  return (
+    <section className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #FD6C26 0%, #FF8F5C 50%, #FD6C26 100%)' }}>
+      <style>{`
+        @keyframes badgeShimmer { 0%{transform:translateX(-100%)} 100%{transform:translateX(250%)} }
+        @keyframes badgePop { 0%{opacity:0;transform:translateY(24px) scale(0.92)} 100%{opacity:1;transform:translateY(0) scale(1)} }
+      `}</style>
+      {/* Shimmer overlay */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
+          className="absolute top-0 bottom-0 w-1/4"
+          style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent)', animation: 'badgeShimmer 4s ease-in-out infinite' }}
+        />
+      </div>
+      {/* Subtle pattern */}
+      <div className="absolute inset-0 opacity-[0.06] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.8) 1px, transparent 0)', backgroundSize: '24px 24px' }} />
+
+      <div ref={ref} className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-12 lg:py-14 relative z-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
+          {badges.map((item, i) => (
             <div
-              className="relative rounded-2xl px-6 sm:px-10 py-5 sm:py-7 overflow-hidden"
+              key={i}
+              className="group relative rounded-2xl px-4 sm:px-5 py-5 sm:py-6 text-center transition-transform duration-300 hover:-translate-y-1"
               style={{
-                background: 'linear-gradient(135deg, #FD6C26 0%, #FF8F5C 100%)',
-                boxShadow: '0 8px 32px rgba(253,108,38,0.3), 0 2px 6px rgba(253,108,38,0.15)',
+                background: 'rgba(255,255,255,0.15)',
+                border: '1px solid rgba(255,255,255,0.3)',
+                backdropFilter: 'blur(8px)',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.2)',
+                animation: isInView ? `badgePop 0.6s ease-out ${i * 0.1}s both` : 'none',
               }}
             >
-              {/* Shimmer sweep */}
-              <div className="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none">
-                <div
-                  className="absolute top-0 bottom-0 w-1/3"
-                  style={{
-                    background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)',
-                    animation: 'visionShimmer 3s ease-in-out infinite',
-                  }}
-                />
+              <div className="flex justify-center mb-3">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/20 flex items-center justify-center text-white" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.1)' }}>
+                  {item.icon}
+                </div>
               </div>
-              <div className="relative z-10 flex flex-wrap justify-center gap-3 sm:gap-4">
-                {[
-                  { icon: <CheckCircle2 className="w-5 h-5" />, label: "法定雇用率算定可能" },
-                  { icon: <Shield className="w-5 h-5" />, label: "厚生労働省推進の組合" },
-                  { icon: <Users className="w-5 h-5" />, label: "就労支援のプロによる監修" },
-                  { icon: <Sparkles className="w-5 h-5" />, label: "紹介枙0円" },
-                ].map((item, i) => (
-                  <span
-                    key={i}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 text-white text-sm sm:text-base font-bold rounded-xl"
-                    style={{
-                      background: 'rgba(255,255,255,0.18)',
-                      border: '1px solid rgba(255,255,255,0.3)',
-                      backdropFilter: 'blur(4px)',
-                      animation: inView ? `visionBadgeIn 0.5s ease-out ${0.6 + i * 0.08}s both` : 'none',
-                    }}
-                  >
-                    {item.icon}
-                    {item.label}
-                  </span>
-                ))}
-              </div>
+              <p className="text-white font-black text-sm sm:text-base lg:text-lg leading-tight mb-1.5">{item.label}</p>
+              <p className="text-white/70 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
             </div>
-          </div>
+          ))}
         </div>
-
       </div>
     </section>
   );
@@ -1293,6 +1304,7 @@ export default function Home() {
       <main>
         <ImpactSection />
         <HeroSection />
+        <AuthorityBadgesSection />
         <ProblemSection />
         <SolutionSection />
         <CostSection />
