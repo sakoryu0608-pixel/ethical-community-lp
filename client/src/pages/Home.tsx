@@ -333,73 +333,10 @@ function ImpactSection() {
 }
 
 // ============================================================
-// HERO / SECOND VIEW (Content section) - Re-build to force label change to ビジョン
+// HERO / SECOND VIEW (Content section) - Vision section
 // ============================================================
-function HeroParticles() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    let animId: number;
-    const resize = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    };
-    resize();
-    window.addEventListener("resize", resize);
-    const particles = Array.from({ length: 60 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 2.5 + 0.5,
-      dx: (Math.random() - 0.5) * 0.4,
-      dy: (Math.random() - 0.5) * 0.4,
-      alpha: Math.random() * 0.5 + 0.15,
-    }));
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach((p) => {
-        p.x += p.dx;
-        p.y += p.dy;
-        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(253,108,38,${p.alpha})`;
-        ctx.fill();
-      });
-      // Draw connecting lines
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(253,108,38,${0.08 * (1 - dist / 120)})`;
-            ctx.lineWidth = 0.8;
-            ctx.stroke();
-          }
-        }
-      }
-      animId = requestAnimationFrame(draw);
-    };
-    draw();
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" style={{ pointerEvents: "none" }} />;
-}
-
 function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [scrollY, setScrollY] = useState(0);
-  const [sectionTop, setSectionTop] = useState(0);
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
@@ -407,275 +344,134 @@ function HeroSection() {
     if (!el) return;
     const obs = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setInView(true); },
-      { threshold: 0.05 }
+      { threshold: 0.08 }
     );
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
 
-  useEffect(() => {
-    const update = () => {
-      setScrollY(window.scrollY);
-      if (sectionRef.current) setSectionTop(sectionRef.current.offsetTop);
-    };
-    window.addEventListener("scroll", update, { passive: true });
-    update();
-    return () => window.removeEventListener("scroll", update);
-  }, []);
-
-  const relY = scrollY - sectionTop;
-  const parallaxSlow = relY * 0.12;
-  const parallaxMed = relY * 0.06;
-
   return (
-    <section
-      id="hero"
-      ref={sectionRef}
-      className="relative overflow-hidden"
-      style={{ background: 'linear-gradient(160deg, #0D0D0D 0%, #1A0A00 40%, #2A1000 70%, #1A0A00 100%)' }}
-    >
-      {/* Animated particle canvas */}
-      <HeroParticles />
+    <section id="hero" ref={sectionRef} className="relative overflow-hidden bg-[#FAFAF8]">
+      {/* CSS animations */}
+      <style>{`
+        @keyframes visionFloat1 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(15px,-20px) scale(1.05)} }
+        @keyframes visionFloat2 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-20px,15px) scale(1.08)} }
+        @keyframes visionDividerGrow { 0%{transform:scaleX(0)} 100%{transform:scaleX(1)} }
+        @keyframes visionPulse { 0%,100%{box-shadow:0 0 0 0 rgba(253,108,38,0.3)} 50%{box-shadow:0 0 0 12px rgba(253,108,38,0)} }
+        @keyframes visionShimmer { 0%{transform:translateX(-100%)} 100%{transform:translateX(200%)} }
+        @keyframes visionBadgeIn { 0%{opacity:0;transform:translateY(16px) scale(0.95)} 100%{opacity:1;transform:translateY(0) scale(1)} }
+      `}</style>
 
-      {/* Large glowing orb — top left */}
+      {/* Floating orbs — soft warm accents */}
       <div
-        className="absolute rounded-full pointer-events-none"
+        className="absolute pointer-events-none rounded-full"
         style={{
-          width: 700,
-          height: 700,
-          top: -200 + parallaxSlow,
-          left: -200,
-          background: 'radial-gradient(circle, rgba(253,108,38,0.22) 0%, transparent 65%)',
-          filter: 'blur(40px)',
-          transform: `translateY(${parallaxSlow}px)`,
+          width: 500, height: 500, top: -120, right: -100,
+          background: 'radial-gradient(circle, rgba(253,108,38,0.08) 0%, transparent 70%)',
+          animation: 'visionFloat1 8s ease-in-out infinite',
         }}
       />
-      {/* Large glowing orb — bottom right */}
       <div
-        className="absolute rounded-full pointer-events-none"
+        className="absolute pointer-events-none rounded-full"
         style={{
-          width: 600,
-          height: 600,
-          bottom: -150,
-          right: -150,
-          background: 'radial-gradient(circle, rgba(253,108,38,0.18) 0%, transparent 65%)',
-          filter: 'blur(50px)',
-          transform: `translateY(${-parallaxMed}px)`,
+          width: 400, height: 400, bottom: -80, left: -80,
+          background: 'radial-gradient(circle, rgba(253,108,38,0.06) 0%, transparent 70%)',
+          animation: 'visionFloat2 10s ease-in-out infinite',
         }}
       />
-      {/* Center accent glow */}
-      <div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
-        style={{
-          width: 900,
-          height: 400,
-          background: 'radial-gradient(ellipse, rgba(253,108,38,0.08) 0%, transparent 70%)',
-          filter: 'blur(60px)',
-        }}
-      />
+      {/* Subtle dot grid */}
+      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, #FD6C26 0.8px, transparent 0)', backgroundSize: '32px 32px' }} />
 
-      {/* Horizontal scan lines overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.03]"
-        style={{
-          backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,1) 2px, rgba(255,255,255,1) 3px)',
-          backgroundSize: '100% 4px',
-        }}
-      />
-
-      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10 py-20 sm:py-28 lg:py-40 relative z-10">
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10 py-14 sm:py-16 lg:py-20 relative z-10">
 
         {/* Section label */}
-        <div
-          style={{
-            opacity: inView ? 1 : 0,
-            transform: inView ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'opacity 0.8s ease-out 0s, transform 0.8s ease-out 0s',
-          }}
-        >
-          <div className="flex justify-center mb-10 sm:mb-14">
-            <div
-              className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full border"
-              style={{
-                background: 'rgba(253,108,38,0.12)',
-                borderColor: 'rgba(253,108,38,0.4)',
-                boxShadow: '0 0 20px rgba(253,108,38,0.2), inset 0 0 20px rgba(253,108,38,0.05)',
-              }}
-            >
-              <span
-                className="w-1.5 h-1.5 rounded-full bg-[#FD6C26]"
-                style={{ boxShadow: '0 0 6px rgba(253,108,38,0.8)' }}
-              />
-              <span className="text-xs font-bold tracking-[0.4em] text-[#FD6C26]">ビジョン</span>
+        <div style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(16px)', transition: 'opacity 0.6s ease-out, transform 0.6s ease-out' }}>
+          <div className="flex justify-center mb-6 sm:mb-8">
+            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#FD6C26]/8 border border-[#FD6C26]/15">
+              <span className="text-xs font-bold text-[#FD6C26] tracking-widest">ビジョン</span>
             </div>
           </div>
         </div>
 
         {/* Main heading */}
-        <div
-          style={{
-            opacity: inView ? 1 : 0,
-            transform: inView ? 'translateY(0) scale(1)' : 'translateY(40px) scale(0.96)',
-            transition: 'opacity 1s ease-out 0.15s, transform 1s cubic-bezier(0.16,1,0.3,1) 0.15s',
-          }}
-        >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.4rem] font-black text-white leading-[1.2] mb-14 lg:mb-20 text-center" style={{ textShadow: '0 2px 40px rgba(0,0,0,0.5)' }}>
+        <div style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(24px)', transition: 'opacity 0.8s ease-out 0.1s, transform 0.8s cubic-bezier(0.16,1,0.3,1) 0.1s' }}>
+          <h2 className="text-2xl sm:text-3xl lg:text-[2.75rem] xl:text-[3rem] font-black text-[#1A1A1A] leading-[1.25] mb-6 lg:mb-8 text-center">
             AIと専門性で障害者雇用を<br />
-            <span
-              className="text-[#FD6C26]"
-              style={{ textShadow: '0 0 40px rgba(253,108,38,0.6), 0 0 80px rgba(253,108,38,0.3)' }}
-            >「戦力」</span>に変える新しい仕組みを、<br className="hidden sm:block" />
+            <span className="text-[#FD6C26]">「戦力」</span>に変える新しい仕組みを、<br className="hidden sm:block" />
             エシカルコミュニティが実現
           </h2>
         </div>
 
-        {/* Divider */}
-        <div
-          style={{
-            opacity: inView ? 1 : 0,
-            transform: inView ? 'scaleX(1)' : 'scaleX(0)',
-            transition: 'opacity 0.8s ease-out 0.3s, transform 0.8s ease-out 0.3s',
-            transformOrigin: 'center',
-          }}
-        >
-          <div className="flex items-center gap-4 mb-14 lg:mb-18">
-            <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(253,108,38,0.5))' }} />
-            <div className="w-2 h-2 rounded-full bg-[#FD6C26]" style={{ boxShadow: '0 0 8px rgba(253,108,38,0.8)' }} />
-            <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, rgba(253,108,38,0.5), transparent)' }} />
+        {/* Animated divider */}
+        <div style={{ opacity: inView ? 1 : 0, transition: 'opacity 0.6s ease-out 0.2s' }}>
+          <div className="flex items-center gap-4 mb-6 lg:mb-8">
+            <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(253,108,38,0.35))', transformOrigin: 'right', animation: inView ? 'visionDividerGrow 0.8s ease-out 0.3s both' : 'none' }} />
+            <div className="w-2 h-2 rounded-full bg-[#FD6C26]" style={{ animation: inView ? 'visionPulse 2s ease-in-out infinite 0.5s' : 'none' }} />
+            <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, rgba(253,108,38,0.35), transparent)', transformOrigin: 'left', animation: inView ? 'visionDividerGrow 0.8s ease-out 0.3s both' : 'none' }} />
           </div>
         </div>
 
-        {/* Lead paragraphs */}
-        <div
-          style={{
-            opacity: inView ? 1 : 0,
-            transform: inView ? 'translateY(0)' : 'translateY(30px)',
-            transition: 'opacity 0.9s ease-out 0.4s, transform 0.9s ease-out 0.4s',
-          }}
-        >
-          <div className="max-w-[820px] mx-auto space-y-7 mb-16 lg:mb-20">
-            <p className="text-base sm:text-lg lg:text-xl text-white/70 leading-[2] text-center">
+        {/* Body text — ALL paragraphs integrated (NO separate quote box) */}
+        <div style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(20px)', transition: 'opacity 0.8s ease-out 0.3s, transform 0.8s ease-out 0.3s' }}>
+          <div className="max-w-[820px] mx-auto space-y-4 mb-8 lg:mb-10">
+            <p className="text-base sm:text-lg text-[#444] leading-[2] text-center">
               エシカルコミュニティは、<br />
-              障害のある方が<span className="text-white font-bold">生成AIを武器に</span>企業の業務に貢献する、
+              障害のある方が<span className="text-[#1A1A1A] font-bold">生成AIを武器に</span>企業の業務に貢献する、
               新しい働き方のコミュニティです。
             </p>
-            <p className="text-base sm:text-lg lg:text-xl text-white/70 leading-[2] text-center">
+            <p className="text-base sm:text-lg text-[#444] leading-[2] text-center">
               業務を運営するプロフェッショナル、AIを活用できる人材、
               そして障害者雇用に前向きな企業。
-              これらを<span className="text-[#FD6C26] font-bold" style={{ textShadow: '0 0 20px rgba(253,108,38,0.4)' }}>LLP（有限責任事業組合）モデル</span>でスマートに統合します。
+              これらを<span className="text-[#FD6C26] font-bold">LLP（有限責任事業組合）モデル</span>でスマートに統合します。
             </p>
-            <p className="text-base sm:text-lg lg:text-xl text-white/70 leading-[2] text-center">
+            <p className="text-base sm:text-lg text-[#444] leading-[2] text-center">
               プロの監修による的確な業務分析と、AIを駆使する人材育成を掛け合わせることで、
               企業の運用負荷を抑えながら
-              <span className="text-white font-bold">生産性向上と法定雇用率の達成</span>を両立します。
+              <span className="text-[#1A1A1A] font-bold">生産性向上と法定雇用率の達成</span>を両立します。
+            </p>
+            <p className="text-lg sm:text-xl lg:text-2xl font-bold text-[#1A1A1A] leading-[1.8] text-center pt-2">
+              私たちは、障害者雇用を
+              <span className="text-[#FD6C26]">「義務」</span>ではなく
+              <span className="text-[#FD6C26]">価値を生み出す仕組み</span>に変えていきます。
             </p>
           </div>
         </div>
 
-        {/* KEY MESSAGE — the most impactful element */}
-        <div
-          style={{
-            opacity: inView ? 1 : 0,
-            transform: inView ? 'translateY(0) scale(1)' : 'translateY(50px) scale(0.94)',
-            transition: 'opacity 1.1s ease-out 0.6s, transform 1.1s cubic-bezier(0.16,1,0.3,1) 0.6s',
-          }}
-        >
-          <div className="max-w-[820px] mx-auto mb-16 lg:mb-20">
+        {/* Authority badges — eye-catching orange panel */}
+        <div style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(20px)', transition: 'opacity 0.8s ease-out 0.5s, transform 0.8s ease-out 0.5s' }}>
+          <div className="max-w-[820px] mx-auto">
             <div
-              className="relative rounded-3xl px-8 sm:px-14 py-10 sm:py-14 overflow-hidden"
+              className="relative rounded-2xl px-6 sm:px-10 py-5 sm:py-7 overflow-hidden"
               style={{
-                background: 'linear-gradient(135deg, rgba(253,108,38,0.15) 0%, rgba(253,108,38,0.05) 100%)',
-                border: '1px solid rgba(253,108,38,0.35)',
-                boxShadow: '0 0 60px rgba(253,108,38,0.15), 0 0 120px rgba(253,108,38,0.08), inset 0 1px 0 rgba(255,255,255,0.05)',
+                background: 'linear-gradient(135deg, #FD6C26 0%, #FF8F5C 100%)',
+                boxShadow: '0 8px 32px rgba(253,108,38,0.3), 0 2px 6px rgba(253,108,38,0.15)',
               }}
             >
-              {/* Corner accents */}
-              <div className="absolute top-0 left-0 w-12 h-12" style={{ borderTop: '2px solid rgba(253,108,38,0.6)', borderLeft: '2px solid rgba(253,108,38,0.6)', borderRadius: '12px 0 0 0' }} />
-              <div className="absolute top-0 right-0 w-12 h-12" style={{ borderTop: '2px solid rgba(253,108,38,0.6)', borderRight: '2px solid rgba(253,108,38,0.6)', borderRadius: '0 12px 0 0' }} />
-              <div className="absolute bottom-0 left-0 w-12 h-12" style={{ borderBottom: '2px solid rgba(253,108,38,0.6)', borderLeft: '2px solid rgba(253,108,38,0.6)', borderRadius: '0 0 0 12px' }} />
-              <div className="absolute bottom-0 right-0 w-12 h-12" style={{ borderBottom: '2px solid rgba(253,108,38,0.6)', borderRight: '2px solid rgba(253,108,38,0.6)', borderRadius: '0 0 12px 0' }} />
-              {/* Glow pulse */}
-              <div
-                className="absolute inset-0 rounded-3xl"
-                style={{
-                  background: 'radial-gradient(ellipse at 50% 50%, rgba(253,108,38,0.1) 0%, transparent 70%)',
-                  animation: 'heroPulse 3s ease-in-out infinite',
-                }}
-              />
-              <style>{`
-                @keyframes heroPulse {
-                  0%, 100% { opacity: 0.6; transform: scale(1); }
-                  50% { opacity: 1; transform: scale(1.03); }
-                }
-                @keyframes heroShimmer {
-                  0% { transform: translateX(-100%) skewX(-15deg); }
-                  100% { transform: translateX(300%) skewX(-15deg); }
-                }
-              `}</style>
-              {/* Shimmer effect */}
-              <div
-                className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none"
-              >
+              {/* Shimmer sweep */}
+              <div className="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none">
                 <div
                   className="absolute top-0 bottom-0 w-1/3"
                   style={{
-                    background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent)',
-                    animation: 'heroShimmer 4s ease-in-out infinite',
+                    background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)',
+                    animation: 'visionShimmer 3s ease-in-out infinite',
                   }}
                 />
               </div>
-              <p
-                className="relative z-10 text-xl sm:text-2xl lg:text-3xl xl:text-[2rem] font-black text-white leading-[1.7] text-center"
-                style={{ textShadow: '0 2px 20px rgba(0,0,0,0.5)' }}
-              >
-                私たちは、障害者雇用を
-                <span
-                  className="text-[#FD6C26]"
-                  style={{ textShadow: '0 0 30px rgba(253,108,38,0.7), 0 0 60px rgba(253,108,38,0.4)' }}
-                >「義務」</span>ではなく
-                <span
-                  className="text-[#FD6C26]"
-                  style={{ textShadow: '0 0 30px rgba(253,108,38,0.7), 0 0 60px rgba(253,108,38,0.4)' }}
-                >価値を生み出す仕組み</span>に変えていきます。
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Authority badges */}
-        <div
-          style={{
-            opacity: inView ? 1 : 0,
-            transform: inView ? 'translateY(0)' : 'translateY(30px)',
-            transition: 'opacity 0.9s ease-out 0.85s, transform 0.9s ease-out 0.85s',
-          }}
-        >
-          <div className="max-w-[820px] mx-auto">
-            <div
-              className="rounded-2xl px-6 sm:px-10 py-6 sm:py-8"
-              style={{
-                background: 'linear-gradient(135deg, #FD6C26 0%, #FF8F5C 100%)',
-                boxShadow: '0 8px 40px rgba(253,108,38,0.35), 0 2px 8px rgba(0,0,0,0.3)',
-              }}
-            >
-              <div className="flex flex-wrap justify-center gap-3 sm:gap-5">
+              <div className="relative z-10 flex flex-wrap justify-center gap-3 sm:gap-4">
                 {[
-                  { icon: <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6" />, label: "法定雇用率算定可能" },
-                  { icon: <Shield className="w-5 h-5 sm:w-6 sm:h-6" />, label: "厚生労働省推進の組合" },
-                  { icon: <Users className="w-5 h-5 sm:w-6 sm:h-6" />, label: "就労支援のプロによる監修" },
-                  { icon: <Sparkles className="w-5 h-5 sm:w-6 sm:h-6" />, label: "紹介枙0円" },
+                  { icon: <CheckCircle2 className="w-5 h-5" />, label: "法定雇用率算定可能" },
+                  { icon: <Shield className="w-5 h-5" />, label: "厚生労働省推進の組合" },
+                  { icon: <Users className="w-5 h-5" />, label: "就労支援のプロによる監修" },
+                  { icon: <Sparkles className="w-5 h-5" />, label: "紹介枙0円" },
                 ].map((item, i) => (
                   <span
                     key={i}
-                    className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 text-white text-sm sm:text-base font-bold rounded-xl"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 text-white text-sm sm:text-base font-bold rounded-xl"
                     style={{
                       background: 'rgba(255,255,255,0.18)',
                       border: '1px solid rgba(255,255,255,0.3)',
-                      backdropFilter: 'blur(8px)',
-                      boxShadow: '0 2px 8px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.2)',
-                      opacity: inView ? 1 : 0,
-                      transform: inView ? 'translateY(0)' : 'translateY(20px)',
-                      transition: `opacity 0.6s ease-out ${0.9 + i * 0.1}s, transform 0.6s ease-out ${0.9 + i * 0.1}s`,
+                      backdropFilter: 'blur(4px)',
+                      animation: inView ? `visionBadgeIn 0.5s ease-out ${0.6 + i * 0.08}s both` : 'none',
                     }}
                   >
                     {item.icon}
