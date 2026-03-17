@@ -392,44 +392,37 @@ function HeroSection() {
               企業の運用負荷を抑えながら
               <span className="text-[#1A1A1A] font-bold">生産性向上と法定雇用率の達成</span>を両立します。
             </p>
-          </div>
-        </AnimatedSection>
-
-        {/* Closing statement — large accent quote */}
-        <AnimatedSection delay={0.3}>
-          <div className="max-w-[820px] mx-auto mb-14 lg:mb-16">
-            <div className="relative px-6 sm:px-10 py-8 sm:py-10 rounded-2xl border border-[#FD6C26]/20" style={{ background: 'linear-gradient(135deg, #FFF4EE 0%, #FFF8F4 100%)' }}>
-              {/* Quote mark */}
-              <span className="absolute top-4 left-6 text-5xl font-black leading-none select-none text-[#FD6C26]/25">&ldquo;</span>
-              <p className="text-lg sm:text-xl lg:text-2xl font-bold text-[#1A1A1A] leading-[1.8] text-center pt-4">
-                私たちは、障害者雇用を<br className="hidden sm:block" />
-                <span className="text-[#FD6C26]">「義務」</span>ではなく
-                <span className="text-[#FD6C26]">価値を生み出す仕組み</span>に変えていきます。
-              </p>
-              <span className="absolute bottom-4 right-6 text-5xl font-black leading-none select-none text-[#FD6C26]/25">&rdquo;</span>
-            </div>
+            <p className="text-lg sm:text-xl lg:text-2xl font-bold text-[#1A1A1A] leading-[1.8] text-center pt-2">
+              私たちは、障害者雇用を
+              <span className="text-[#FD6C26]">「義務」</span>ではなく
+              <span className="text-[#FD6C26]">価値を生み出す仕組み</span>に変えていきます。
+            </p>
           </div>
         </AnimatedSection>
 
         {/* Authority badges */}
         <AnimatedSection delay={0.4}>
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-            <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/20">
-              <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5" />
-              法定雇用率算定可能
-            </span>
-            <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/20">
-              <Shield className="w-4 h-4 sm:w-5 sm:h-5" />
-              厚生労働省推進の組合
-            </span>
-            <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/20">
-              <Users className="w-4 h-4 sm:w-5 sm:h-5" />
-              就労支援のプロによる監修
-            </span>
-            <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#FFF4EE] text-[#FD6C26] text-sm sm:text-base font-bold rounded-full border border-[#FD6C26]/20">
-              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
-              紹介料0円
-            </span>
+          <div className="max-w-[820px] mx-auto">
+            <div className="rounded-2xl px-6 sm:px-10 py-6 sm:py-8 shadow-lg shadow-[#FD6C26]/10" style={{ background: 'linear-gradient(135deg, #FD6C26 0%, #FF8F5C 100%)' }}>
+              <div className="flex flex-wrap justify-center gap-3 sm:gap-5">
+                <span className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 bg-white/20 text-white text-sm sm:text-base font-bold rounded-xl border border-white/30 backdrop-blur-sm">
+                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6" />
+                  法定雇用率算定可能
+                </span>
+                <span className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 bg-white/20 text-white text-sm sm:text-base font-bold rounded-xl border border-white/30 backdrop-blur-sm">
+                  <Shield className="w-5 h-5 sm:w-6 sm:h-6" />
+                  厚生労働省推進の組合
+                </span>
+                <span className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 bg-white/20 text-white text-sm sm:text-base font-bold rounded-xl border border-white/30 backdrop-blur-sm">
+                  <Users className="w-5 h-5 sm:w-6 sm:h-6" />
+                  就労支援のプロによる監修
+                </span>
+                <span className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 bg-white/20 text-white text-sm sm:text-base font-bold rounded-xl border border-white/30 backdrop-blur-sm">
+                  <Sparkles className="w-5 h-5 sm:w-6 sm:h-6" />
+                  紹介枙0円
+                </span>
+              </div>
+            </div>
           </div>
         </AnimatedSection>
 
