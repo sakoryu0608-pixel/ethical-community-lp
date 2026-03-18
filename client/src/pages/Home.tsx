@@ -12,6 +12,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { CheckCircle2, ChevronDown, Download, Users, ArrowRight, Shield, Brain, HeartHandshake, Sparkles, Building2, Phone, TrendingUp, UserMinus, ClipboardX, Wrench, Menu, X } from "lucide-react";
 import { Link } from "wouter";
 import ceoProfleImage from "../assets/images/ceo-profile.jpg";
+import BubbleNavigation from "../components/BubbleNavigation";
 
 // Intersection Observer hook for scroll animations
 function useInView(threshold = 0.15) {
@@ -1382,6 +1383,7 @@ export default function Home() {
       </main>
       <Footer />
       <FloatingCTA />
+      <BubbleNavigation />
     </div>
   );
 }
