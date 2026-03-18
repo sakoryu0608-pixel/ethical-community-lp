@@ -23,11 +23,12 @@ interface PopParticle {
 }
 
 const SECTIONS = [
-  { id: "problem", label: "課題" },
-  { id: "solution", label: "LLPスキーム" },
+  { id: "problem", label: "経営課題" },
+  { id: "solution", label: "解決策" },
   { id: "cost", label: "コストメリット" },
   { id: "strengths", label: "強み" },
   { id: "vision", label: "ビジョン" },
+  { id: "cta", label: "お問い合わせ" },
 ];
 
 // Calculate bubble position based on elapsed time and canvas dimensions
