@@ -324,13 +324,11 @@ export default function BubbleNavigation() {
     };
   }, [spawnBubble]);
 
-  // Hide on mobile or when toggled
-  if (isMobile) return null;
-
+  // Hide on mobile using display:none to avoid unmounting and losing animation state
   return (
     <div
       className={`fixed right-0 bottom-12 z-30 transition-opacity duration-300 ${isHidden ? "opacity-0 pointer-events-none" : "opacity-100"}`}
-      style={{ width: 220, height: "75vh" }}
+      style={{ width: 220, height: "75vh", display: isMobile ? "none" : undefined }}
     >
       <canvas
         ref={canvasRef}
