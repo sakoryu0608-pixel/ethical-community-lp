@@ -79,6 +79,7 @@ function Header() {
           <a href="#cost" className="text-sm text-[#666] hover:text-[#FD6C26] transition-colors font-medium">コストメリット</a>
           <a href="#strengths" className="text-sm text-[#666] hover:text-[#FD6C26] transition-colors font-medium">強み</a>
           <a href="#vision" className="text-sm text-[#666] hover:text-[#FD6C26] transition-colors font-medium">ビジョン</a>
+          <a href="#cta" className="text-sm text-[#666] hover:text-[#FD6C26] transition-colors font-medium">お問い合わせ</a>
         </nav>
         <div className="flex items-center gap-2 lg:gap-3">
           <Link
@@ -111,6 +112,7 @@ function Header() {
             { href: "#cost", label: "コストメリット" },
             { href: "#strengths", label: "強み" },
             { href: "#vision", label: "ビジョン" },
+            { href: "#cta", label: "お問い合わせ" },
           ].map((item) => (
             <a
               key={item.href}
