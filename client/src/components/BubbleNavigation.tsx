@@ -68,9 +68,47 @@ export default function BubbleNavigation() {
     img.onload = () => { boyImgRef.current = img; };
   }, []);
 
-  // Spawn a bubble
+  // Track which sections are currently shown and the last spawned section
+  const lastSectionIdRef = useRef<string | null>(null);
+  const sectionQueueRef = useRef<string[]>([]);
+
+  // Build a shuffled queue of all section IDs (excluding the last used one)
+  const buildQueue = useCallback((excludeId: string | null): string[] => {
+    const ids = SECTIONS.map((s) => s.id).filter((id) => id !== excludeId);
+    // Fisher-Yates shuffle
+    for (let i = ids.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [ids[i], ids[j]] = [ids[j], ids[i]];
+    }
+    return ids;
+  }, []);
+
+  // Spawn a bubble - no duplicates among active bubbles, no consecutive repeat
   const spawnBubble = useCallback(() => {
-    const section = SECTIONS[Math.floor(Math.random() * SECTIONS.length)];
+    const activeSectionIds = new Set(bubblesRef.current.map((b) => b.sectionId));
+
+    // Refill queue if empty
+    if (sectionQueueRef.current.length === 0) {
+      sectionQueueRef.current = buildQueue(lastSectionIdRef.current);
+    }
+
+    // Pick next from queue that is not already active
+    let sectionId: string | null = null;
+    const remaining: string[] = [];
+    for (const id of sectionQueueRef.current) {
+      if (!activeSectionIds.has(id) && sectionId === null) {
+        sectionId = id;
+      } else {
+        remaining.push(id);
+      }
+    }
+    sectionQueueRef.current = remaining;
+
+    // If all sections are active, skip spawn
+    if (!sectionId) return;
+
+    lastSectionIdRef.current = sectionId;
+    const section = SECTIONS.find((s) => s.id === sectionId)!;
     const size = 50 + Math.random() * 35; // 50-85px
     const bubble: Bubble = {
       id: nextIdRef.current++,
@@ -83,7 +121,7 @@ export default function BubbleNavigation() {
       born: Date.now(),
     };
     bubblesRef.current.push(bubble);
-  }, []);
+  }, [buildQueue]);
 
   // Create pop particles at a position
   const createPopParticles = useCallback((x: number, y: number, size: number) => {
