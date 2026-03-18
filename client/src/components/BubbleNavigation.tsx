@@ -3,16 +3,23 @@ import bubbleBoyImg from "../assets/images/bubble-boy.png";
 
 interface Bubble {
   id: number;
-  x: number;
-  y: number;
   size: number;
   sectionId: string;
   label: string;
   wobbleOffset: number;
   wobbleSpeed: number;
   riseSpeed: number;
-  opacity: number;
   born: number;
+}
+
+interface PopParticle {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  life: number;
+  maxLife: number;
+  size: number;
 }
 
 const SECTIONS = [
@@ -23,9 +30,22 @@ const SECTIONS = [
   { id: "vision", label: "ビジョン" },
 ];
 
+// Calculate bubble position based on elapsed time and canvas dimensions
+function getBubblePos(b: Bubble, now: number, canvasW: number, canvasH: number) {
+  const elapsed = (now - b.born) / 1000;
+  const boyTopY = canvasH - 160;
+  const startY = boyTopY - 30;
+  const y = startY - elapsed * b.riseSpeed * 50;
+  const baseX = canvasW - 80;
+  const x = baseX + Math.sin(elapsed * b.wobbleSpeed + b.wobbleOffset) * 25;
+  const opacity = Math.min(1, elapsed * 2);
+  return { x, y, opacity, elapsed };
+}
+
 export default function BubbleNavigation() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const bubblesRef = useRef<Bubble[]>([]);
+  const particlesRef = useRef<PopParticle[]>([]);
   const animFrameRef = useRef<number>(0);
   const nextIdRef = useRef(0);
   const boyImgRef = useRef<HTMLImageElement | null>(null);
@@ -50,49 +70,75 @@ export default function BubbleNavigation() {
   // Spawn a bubble
   const spawnBubble = useCallback(() => {
     const section = SECTIONS[Math.floor(Math.random() * SECTIONS.length)];
-    const size = 40 + Math.random() * 35; // 40-75px
+    const size = 50 + Math.random() * 35; // 50-85px
     const bubble: Bubble = {
       id: nextIdRef.current++,
-      x: 0, // will be set relative to canvas
-      y: 0, // will be set relative to canvas
       size,
       sectionId: section.id,
       label: section.label,
       wobbleOffset: Math.random() * Math.PI * 2,
       wobbleSpeed: 0.5 + Math.random() * 1.0,
-      riseSpeed: 0.4 + Math.random() * 0.4,
-      opacity: 0,
+      riseSpeed: 0.3 + Math.random() * 0.3,
       born: Date.now(),
     };
     bubblesRef.current.push(bubble);
   }, []);
 
-  // Handle click on bubble
+  // Create pop particles at a position
+  const createPopParticles = useCallback((x: number, y: number, size: number) => {
+    const count = 8 + Math.floor(Math.random() * 6);
+    for (let i = 0; i < count; i++) {
+      const angle = (Math.PI * 2 * i) / count + Math.random() * 0.5;
+      const speed = 1.5 + Math.random() * 3;
+      particlesRef.current.push({
+        x,
+        y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        life: 1,
+        maxLife: 1,
+        size: 2 + Math.random() * 3,
+      });
+    }
+  }, []);
+
+  // Handle click on canvas - use CSS pixel coordinates (same as draw coordinates)
   const handleCanvasClick = useCallback((e: React.MouseEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
     const mx = e.clientX - rect.left;
     const my = e.clientY - rect.top;
-    const dpr = window.devicePixelRatio || 1;
+    const now = Date.now();
+    const w = canvas.clientWidth;
+    const h = canvas.clientHeight;
 
     for (let i = bubblesRef.current.length - 1; i >= 0; i--) {
       const b = bubblesRef.current[i];
-      const dx = mx * dpr - b.x;
-      const dy = my * dpr - b.y;
+      const pos = getBubblePos(b, now, w, h);
+      const dx = mx - pos.x;
+      const dy = my - pos.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < b.size * dpr * 0.5) {
-        // Pop animation - remove bubble
+      const hitRadius = b.size * 0.55; // slightly generous hit area
+
+      if (dist < hitRadius) {
+        // Create pop particles
+        createPopParticles(pos.x, pos.y, b.size);
+        // Store section before removing
+        const sectionId = b.sectionId;
+        // Remove bubble
         bubblesRef.current.splice(i, 1);
-        // Scroll to section
-        const el = document.getElementById(b.sectionId);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
+        // Scroll to section after a tiny delay for visual feedback
+        setTimeout(() => {
+          const el = document.getElementById(sectionId);
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }, 150);
         return;
       }
     }
-  }, []);
+  }, [createPopParticles]);
 
   // Main animation loop
   useEffect(() => {
@@ -102,7 +148,7 @@ export default function BubbleNavigation() {
     if (!ctx) return;
 
     let lastSpawn = Date.now();
-    const spawnInterval = 2500; // new bubble every 2.5s
+    const spawnInterval = 2200;
 
     const resize = () => {
       const dpr = window.devicePixelRatio || 1;
@@ -110,71 +156,90 @@ export default function BubbleNavigation() {
       const h = canvas.clientHeight;
       canvas.width = w * dpr;
       canvas.height = h * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.scale(dpr, dpr);
     };
     resize();
     window.addEventListener("resize", resize);
 
-    const drawBubble = (b: Bubble, now: number) => {
-      const elapsed = (now - b.born) / 1000;
+    const drawBubble = (b: Bubble, now: number): boolean => {
       const w = canvas.clientWidth;
       const h = canvas.clientHeight;
-
-      // Fade in
-      b.opacity = Math.min(1, elapsed * 2);
-
-      // Rise
-      const boyTopY = h - 160; // approximate top of boy's mouth area
-      const startY = boyTopY - 30;
-      b.y = startY - elapsed * b.riseSpeed * 50;
-
-      // Wobble horizontally
-      const baseX = w - 80;
-      b.x = baseX + Math.sin(elapsed * b.wobbleSpeed + b.wobbleOffset) * 25;
+      const { x, y, opacity, elapsed } = getBubblePos(b, now, w, h);
 
       // Remove if off screen
-      if (b.y < -b.size) return false;
+      if (y < -b.size) return false;
 
       ctx.save();
-      ctx.globalAlpha = b.opacity * 0.85;
+      ctx.globalAlpha = opacity * 0.9;
+
+      const radius = b.size * 0.5;
 
       // Bubble body - gradient
       const gradient = ctx.createRadialGradient(
-        b.x - b.size * 0.15, b.y - b.size * 0.15, b.size * 0.05,
-        b.x, b.y, b.size * 0.5
+        x - radius * 0.3, y - radius * 0.3, radius * 0.05,
+        x, y, radius
       );
-      gradient.addColorStop(0, "rgba(255, 255, 255, 0.6)");
-      gradient.addColorStop(0.4, "rgba(253, 180, 140, 0.15)");
-      gradient.addColorStop(0.7, "rgba(253, 108, 38, 0.08)");
-      gradient.addColorStop(1, "rgba(253, 108, 38, 0.03)");
+      gradient.addColorStop(0, "rgba(255, 255, 255, 0.7)");
+      gradient.addColorStop(0.3, "rgba(253, 200, 160, 0.2)");
+      gradient.addColorStop(0.6, "rgba(253, 108, 38, 0.1)");
+      gradient.addColorStop(1, "rgba(253, 108, 38, 0.05)");
 
       ctx.beginPath();
-      ctx.arc(b.x, b.y, b.size * 0.5, 0, Math.PI * 2);
+      ctx.arc(x, y, radius, 0, Math.PI * 2);
       ctx.fillStyle = gradient;
       ctx.fill();
 
-      // Bubble border
-      ctx.strokeStyle = "rgba(253, 108, 38, 0.25)";
-      ctx.lineWidth = 1.2;
+      // Bubble border with iridescent effect
+      const borderGrad = ctx.createLinearGradient(x - radius, y, x + radius, y);
+      borderGrad.addColorStop(0, "rgba(253, 108, 38, 0.15)");
+      borderGrad.addColorStop(0.5, "rgba(253, 108, 38, 0.35)");
+      borderGrad.addColorStop(1, "rgba(253, 108, 38, 0.15)");
+      ctx.strokeStyle = borderGrad;
+      ctx.lineWidth = 1.5;
       ctx.stroke();
 
-      // Highlight / shine
+      // Highlight / shine (top-left)
       ctx.beginPath();
-      ctx.arc(b.x - b.size * 0.15, b.y - b.size * 0.15, b.size * 0.12, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+      ctx.arc(x - radius * 0.3, y - radius * 0.3, radius * 0.18, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+      ctx.fill();
+
+      // Secondary smaller shine
+      ctx.beginPath();
+      ctx.arc(x - radius * 0.15, y - radius * 0.45, radius * 0.08, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
       ctx.fill();
 
       // Label text
-      ctx.globalAlpha = b.opacity * 0.75;
-      const fontSize = Math.max(9, b.size * 0.18);
+      ctx.globalAlpha = opacity * 0.85;
+      const fontSize = Math.max(10, b.size * 0.19);
       ctx.font = `bold ${fontSize}px "Noto Sans JP", sans-serif`;
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillStyle = "#FD6C26";
-      ctx.fillText(b.label, b.x, b.y);
+      ctx.fillText(b.label, x, y + 1);
 
       ctx.restore();
       return true;
+    };
+
+    const drawParticles = () => {
+      particlesRef.current = particlesRef.current.filter((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.05; // gravity
+        p.life -= 0.025;
+        if (p.life <= 0) return false;
+
+        ctx.save();
+        ctx.globalAlpha = p.life * 0.8;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+        ctx.fillStyle = "#FD6C26";
+        ctx.fill();
+        ctx.restore();
+        return true;
+      });
     };
 
     const animate = () => {
@@ -193,6 +258,9 @@ export default function BubbleNavigation() {
       // Draw & update bubbles
       bubblesRef.current = bubblesRef.current.filter((b) => drawBubble(b, now));
 
+      // Draw pop particles
+      drawParticles();
+
       // Draw boy image
       if (boyImgRef.current) {
         const boyH = 150;
@@ -205,8 +273,10 @@ export default function BubbleNavigation() {
       animFrameRef.current = requestAnimationFrame(animate);
     };
 
-    // Initial spawn
+    // Initial spawns
     spawnBubble();
+    setTimeout(() => spawnBubble(), 800);
+    setTimeout(() => spawnBubble(), 1600);
     animate();
 
     return () => {
@@ -221,17 +291,17 @@ export default function BubbleNavigation() {
   return (
     <div
       className={`fixed right-0 bottom-12 z-30 transition-opacity duration-300 ${isHidden ? "opacity-0 pointer-events-none" : "opacity-100"}`}
-      style={{ width: 200, height: "70vh" }}
+      style={{ width: 220, height: "75vh" }}
     >
       <canvas
         ref={canvasRef}
         onClick={handleCanvasClick}
-        className="w-full h-full cursor-pointer"
-        style={{ width: "100%", height: "100%" }}
+        className="w-full h-full"
+        style={{ width: "100%", height: "100%", cursor: "pointer" }}
       />
       {/* Toggle button */}
       <button
-        onClick={() => setIsHidden(!isHidden)}
+        onClick={(e) => { e.stopPropagation(); setIsHidden(!isHidden); }}
         className="absolute bottom-2 right-2 w-6 h-6 rounded-full bg-white/80 border border-gray-200 text-gray-400 text-xs flex items-center justify-center hover:bg-white transition-colors"
         title={isHidden ? "シャボン玉を表示" : "シャボン玉を非表示"}
       >
