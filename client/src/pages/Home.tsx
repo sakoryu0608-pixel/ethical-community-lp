@@ -456,42 +456,30 @@ function AuthorityBadgesSection() {
   ];
 
   return (
-    <section className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #FD6C26 0%, #FF8F5C 50%, #FD6C26 100%)' }}>
+    <section className="relative overflow-hidden bg-[#F4F4F2]">
       <style>{`
-        @keyframes badgeShimmer { 0%{transform:translateX(-100%)} 100%{transform:translateX(250%)} }
         @keyframes badgePop { 0%{opacity:0;transform:translateY(24px) scale(0.92)} 100%{opacity:1;transform:translateY(0) scale(1)} }
       `}</style>
-      {/* Shimmer overlay */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute top-0 bottom-0 w-1/4"
-          style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent)', animation: 'badgeShimmer 4s ease-in-out infinite' }}
-        />
-      </div>
-      {/* Subtle pattern */}
-      <div className="absolute inset-0 opacity-[0.06] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.8) 1px, transparent 0)', backgroundSize: '24px 24px' }} />
 
       <div ref={ref} className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-12 lg:py-14 relative z-10">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
           {badges.map((item, i) => (
             <div
               key={i}
-              className="group relative rounded-2xl px-4 sm:px-5 py-5 sm:py-6 text-center transition-transform duration-300 hover:-translate-y-1"
+              className="group relative rounded-2xl px-4 sm:px-5 py-5 sm:py-6 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg bg-white"
               style={{
-                background: 'rgba(255,255,255,0.15)',
-                border: '1px solid rgba(255,255,255,0.3)',
-                backdropFilter: 'blur(8px)',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.2)',
+                border: '1px solid rgba(253,108,38,0.15)',
+                boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
                 animation: isInView ? `badgePop 0.6s ease-out ${i * 0.1}s both` : 'none',
               }}
             >
               <div className="flex justify-center mb-3">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/20 flex items-center justify-center text-white" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.1)' }}>
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-[#FD6C26]" style={{ background: 'rgba(253,108,38,0.08)' }}>
                   {item.icon}
                 </div>
               </div>
-              <p className="text-white font-black text-sm sm:text-base lg:text-lg leading-tight mb-1.5">{item.label}</p>
-              <p className="text-white/70 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
+              <p className="text-[#1A1A1A] font-black text-sm sm:text-base lg:text-lg leading-tight mb-1.5">{item.label}</p>
+              <p className="text-[#888] text-xs sm:text-sm leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
