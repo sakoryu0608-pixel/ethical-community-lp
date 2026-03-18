@@ -11,6 +11,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { CheckCircle2, ChevronDown, Download, Users, ArrowRight, Shield, Brain, HeartHandshake, Sparkles, Building2, Phone, TrendingUp, UserMinus, ClipboardX, Wrench, Menu, X } from "lucide-react";
 import { Link } from "wouter";
+import ceoProfleImage from "../assets/images/ceo-profile.jpg";
 
 // Intersection Observer hook for scroll animations
 function useInView(threshold = 0.15) {
@@ -917,7 +918,7 @@ function VisionSection() {
                 {/* Photo container - Square */}
                 <div className="relative w-44 h-44 sm:w-56 sm:h-56 lg:w-72 lg:h-72 rounded-xl overflow-hidden shadow-2xl shadow-[#FD6C26]/10">
                   <img
-                    src="/images/ceo-profile.jpg"
+                    src={ceoProfleImage}
                     alt="代表 石原 奈津子"
                     className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   />
