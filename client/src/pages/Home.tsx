@@ -74,8 +74,8 @@ function Header() {
           <img src="/ethical-community-lp/logo.png" alt="エシカルコミュニティLLP ロゴ" className="w-[72px] h-[72px] lg:w-20 lg:h-20 object-contain" />
         </div>
         <nav className="hidden lg:flex items-center gap-8">
-          <a href="#problem" className="text-sm text-[#666] hover:text-[#FD6C26] transition-colors font-medium">課題</a>
-          <a href="#solution" className="text-sm text-[#666] hover:text-[#FD6C26] transition-colors font-medium">LLPスキーム</a>
+          <a href="#problem" className="text-sm text-[#666] hover:text-[#FD6C26] transition-colors font-medium">経営課題</a>
+          <a href="#solution" className="text-sm text-[#666] hover:text-[#FD6C26] transition-colors font-medium">解決策</a>
           <a href="#cost" className="text-sm text-[#666] hover:text-[#FD6C26] transition-colors font-medium">コストメリット</a>
           <a href="#strengths" className="text-sm text-[#666] hover:text-[#FD6C26] transition-colors font-medium">強み</a>
           <a href="#vision" className="text-sm text-[#666] hover:text-[#FD6C26] transition-colors font-medium">ビジョン</a>
@@ -107,8 +107,8 @@ function Header() {
       >
         <nav className="px-4 py-4 space-y-1">
           {[
-            { href: "#problem", label: "課題" },
-            { href: "#solution", label: "LLPスキーム" },
+            { href: "#problem", label: "経営課題" },
+            { href: "#solution", label: "解決策" },
             { href: "#cost", label: "コストメリット" },
             { href: "#strengths", label: "強み" },
             { href: "#vision", label: "ビジョン" },
