@@ -917,7 +917,7 @@ function VisionSection() {
                 {/* Photo container - Square */}
                 <div className="relative w-44 h-44 sm:w-56 sm:h-56 lg:w-72 lg:h-72 rounded-xl overflow-hidden shadow-2xl shadow-[#FD6C26]/10">
                   <img
-                    src="https://private-us-east-1.manuscdn.com/user_upload_by_module/session_file/310519663384608434/mGdRqzCpWUaaftfz.jpg?Expires=1804041501&Signature=s-X9oNjm1cG0UvXRGijtPXhhqwgIGugyQ0I-5gCdQA3CCJa3GCP1e8ezetv1GAO1-HOaxhbnggC43aS3IV6bt8R~JAC9a1Qsv3713mgzPtIKWvzvBDezlIGnY6hmOLeFa3HYSIMVSTBh0A0wTuWpSvkPulp3iC5sNf37WJCkNpnv-DFyJpPjvDuUvLyWMB6k0DcPFwBxiCVpQ7FG2JNLgAeellU5nsGkI69S5GgvqBmEgIdscrHAONrhvymy53ph8Q0P~5~3bjxXek36aDNb2iry-tILF~mmYlD52kz~tINbSm4AiBNktnUx9ghNbubkB4-o9JPUj56ripvTJApn8w__&Key-Pair-Id=K2HSFNDJXOU9YS"
+                    src="/images/ceo-profile.jpg"
                     alt="代表 石原 奈津子"
                     className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   />
