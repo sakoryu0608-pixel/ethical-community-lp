@@ -452,7 +452,7 @@ function AuthorityBadgesSection() {
     { icon: <CheckCircle2 className="w-6 h-6 sm:w-7 sm:h-7" />, label: "法定雇用率算定可能", desc: "雇用率の算定対象としてカウント" },
     { icon: <Shield className="w-6 h-6 sm:w-7 sm:h-7" />, label: "厚生労働省推進の組合", desc: "国が推進するLLPモデルを採用" },
     { icon: <Users className="w-6 h-6 sm:w-7 sm:h-7" />, label: "就労支援のプロによる監修", desc: "専門家が業務設計から定着まで支援" },
-    { icon: <Sparkles className="w-6 h-6 sm:w-7 sm:h-7" />, label: "紹介枙0円", desc: "初期費用を抑えて導入可能" },
+    { icon: <Sparkles className="w-6 h-6 sm:w-7 sm:h-7" />, label: "人材紹介料0円", desc: "初期費用を抑えて導入可能" },
   ];
 
   return (
