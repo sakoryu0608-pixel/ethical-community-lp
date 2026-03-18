@@ -821,6 +821,98 @@ function StrengthsSection() {
             </AnimatedSection>
           ))}
         </div>
+
+        {/* AI Curriculum Section */}
+        <AnimatedSection delay={0.2}>
+          <div className="mt-14 sm:mt-20 rounded-3xl overflow-hidden" style={{ background: 'linear-gradient(135deg, #1A1A1A 0%, #2D1A0E 50%, #1A1A1A 100%)' }}>
+            <div className="px-6 sm:px-10 lg:px-14 py-10 sm:py-14 lg:py-16">
+              {/* Title */}
+              <h3 className="text-2xl sm:text-3xl lg:text-[2.2rem] font-black text-white leading-snug mb-3">
+                生成AIスキル習得カリキュラム
+              </h3>
+              <p className="text-sm sm:text-base text-white/60 leading-relaxed mb-6">
+                「単純作業」から「創造的業務」へ。スタッフを企業の戦力へ変える教育。（50以上の学習動画を提供）
+              </p>
+
+              {/* Tool tags */}
+              <div className="flex flex-wrap gap-2 sm:gap-3 mb-10 sm:mb-14">
+                {["ChatGPT", "Gemini", "NotebookLM", "Google AI Studio", "runway", "fish audio", "CUPCAT"].map((tool) => (
+                  <span
+                    key={tool}
+                    className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium rounded-lg text-white/80"
+                    style={{ border: '1px solid rgba(253,108,38,0.35)', background: 'rgba(253,108,38,0.08)' }}
+                  >
+                    {tool}
+                  </span>
+                ))}
+              </div>
+
+              {/* Pyramid + Descriptions */}
+              <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                {/* Pyramid */}
+                <div className="flex justify-center">
+                  <svg viewBox="0 0 400 360" className="w-full max-w-[360px]">
+                    {/* 1級 - top */}
+                    <polygon points="200,20 260,110 140,110" fill="url(#pyramidGrad1)" />
+                    <text x="200" y="78" textAnchor="middle" fill="white" fontWeight="900" fontSize="22">1級</text>
+                    {/* 2級 */}
+                    <polygon points="140,118 260,118 295,208 105,208" fill="url(#pyramidGrad2)" />
+                    <text x="200" y="172" textAnchor="middle" fill="white" fontWeight="900" fontSize="22">2級</text>
+                    {/* 3級 */}
+                    <polygon points="105,216 295,216 330,306 70,306" fill="url(#pyramidGrad3)" />
+                    <text x="200" y="270" textAnchor="middle" fill="white" fontWeight="900" fontSize="22">3級</text>
+                    {/* 4級 */}
+                    <polygon points="70,314 330,314 360,360 40,360" fill="url(#pyramidGrad4)" />
+                    <text x="200" y="346" textAnchor="middle" fill="white" fontWeight="900" fontSize="20">4級</text>
+                    {/* Connector dots */}
+                    <circle cx="260" cy="65" r="5" fill="#FD6C26" />
+                    <line x1="265" y1="65" x2="290" y2="65" stroke="#FD6C26" strokeWidth="1.5" opacity="0.5" />
+                    <circle cx="295" cy="163" r="5" fill="#FD6C26" />
+                    <line x1="300" y1="163" x2="325" y2="163" stroke="#FD6C26" strokeWidth="1.5" opacity="0.5" />
+                    <circle cx="330" cy="261" r="5" fill="#FD6C26" />
+                    <line x1="335" y1="261" x2="360" y2="261" stroke="#FD6C26" strokeWidth="1.5" opacity="0.5" />
+                    <circle cx="360" cy="337" r="5" fill="#FD6C26" />
+                    <line x1="365" y1="337" x2="390" y2="337" stroke="#FD6C26" strokeWidth="1.5" opacity="0.5" />
+                    {/* Gradients */}
+                    <defs>
+                      <linearGradient id="pyramidGrad1" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#FD6C26" />
+                        <stop offset="100%" stopColor="#E85D1A" />
+                      </linearGradient>
+                      <linearGradient id="pyramidGrad2" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#E85D1A" />
+                        <stop offset="100%" stopColor="#D4500F" />
+                      </linearGradient>
+                      <linearGradient id="pyramidGrad3" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#D4500F" />
+                        <stop offset="100%" stopColor="#B8420A" />
+                      </linearGradient>
+                      <linearGradient id="pyramidGrad4" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#B8420A" />
+                        <stop offset="100%" stopColor="#9A3508" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+
+                {/* Descriptions */}
+                <div className="space-y-6 sm:space-y-7">
+                  {[
+                    { level: "AIインストラクター：", desc: "AIの概念を理解し、他者に教えたり、業務改善の提案ができる。" },
+                    { level: "AIクリエイター：", desc: "カスタムGPTsの作成や、動画・アプリ制作など、成果物を構築できる。" },
+                    { level: "AI効率化マスター：", desc: "複数のツールや高度な機能を使い、情報の整理・分析・リサーチメール作成や議事録など定型的な業務補助ができる。" },
+                    { level: "AIベーシック：", desc: "AIに対して抵抗感をなくし、基本的な質問と回答のラリーができる。" },
+                  ].map((item, i) => (
+                    <div key={i}>
+                      <p className="text-base sm:text-lg font-black text-[#FD6C26] mb-1">{item.level}</p>
+                      <p className="text-sm sm:text-[15px] text-white/70 leading-relaxed">{item.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
       </div>
     </section>
   );
