@@ -835,7 +835,7 @@ function StrengthsSection() {
 
               {/* Tool tags */}
               <div className="flex flex-wrap gap-2 sm:gap-3 mb-10 sm:mb-14">
-                {["ChatGPT", "Gemini", "NotebookLM", "Google AI Studio", "runway", "fish audio", "CUPCAT"].map((tool) => (
+                {["ChatGPT", "Gemini", "NotebookLM", "Google AI Studio", "runway", "fish audio", "CUPCAT", "Claude", "manus"].map((tool) => (
                   <span
                     key={tool}
                     className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium rounded-lg text-[#555]"
