@@ -824,13 +824,12 @@ function StrengthsSection() {
 
         {/* AI Curriculum Section */}
         <AnimatedSection delay={0.2}>
-          <div className="mt-14 sm:mt-20 rounded-3xl overflow-hidden" style={{ background: 'linear-gradient(135deg, #1A1A1A 0%, #2D1A0E 50%, #1A1A1A 100%)' }}>
-            <div className="px-6 sm:px-10 lg:px-14 py-10 sm:py-14 lg:py-16">
+          <div className="mt-14 sm:mt-20">
               {/* Title */}
-              <h3 className="text-2xl sm:text-3xl lg:text-[2.2rem] font-black text-white leading-snug mb-3">
+              <h3 className="text-2xl sm:text-3xl lg:text-[2.2rem] font-black text-[#333] leading-snug mb-3">
                 生成AIスキル習得カリキュラム
               </h3>
-              <p className="text-sm sm:text-base text-white/60 leading-relaxed mb-6">
+              <p className="text-sm sm:text-base text-[#666] leading-relaxed mb-6">
                 「単純作業」から「創造的業務」へ。スタッフを企業の戦力へ変える教育。（50以上の学習動画を提供）
               </p>
 
@@ -839,8 +838,8 @@ function StrengthsSection() {
                 {["ChatGPT", "Gemini", "NotebookLM", "Google AI Studio", "runway", "fish audio", "CUPCAT"].map((tool) => (
                   <span
                     key={tool}
-                    className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium rounded-lg text-white/80"
-                    style={{ border: '1px solid rgba(253,108,38,0.35)', background: 'rgba(253,108,38,0.08)' }}
+                    className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium rounded-lg text-[#555]"
+                    style={{ border: '1px solid #ddd', background: '#F8F8F8' }}
                   >
                     {tool}
                   </span>
@@ -848,50 +847,49 @@ function StrengthsSection() {
               </div>
 
               {/* Pyramid + Descriptions */}
-              <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                {/* Pyramid */}
+              <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+                {/* Pyramid SVG — proper isoceles triangle divided into 4 horizontal tiers */}
                 <div className="flex justify-center">
-                  <svg viewBox="0 0 400 360" className="w-full max-w-[360px]">
-                    {/* 1級 - top */}
-                    <polygon points="200,20 260,110 140,110" fill="url(#pyramidGrad1)" />
-                    <text x="200" y="78" textAnchor="middle" fill="white" fontWeight="900" fontSize="22">1級</text>
-                    {/* 2級 */}
-                    <polygon points="140,118 260,118 295,208 105,208" fill="url(#pyramidGrad2)" />
-                    <text x="200" y="172" textAnchor="middle" fill="white" fontWeight="900" fontSize="22">2級</text>
-                    {/* 3級 */}
-                    <polygon points="105,216 295,216 330,306 70,306" fill="url(#pyramidGrad3)" />
-                    <text x="200" y="270" textAnchor="middle" fill="white" fontWeight="900" fontSize="22">3級</text>
-                    {/* 4級 */}
-                    <polygon points="70,314 330,314 360,360 40,360" fill="url(#pyramidGrad4)" />
-                    <text x="200" y="346" textAnchor="middle" fill="white" fontWeight="900" fontSize="20">4級</text>
-                    {/* Connector dots */}
-                    <circle cx="260" cy="65" r="5" fill="#FD6C26" />
-                    <line x1="265" y1="65" x2="290" y2="65" stroke="#FD6C26" strokeWidth="1.5" opacity="0.5" />
-                    <circle cx="295" cy="163" r="5" fill="#FD6C26" />
-                    <line x1="300" y1="163" x2="325" y2="163" stroke="#FD6C26" strokeWidth="1.5" opacity="0.5" />
-                    <circle cx="330" cy="261" r="5" fill="#FD6C26" />
-                    <line x1="335" y1="261" x2="360" y2="261" stroke="#FD6C26" strokeWidth="1.5" opacity="0.5" />
-                    <circle cx="360" cy="337" r="5" fill="#FD6C26" />
-                    <line x1="365" y1="337" x2="390" y2="337" stroke="#FD6C26" strokeWidth="1.5" opacity="0.5" />
-                    {/* Gradients */}
+                  <svg viewBox="0 0 480 420" className="w-full max-w-[400px]">
                     <defs>
-                      <linearGradient id="pyramidGrad1" x1="0" y1="0" x2="0" y2="1">
+                      <linearGradient id="pyrGrad1" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="0%" stopColor="#FD6C26" />
-                        <stop offset="100%" stopColor="#E85D1A" />
+                        <stop offset="100%" stopColor="#F06020" />
                       </linearGradient>
-                      <linearGradient id="pyramidGrad2" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#E85D1A" />
-                        <stop offset="100%" stopColor="#D4500F" />
+                      <linearGradient id="pyrGrad2" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#F06020" />
+                        <stop offset="100%" stopColor="#E0551A" />
                       </linearGradient>
-                      <linearGradient id="pyramidGrad3" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#D4500F" />
-                        <stop offset="100%" stopColor="#B8420A" />
+                      <linearGradient id="pyrGrad3" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#E0551A" />
+                        <stop offset="100%" stopColor="#D04A14" />
                       </linearGradient>
-                      <linearGradient id="pyramidGrad4" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#B8420A" />
-                        <stop offset="100%" stopColor="#9A3508" />
+                      <linearGradient id="pyrGrad4" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#D04A14" />
+                        <stop offset="100%" stopColor="#C04010" />
                       </linearGradient>
                     </defs>
+                    {/* Tier 1 (1級) - top triangle */}
+                    <polygon points="200,20 248,100 152,100" fill="url(#pyrGrad1)" />
+                    <text x="200" y="76" textAnchor="middle" fill="white" fontWeight="900" fontSize="20" fontFamily="sans-serif">1級</text>
+                    {/* Tier 2 (2級) - trapezoid */}
+                    <polygon points="152,106 248,106 296,192 104,192" fill="url(#pyrGrad2)" />
+                    <text x="200" y="160" textAnchor="middle" fill="white" fontWeight="900" fontSize="20" fontFamily="sans-serif">2級</text>
+                    {/* Tier 3 (3級) - trapezoid */}
+                    <polygon points="104,198 296,198 344,284 56,284" fill="url(#pyrGrad3)" />
+                    <text x="200" y="252" textAnchor="middle" fill="white" fontWeight="900" fontSize="20" fontFamily="sans-serif">3級</text>
+                    {/* Tier 4 (4級) - trapezoid (base) */}
+                    <polygon points="56,290 344,290 392,376 8,376" fill="url(#pyrGrad4)" />
+                    <text x="200" y="344" textAnchor="middle" fill="white" fontWeight="900" fontSize="20" fontFamily="sans-serif">4級</text>
+                    {/* Connector dots + horizontal lines to right edge */}
+                    <circle cx="248" cy="60" r="5" fill="#FD6C26" stroke="white" strokeWidth="1.5" />
+                    <line x1="253" y1="60" x2="400" y2="60" stroke="#FD6C26" strokeWidth="1" strokeDasharray="4 3" opacity="0.5" />
+                    <circle cx="296" cy="149" r="5" fill="#FD6C26" stroke="white" strokeWidth="1.5" />
+                    <line x1="301" y1="149" x2="400" y2="149" stroke="#FD6C26" strokeWidth="1" strokeDasharray="4 3" opacity="0.5" />
+                    <circle cx="344" cy="241" r="5" fill="#FD6C26" stroke="white" strokeWidth="1.5" />
+                    <line x1="349" y1="241" x2="400" y2="241" stroke="#FD6C26" strokeWidth="1" strokeDasharray="4 3" opacity="0.5" />
+                    <circle cx="392" cy="333" r="5" fill="#FD6C26" stroke="white" strokeWidth="1.5" />
+                    <line x1="397" y1="333" x2="470" y2="333" stroke="#FD6C26" strokeWidth="1" strokeDasharray="4 3" opacity="0.5" />
                   </svg>
                 </div>
 
@@ -905,12 +903,11 @@ function StrengthsSection() {
                   ].map((item, i) => (
                     <div key={i}>
                       <p className="text-base sm:text-lg font-black text-[#FD6C26] mb-1">{item.level}</p>
-                      <p className="text-sm sm:text-[15px] text-white/70 leading-relaxed">{item.desc}</p>
+                      <p className="text-sm sm:text-[15px] text-[#555] leading-relaxed">{item.desc}</p>
                     </div>
                   ))}
                 </div>
               </div>
-            </div>
           </div>
         </AnimatedSection>
       </div>
