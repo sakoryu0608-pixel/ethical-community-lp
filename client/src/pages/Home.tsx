@@ -204,17 +204,6 @@ function ImpactSection() {
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, []);
 
-  // Auto-scroll to HeroSection 5 seconds after mount
-  useEffect(() => {
-    const scrollTimer = setTimeout(() => {
-      const heroEl = document.getElementById('hero');
-      if (heroEl) {
-        heroEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 5000);
-    return () => clearTimeout(scrollTimer);
-  }, []);
-
   // JS-driven glow pulse animation for keywords (avoids CSS animation conflict)
   useEffect(() => {
     if (phase < 3) return;
