@@ -1228,7 +1228,7 @@ function CTASection() {
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10">
         <AnimatedSection>
           <div className="text-center mb-10">
-            <p className="text-sm font-bold text-[#FD6C26] tracking-wider mb-3">CONTACT</p>
+            <p className="text-sm font-bold text-[#FD6C26] tracking-wider mb-3">お問い合わせ</p>
             <h2 className="text-2xl sm:text-3xl lg:text-[2rem] font-black text-[#333] leading-snug">
               貴社の課題に合わせた、
               <br className="hidden sm:block" />
